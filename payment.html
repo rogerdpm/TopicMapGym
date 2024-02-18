@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donation Payment</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
+</head>
+<body>
+
+<table id="MenuBtn">
+    <tr>
+        <td>
+            <button type="button" id="homebtn">Home</button>
+        </td>
+        <td>
+            <button type="button" id="paypalbtn">PayPal</button>
+        </td>
+    </tr>
+</table>
+
+<div id="payment-form">
+    <form id="donation-form">
+        <div>
+            <label for="amount">Amount (ZAR):</label>
+            <input type="number" id="amount" name="amount" required min="1" step="any" placeholder="Amount in Rands">
+        </div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name">
+        </div>
+        <div>
+            <label for="description">Message:</label>
+            <input type="text" id="description" name="description" placeholder="Your Message">
+        </div>
+        <!-- Add more fields as required -->
+        <button type="button" id="checkout-button">Pay Now With Yoco</button>
+    </form>
+    
+</div>
+
+
+
+<!-- Confirmation or Error Messages -->
+<div id="paymentConfirmation" style="display: none;">
+    <h2>Payment Confirmation</h2>
+    <p id="confirmationMessage">Thank you for your donation!</p>
+    <button onclick="window.location.href='index.html';">Back to Main Page</button>
+</div>
+
+<div class="donation-message">
+    <h2>Support TopicMapGym</h2>
+    <p>Support Our Journey to a Healthier You!</p>
+    <p>Our site bring you gym demonstration images in a structured and easy-to-navigate format. By grouping these images into intuitive categories and allowing for seamless interaction through buttons and images, we aim to guide you from start to finish through various exercises, their variations, and types. This has been a journey of hard work, dedication, and a deep passion for fitness and well-being.</p>
+    <p>Your donation is more than just a contribution; it's a partnership. With the support of our gym community, we can continuously update our content, enhance the site's features, and extend our reach to inspire more individuals on their fitness journey. Whether you're in South Africa and prefer to use Yoco or are from another part of the globe and find PayPal more convenient, your generosity will fuel our mission to provide accessible, high-quality fitness demonstrations to everyone.</p>
+    <p>Join us in making fitness accessible and engaging. Every donation, big or small, propels us forward. Together, let's build a stronger, healthier world.</p>
+</div>
+
+
+<script>
+// Add your Yoco public key
+var yoco = new window.YocoSDK({
+    publicKey: 'pk_live_e849875dz6bJKb3afd14', //'pk_test_55386469z6bJKb3851d4',
+});
+
+document.getElementById('checkout-button').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    var form = document.getElementById('donation-form');
+    var amount = form.amount.value * 100; // Convert to cents
+    var name = form.name.value;
+    var description = form.description.value;
+
+    // Validation (simple example)
+    if (!amount || !name || !description) {
+        alert('Please fill in all the fields.');
+        return;
+    }
+
+    yoco.showPopup({
+        amountInCents: amount,
+        currency: 'ZAR',
+        name: name,
+        description: description,
+        callback: function (result) {
+            if (result.error) {
+                alert("Error: " + result.error.message);
+            } else {
+                // Simulating successful payment confirmation
+                document.getElementById('payment-form').style.display = 'none';
+                document.getElementById('paymentConfirmation').style.display = 'block';
+                console.log('Card successfully tokenized. Token:', result.id);
+            }
+            yoco.hidePopup();
+        }
+    });
+});
+</script>
+<script>
+    document.getElementById('homebtn').addEventListener('click', function() {
+        window.location.href = 'index.html'; 
+    });
+    document.getElementById('paypalbtn').addEventListener('click', function() {
+        window.location.href = 'payment_paypal.html'; 
+    });
+</script>
+</body>
+</html>

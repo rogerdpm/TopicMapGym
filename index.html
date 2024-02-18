@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Table</title>
+    <!--<link rel="stylesheet" type="text/css" href="styles_phone.css" media="screen and (max-width: 600px) and (max-height: 800px)">
+    <link rel="stylesheet" type="text/css" href="styles_laptop.css" media="screen and (min-width: 601px) and (min-height: 801px)">-->
+    <link rel="stylesheet" type="text/css" href="styles_phone.css" media="screen and ((max-width: 940px))">
+    <link rel="stylesheet" type="text/css" href="styles_laptop.css" media="screen and ((min-width: 941px))">
+    
+</head>
+<body>
+    <div id="tabs">
+        <button class="tab" onclick="setTab(1)">Glutes</button>
+        <button class="tab" onclick="setTab(2)">Legs</button>
+        <button class="tab" onclick="setTab(3)">Chest & Triceps</button>
+        <button class="tab" onclick="setTab(4)">Back & Biceps</button>
+        <button class="tab" onclick="setTab(5)">Shoulders</button>
+        <button class="tab" onclick="setTab(6)">Arms</button>
+        <button class="tab" onclick="setTab(7)">Stomach</button>
+        <button class="tab" onclick="setTab(8)">Cardio</button>
+    </div>
+   <div class="centered-text">
+    Click on a button or the image to see more demonstration images.
+   </div>
+   <table>
+   <tr>
+   <td>
+    <table id="GlutesTable" class="table"></table>
+    <table id="LegsTable" class="table" style="display:none;"></table>
+    <table id="ChestTable" class="table" style="display:none;"></table>
+    <table id="BackTable" class="table" style="display:none;"></table>
+    <table id="ShouldersTable" class="table" style="display:none;"></table>
+    <table id="ArmsTable" class="table" style="display:none;"></table>
+    <table id="StomachTable" class="table" style="display:none;"></table>
+    <table id="CardioTable" class="table" style="display:none;"></table>
+   </td>
+   <td class="flexible-spacer-middle"></td>
+   <td>
+    <div id="rightDiv">
+        <div id="imageFrame"></div>
+        <div id="buttonContainer">
+                <table id="buttonsTable">
+                    <tr>
+                        <td>
+                            <button id="backbtn"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="goToPaymentPage">Donate</button>
+                        </td>
+                    </tr>
+                    
+                </table>
+        </div>
+       
+    </div>
+</td>
+<td class="flexible-spacer"></td>
+   </tr>
+   </table>
+   <footer id="pageFooter">
+    @TopicMapGym - contact: jjloubser@symbioses.co.za
+   </footer>
+    <script src="script.js"></script>
+</body>
+</html>

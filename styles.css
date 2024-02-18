@@ -1,0 +1,290 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightblue;
+    background-image: url('image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    font-family: Arial, sans-serif;
+}
+
+/* Enhanced Style for the outer table */
+table {
+    margin-left: 0;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: auto;
+    border-collapse: collapse;
+    box-shadow: 0 3px 6px transparent;
+    border-radius: 7px;
+    background: transparent;
+    width: 100%;
+}
+
+#GlutesTable, #LegsTable, #ChestTable, #BackTable, #ShouldersTable, #ArmsTable, #StomachTable, #CardioTable, #MMATable, #NutritionTable {
+    border-collapse: collapse;
+    margin-left: 0;
+    margin-right: auto;
+    width: 60%; /* Adjusted width for better layout */
+    top: 0 ;
+    left: 0;
+    border-radius: 1px;
+    margin-bottom: auto; /* Ensures a bit of margin at the bottom */
+    min-width: 475px; /* Minimum width to maintain layout integrity */
+}
+
+/* Style adjustments for table cells */
+#GlutesTable td, #LegsTable td, #ChestTable td, #BackTable td, #ShouldersTable td, #ArmsTable td, #StomachTable td, #CardioTable td, #MMATable td, #NutritionTable td {
+    border: 0.5px solid #d3d3d3; /* Lighter and thinner border for a refined look */
+    width: 95px; /* Optimized width */
+    height: 86px; /* Optimized height */
+    text-align: center;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1); /* Soften the shadow for depth without being too pronounced */
+}
+
+
+/* Enhanced button styles for 3D effect */
+button {
+    width: 100%;
+    height: 55px;
+    border-radius: 2px;
+    background: rgba(100, 149, 237, 0.5);
+    line-height: 0.75; /* Adjust based on your needs */
+    padding: 0px; /* Provides some space inside the button */
+
+}
+
+button:active {
+    transform: translateY(1px) translateX(1px); /* Pressed button effect */
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Adjust shadow when pressed */
+}
+
+.centered-text {
+    text-align: left; /* Horizontally center the text */
+    vertical-align: left; /* Vertically center the text, if desired */
+    margin-left: 100px;
+    margin-top: 5px;
+    color: black;
+}
+
+.flexible-spacer {
+    width: 100%; /* Ensures the spacer takes up the remaining space */
+}
+.flexible-spacer-middle {
+    width: 2%; /* Ensures the spacer takes up the remaining space */
+}
+
+td {
+    vertical-align: top;
+}
+
+#rightDiv
+{
+    margin-left: auto;
+    margin-right: 0;
+    width: 50%;
+    width: 454px; /* Set a minimum width */
+    height: 430px; /* Set a minimum height */
+    overflow-y: auto;
+}
+
+#imageFrame {
+    width: 424px;
+    height: 390px;
+    border: 1px solid #000;
+    display: inline-block;
+    vertical-align: top;
+    box-shadow: 0 0 7px rgba(0,0,0,0.4); /* Adds shadow for depth */
+    overflow: hidden;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* Enhanced styles for the tabs container and individual tabs */
+#tabs {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 0px;
+    max-width: 950px;
+}
+
+.tab {
+    background-color: rgb(100, 149, 237);
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    margin-right: 2px;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Shadow for depth */
+    background-image: linear-gradient(to top right, #6495ed, #375abd); /* Gradient for 3D effect */
+    height: 15px;
+}
+
+.tab:hover {
+    background-color: rgb(70, 130, 180);
+    box-shadow: 0 0 8px rgba(255,255,255,0.5); /* Lighter shadow on hover for lifted effect */
+}
+
+#buttonsTable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#backbtn, #goToPaymentPage {
+    background-color: rgba(33, 102, 172, 0.8);
+    width: 75px;
+    height: 15px;
+    text-align: center;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Shadow for depth */
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-image: linear-gradient(to bottom right, #6495ed, #375abd); /* Gradient for 3D effect */
+}
+
+
+#homebtn, #paypalbtn {
+    background-color: rgba(33, 102, 172, 0.8);
+    width: 40px; /* Fixed width */
+    height: 15px; /* Fixed height */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    color: white;
+    border: 1px solid rgba(33, 102, 172, 0.9);
+    display: inline-flex; /* Useful for centering content within the button */
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    padding: 0; /* Adjust padding as needed */
+    text-align: center; /* Ensure text is centered */
+}
+
+
+#MenuBtn {
+    margin-top: 5px;
+    display: flex;
+    align-items: left;
+    justify-content: left; /* Center the buttons within the MenuBtn container */
+    gap: 5px;
+    padding-left: 5px; /* Ensure the MenuBtn container takes full width for proper centering */
+    text-align: left;
+}
+
+#payment-form, #paymentConfirmation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 90%;
+    margin: auto;
+}
+
+#payment-form label, #paymentConfirmation h2 {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+#payment-form input[type="number"],
+#payment-form input[type="text"] {
+    width: calc(100% - 2px);
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+#payment-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 10px;
+    border-radius: 2px;
+    border: none;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    height: 40px;
+}
+
+#payment-form button:hover {
+    background-color: #45a049;
+}
+
+.donation-message {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 90%;
+    margin: 10px auto;
+    color: black;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.donation-message h2 {
+    margin-top: 0;
+}
+
+.donation-message p {
+    margin-bottom: 1em;
+    line-height: 1;
+}
+
+.spinner {
+    border: 2px solid rgba(0,0,0,0.1); /* Lighter color for the spinner's border */
+    border-top: 2px solid #000; /* Make the top border bold and black */
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Adjust based on your layout */
+    color: #000; /* Make the loading text bold and black */
+    font-weight: bold; /* Optional: makes the text bold */
+}
+
+#pageFooter {
+    position: fixed; /* Keeps the footer at the same spot even when scrolling */
+    bottom: 0; /* Aligns the footer to the bottom */
+    right: 0; /* Aligns the footer to the right */
+    background-color: rgba(33, 102, 172, 0.8); /* Example background color */
+    color: white; /* Text color */
+    padding: 2px; /* Adds some space around the text */
+    margin: 2px; /* Adds some space between the footer and the viewport edges */
+    border-radius: 2px; /* Optional: adds rounded corners */
+    font-size: 0.3em; /* Adjusts the font size */
+}
+
+#shareIcon {
+    display: block; /* Make it block to take the padding into account */
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 10;
+}
+
+#shareIcon img {
+    width: 7px; /* Adjust width as needed */
+    height: auto; /* This will maintain the aspect ratio */
+}
+
