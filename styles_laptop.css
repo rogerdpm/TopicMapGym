@@ -98,6 +98,7 @@ td {
     vertical-align: top;
     box-shadow: 0 0 15px rgba(0,0,0,0.4); /* Adds shadow for depth */
     overflow: hidden;
+    position: relative; /* Add this line */
 }
 
 #buttonContainer {
@@ -277,13 +278,13 @@ td {
 #shareIcon {
     display: block; /* Make it block to take the padding into account */
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 5px;
+    right: 5px;
     z-index: 10;
 }
 
 #shareIcon img {
     width: 14px; /* Adjust width as needed */
-    height: auto; /* This will maintain the aspect ratio */
+    height: 14px; /* This will maintain the aspect ratio */
 }
 

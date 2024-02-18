@@ -71,7 +71,7 @@ function drawDefaultImage(currentTab){
         imagename = 'chest.png';
     }
     else if(currentTab == 4){
-        imagename = '';
+        imagename = 'back.png';
     }
     else if(currentTab == 5){
         imagename = 'shoulders.png';
@@ -1136,10 +1136,11 @@ function showImage(row, col, imgNumber, buttonElement) {
                 shareIcon.id = "shareIcon";
                 shareIcon.innerHTML = '<img src="shareicon.svg" alt="Share" style="border: 2px solid white; border-radius: 50%;" />'; // Add border styling here
                 shareIcon.style.position = "absolute";
-                shareIcon.style.top = "10px";
-                shareIcon.style.right = "10px";
+                shareIcon.style.top = "5px";
+                shareIcon.style.right = "5px";
                 shareIcon.style.display = "block";
                 shareIcon.style.cursor = "pointer";
+                imageFrame.style.position = 'relative'; // Reinforce positioning context
                 imageFrame.appendChild(shareIcon);
 
                 shareIcon.addEventListener('click', function(event) {

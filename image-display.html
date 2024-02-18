@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Share</title>
+    <style>
+        body {
+            background-color: #87CEFA;
+            background-image: url('image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Use the full height of the viewport */
+            margin: 0; /* Remove default margin */
+        }
+        img {
+            max-width: 80%; /* Adjust based on your preference */
+            height: auto;
+            margin-top: 20px;
+        }
+        .info-text {
+            margin-top: 20px;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            max-width: 80%; /* Adjust the max width for text wrapping */
+        }
+        button {
+            width: 200px; /* Specify button width */
+            height: 50px;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            background: rgba(30, 144, 255, 0.5);
+            border: 1px solid rgba(30, 144, 255, 0.7);
+            font-size: 16px; /* Match font size with info-text */
+            color: white; /* Button text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <img id="shareImage" src="" alt="Image to share">
+    <div class="info-text">
+        Copy Image then open up Whatsapp with button then paste in WhatsApp
+    </div>
+    <button id="whatsappShare">Open WhatsApp</button>
+
+    <script>
+        // Parse the image URL from the query string
+        const params = new URLSearchParams(window.location.search);
+        const imageUrl = params.get('image');
+        document.getElementById('shareImage').src = imageUrl;
+
+        document.getElementById('whatsappShare').addEventListener('click', function() {
+        // Define the message you want to send
+        const message = "Scripture Image from topic-map-word.web.app";
+        // Encode the message for URL use
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        // Open WhatsApp web or app depending on the device
+        window.open(whatsappUrl, '_blank');
+    });
+    </script>
+</body>
+</html>
