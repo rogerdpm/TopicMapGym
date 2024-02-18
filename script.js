@@ -80,7 +80,7 @@ function drawDefaultImage(currentTab){
         imagename = 'arms.png';
     } 
     else if(currentTab == 7){
-        imagename = '';
+        imagename = 'stomach.png';
     } 
     else{
         imagename = 'cardio.png';
