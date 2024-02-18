@@ -986,7 +986,7 @@ function setCardioTable()
                     }
                     if ((i === 0) && (j === 2)) {
                         button.textContent = "Threadmill";
-                        lastImage["Threadmill"] = 8; 
+                        lastImage["Threadmill"] = 9; 
                     }
                     if ((i === 0) && (j === 4)) {
                         button.textContent = "Spinning";
