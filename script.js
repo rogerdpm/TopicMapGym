@@ -61,6 +61,7 @@ function handleTab(currentTab) {
 function drawDefaultImage(currentTab) {
   const imageFrame = document.getElementById("imageFrame");
   imageFrame.innerHTML = "";
+  const imageVersion = "v1.9";
   let imagename = "";
   currentTab_ = currentTab;
   if (currentTab == 1) {
@@ -83,7 +84,7 @@ function drawDefaultImage(currentTab) {
 
   // Create new img element
   const img = new Image();
-  img.src = imagename;
+  img.src = `${imagename}?${imageVersion}`;
   img.style.width = "100%";
   img.style.height = "100%";
   img.style.objectFit = "contain";
@@ -1279,9 +1280,12 @@ function downloadImage(imageUrl) {
 //document.getElementById('goToPaymentPage').addEventListener('click', function() {
 //    window.location.href = 'payment.html' or window.location.href = 'payment_paypale.html'; // Assuming 'payment.html' is the payment form page
 //});
-document.getElementById("homebtn").addEventListener("click", function () {
-  window.location.href = "index.html"; // Assuming 'payment.html' is the payment form page
-});
+const homeButton = document.getElementById("homebtn");
+if (homeButton) {
+  homeButton.addEventListener("click", function () {
+    window.location.href = "index.html"; // Assuming 'payment.html' is the payment form page
+  });
+}
 
 function updateStylesBasedOnDevice() {
   // Define your media query for smaller devices like phones
