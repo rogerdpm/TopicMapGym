@@ -275,6 +275,18 @@ td {
     font-size: 0.6em; /* Adjusts the font size */
 }
 
+@media screen and (max-width: 1600px) {
+    body {
+        transform: scale(0.65);
+        transform-origin: top left;
+        width: 153.8%;
+    }
+
+    #tabs {
+        max-width: none;
+    }
+}
+
 #shareIcon {
     display: block; /* Make it block to take the padding into account */
     position: absolute;

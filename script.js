@@ -1,1253 +1,1332 @@
 let lastButton = null;
+let lastNumberOfImage = 1;
 let imageNumber = 0;
 let isSet = Array(11).fill(false);
 
-
-let buttonstylewidth = "94px"; 
-let buttonstyleheight = "85px"; 
-let imgstylewidth = "94px"; 
-let imgstyleheight = "85px"; 
+let buttonstylewidth = "94px";
+let buttonstyleheight = "85px";
+let imgstylewidth = "94px";
+let imgstyleheight = "85px";
 let buttonstylefontSize = "10px";
 let currentTab_ = 1;
 
-const lastImage = {};  
-let currentButtonClickName = '';
-let lastButtonElement = null; 
+const lastImage = {};
+const lastVideo = {};
+let imageMode = true;
+let currentButtonClickName = "";
+let lastButtonElement = null;
 
 const loadingMessages = [
-    "Loading Technique...",
-    "Preparing Workout...",
-    "Setting Up Exercise...",
-    "Getting Ready...",
-    "One Moment Please...",
-    "Warming Up...",
-    "In Motion...",
-    "Flexing Muscles...",
-    "Activating Workout...",
-    "Gearing Up..."
+  "Loading Technique...",
+  "Preparing Workout...",
+  "Setting Up Exercise...",
+  "Getting Ready...",
+  "One Moment Please...",
+  "Warming Up...",
+  "In Motion...",
+  "Flexing Muscles...",
+  "Activating Workout...",
+  "Gearing Up...",
 ];
 
-
 function handleTab(currentTab) {
-    currentTab_ = currentTab;
+  currentTab_ = currentTab;
 
-    // Define an array of setup functions for each tab.
-    // The index in the array corresponds to the tab number minus one (since arrays are zero-indexed).
-    const setupFunctions = [
-        setGlutesTable,  // Tab 1
-        setLegs,         // Tab 2
-        setChestTable,   // Tab 3
-        setBackTable,    // Tab 4
-        setShouldersTable, // Tab 5
-        setArmsTable,    // Tab 6
-        setStomachTable, // Tab 7
-        setCardioTable   // Tab 8
-        // Add more as needed
-    ];
+  // Define an array of setup functions for each tab.
+  // The index in the array corresponds to the tab number minus one (since arrays are zero-indexed).
+  const setupFunctions = [
+    setGlutesTable, // Tab 1
+    setLegs, // Tab 2
+    setChestTable, // Tab 3
+    setBackTable, // Tab 4
+    setShouldersTable, // Tab 5
+    setArmsTable, // Tab 6
+    setStomachTable, // Tab 7
+    setCardioTable, // Tab 8
+    // Add more as needed
+  ];
 
-    
-    if (currentTab >= 1 && currentTab <= setupFunctions.length && !isSet[currentTab]) {
+  if (
+    currentTab >= 1 &&
+    currentTab <= setupFunctions.length &&
+    !isSet[currentTab]
+  ) {
+    //alert(" if (currentTab_  " + currentTab + " >= 1 && <= setupFunctions.length: " + setupFunctions.length + " && isSet[currentTab]: " + isSet[currentTab] );
 
-        //alert(" if (currentTab_  " + currentTab + " >= 1 && <= setupFunctions.length: " + setupFunctions.length + " && isSet[currentTab]: " + isSet[currentTab] );
-
-        setupFunctions[currentTab - 1](); // Call the corresponding setup function
-        isSet[currentTab] = true; // Mark as set
-    }
+    setupFunctions[currentTab - 1](); // Call the corresponding setup function
+    isSet[currentTab] = true; // Mark as set
+  }
 }
 
-function drawDefaultImage(currentTab){
-    
-    const imageFrame = document.getElementById("imageFrame");
-    imageFrame.innerHTML = '';
-    let imagename = '';
-    currentTab_ = currentTab;
-    if(currentTab == 1){ 
-        imagename = 'glutes.png';
-    }
-    else if(currentTab == 2){
-        imagename = 'squats.png';
-    }
-    else if(currentTab == 3){
-        imagename = 'chest.png';
-    }
-    else if(currentTab == 4){
-        imagename = 'back.png';
-    }
-    else if(currentTab == 5){
-        imagename = 'shoulders.png';
-    }   
-    else if(currentTab == 6){
-        imagename = 'arms.png';
-    } 
-    else if(currentTab == 7){
-        imagename = 'stomach.png';
-    } 
-    else{
-        imagename = 'cardio.png';
-    } 
+function drawDefaultImage(currentTab) {
+  const imageFrame = document.getElementById("imageFrame");
+  imageFrame.innerHTML = "";
+  let imagename = "";
+  currentTab_ = currentTab;
+  if (currentTab == 1) {
+    imagename = "glutes.png";
+  } else if (currentTab == 2) {
+    imagename = "squats.png";
+  } else if (currentTab == 3) {
+    imagename = "chest.png";
+  } else if (currentTab == 4) {
+    imagename = "back.png";
+  } else if (currentTab == 5) {
+    imagename = "shoulders.png";
+  } else if (currentTab == 6) {
+    imagename = "arms.png";
+  } else if (currentTab == 7) {
+    imagename = "stomach.png";
+  } else {
+    imagename = "cardio.png";
+  }
 
-    // Create new img element
-    const img = new Image();
-    img.src = imagename;
-    img.style.width = '100%';
-    img.style.height = '100%';
-    img.style.objectFit = 'contain';
+  // Create new img element
+  const img = new Image();
+  img.src = imagename;
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.objectFit = "contain";
 
-
-    imageFrame.appendChild(img);
+  imageFrame.appendChild(img);
 }
 // Function to set the current tab and refresh the table content
 function setTab(tabNumber) {
-    currentTab_ = tabNumber;
-    imageNumber = 0;
+  currentTab_ = tabNumber;
+  imageNumber = 0;
+  videoNumber = 0;
 
+  document.querySelectorAll(".table").forEach(function (table) {
+    table.style.display = "none";
+  });
+  var selectedTable = document.getElementById(getTableName(tabNumber));
+  if (selectedTable) {
+    selectedTable.style.display = "block";
+  }
 
-    document.querySelectorAll('.table').forEach(function(table) {
-        table.style.display = 'none';
-    });
-    var selectedTable = document.getElementById(getTableName(tabNumber));
-    if (selectedTable) {
-      selectedTable.style.display = 'block';
-    }
-
-    handleTab(currentTab_);
-    drawDefaultImage(currentTab_)
+  handleTab(currentTab_);
+  drawDefaultImage(currentTab_);
 }
 
 function getTableName(tabNumber) {
-    switch (tabNumber) {
-        case 1: return 'GlutesTable';
-        case 2: return 'LegsTable';
-        case 3: return 'ChestTable';
-        case 4: return 'BackTable';
-        case 5: return 'ShouldersTable';
-        case 6: return 'ArmsTable';
-        case 7: return 'StomachTable';
-        case 8: return 'CardioTable';
-        case 9: return 'MMATable';
-        case 10: return 'NutritionTable';
-        default: return '';
-    }
+  switch (tabNumber) {
+    case 1:
+      return "GlutesTable";
+    case 2:
+      return "LegsTable";
+    case 3:
+      return "ChestTable";
+    case 4:
+      return "BackTable";
+    case 5:
+      return "ShouldersTable";
+    case 6:
+      return "ArmsTable";
+    case 7:
+      return "StomachTable";
+    case 8:
+      return "CardioTable";
+    case 9:
+      return "MMATable";
+    case 10:
+      return "NutritionTable";
+    default:
+      return "";
+  }
 }
 
-function setGlutesTable()
-{
-    try {
-        const table = document.getElementById("GlutesTable");
-        for (let i = 0; i < 5; i++) {
-            const row = table.insertRow();
-            for (let j = 0; j < 5; j++) {
-                const cell = row.insertCell();
-                // Add buttons to corner, middle, and center cells
-                if (((i === 0) && (j === 0)) 
-                || ((i === 0) && (j === 2)) 
-                || ((i === 0) && (j === 4))
-                || ((i === 1) && (j === 4))
-                || ((i === 2) && (j === 0))
-                || ((i === 2) && (j === 2))
-                || ((i === 2) && (j === 4))
-                || ((i === 3) && (j === 0))
-                || ((i === 3) && (j === 3))
-                || ((i === 4) && (j === 0))
-                || ((i === 4) && (j === 2))
-                || ((i === 4) && (j === 4))) {
-                    // Button configuration
-                    const button = document.createElement("button");
-                    button.style.backgroundColor = 'rgba(211, 211, 211, 0.3)';
-                    button.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
-                    button.style.backgroundImage = "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
-                    button.style.border = "none";
-                    button.style.cursor = "pointer";
-                    button.style.width = buttonstylewidth; // Adjust based on your needs
-                    button.style.height = buttonstyleheight; // Adjust based on your needs
-                    button.style.position = "absolute";
-                    button.style.top = "0"; // Anchor to top of cell
-                    button.style.left = "0"; // Anchor to left of cell
-                    button.style.zIndex = "2"; // Ensures button is above image
-                    button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
-                    
-                    // Set button title
-                    if ((i === 0) && (j === 0)) {
-                        button.textContent = "Reverse Hack Squats"; 
-                        lastImage["Reverse Hack Squats"] = 21;
-                    }
-                    if ((i === 0) && (j === 2)) {
-                        button.textContent = "Good Mornings"; 
-                        lastImage["Good Mornings"] = 14; 
-                    }
-                    if ((i === 0) && (j === 4)) {
-                        button.textContent = "Cable Leg Extensions Side";  
-                        lastImage["Cable Leg Extensions Side"] = 14;
-                    }
-                    if ((i === 1) && (j === 4)) {
-                        button.textContent = "Cable Leg Extensions Back"; 
-                        lastImage["Cable Leg Extensions Back"] = 30; 
-                    }
-                    if ((i === 2) && (j === 0)) {
-                        button.textContent = "Bulgarian Split Squats"; 
-                        lastImage["Bulgarian Split Squats"] = 14; 
-                    }
-                    if ((i === 2) && (j === 2)) {
-                        button.textContent = "Single Angle Leg Press";  
-                        lastImage["Single Angle Leg Press"] = 8;
-                    }
-                    if ((i === 2) && (j === 4)) {
-                        button.textContent = "Hip Thrust"; 
-                        lastImage["Hip Thrust"] = 35; 
-                    }
-                    if ((i === 3) && (j === 0)) {
-                        button.textContent = "Step Ups";  
-                        lastImage["Step Ups"] = 12;
-                    }
-                    if ((i === 3) && (j === 3)) {
-                        button.textContent = "Single leg thrust"; 
-                        lastImage["Single leg thrust"] = 7; 
-                    }
-                    if ((i === 4) && (j === 0)) {
-                        button.textContent = "Hip Abductions"; 
-                        lastImage["Hip Abductions"] = 16; 
-                    }
-                    if ((i === 4) && (j === 2)) {
-                        button.textContent = "Donkey Kicks"; 
-                        lastImage["Donkey Kicks"] = 21; 
-                    }
-                    if ((i === 4) && (j === 4)) {
-                        button.textContent = "Back Extension";  
-                        lastImage["Back Extension"] = 14;
-                    }
-                
-                    // Image configuration
-                    const img = document.createElement("img");
-                    const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
-                    const imageName = `1.png`;
-                    img.style.width = imgstylewidth; // Adjust as needed
-                    img.style.height = imgstyleheight; // Adjust as needed
-                    img.alt = button.textContent;
-                    img.src = `${folderPath}${imageName}`;
-                    img.style.position = "absolute";
-                    img.style.top = "0"; // Align with button
-                    img.style.left = "0"; // Align with button
-                    img.style.zIndex = "1"; // Ensures image is below button
-                
-                    // Append elements to cell
-                    cell.style.position = "absolute"; // Needed for absolute positioning within cell
-                    cell.appendChild(button);
-                    cell.appendChild(img);
-                
-                    // Button click event
-                    button.onclick = function () { handleButtonClick(this, i, j); };
-                    img.addEventListener('click', function () { handleButtonClick(this, i, j); });
-                }
-            }
-        }
-    } catch (error) {
-        alert("Error occurred while setting up the table: " + error.message);
-    }
+function setGlutesTable() {
+  try {
+    const table = document.getElementById("GlutesTable");
+    for (let i = 0; i < 5; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < 5; j++) {
+        const cell = row.insertCell();
+        // Add buttons to corner, middle, and center cells
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === 2) ||
+          (i === 0 && j === 4) ||
+          (i === 1 && j === 4) ||
+          (i === 1 && j === 0) ||
+          (i === 2 && j === 2) ||
+          (i === 2 && j === 4) ||
+          (i === 2 && j === 0) ||
+          (i === 1 && j === 2) ||
+          (i === 4 && j === 0) ||
+          (i === 4 && j === 2) ||
+          (i === 3 && j === 2) ||
+          (i === 3 && j === 4) ||
+          (i === 4 && j === 4)
+        ) {
+          // Button configuration
+          const button = document.createElement("button");
+          button.style.backgroundColor = "rgba(211, 211, 211, 0.3)";
+          button.style.boxShadow =
+            "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
+          button.style.backgroundImage =
+            "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
+          button.style.border = "none";
+          button.style.cursor = "pointer";
+          button.style.width = buttonstylewidth; // Adjust based on your needs
+          button.style.height = buttonstyleheight; // Adjust based on your needs
+          button.style.position = "absolute";
+          button.style.top = "0"; // Anchor to top of cell
+          button.style.left = "0"; // Anchor to left of cell
+          button.style.zIndex = "2"; // Ensures button is above image
+          button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
 
-    const backButton = document.getElementById("backbtn");
-    backButton.textContent = 'Back'; // Set the text for the back button
-    backButton.onclick = function () {
-        if (imageNumber > 1) { // Ensure imageNumber doesn't go below 1
-            imageNumber--;
-            if (lastButton) {
-                const parts = lastButton.split('_'); // Assuming lastButton format is 'row_col'
-                const row = parseInt(parts[0], 10);
-                const col = parseInt(parts[1], 10);
-                showImage(row, col, imageNumber, lastButtonElement); // Display the previous image
-            }
+          // Set button title
+          if (i === 0 && j === 0) {
+            button.textContent = "Reverse Hack Squats";
+            lastImage["Reverse Hack Squats"] = 5;
+            lastVideo["Reverse Hack Squats"] = 9;
+          }
+          if (i === 0 && j === 2) {
+            button.textContent = "Good Mornings";
+            lastImage["Good Mornings"] = 9;
+            lastVideo["Good Mornings"] = 17;
+          }
+          if (i === 0 && j === 4) {  // 0 4
+            button.textContent = "Donkey Kicks";
+            lastImage["Donkey Kicks"] = 11;
+            lastVideo["Donkey Kicks"] = 18;
+          }
+          if (i === 2 && j === 4) {
+            button.textContent = "Single Leg Glute Extensions Side";
+            lastImage["Single Leg Glute Extensions Side"] = 7;
+            lastVideo["Single Leg Glute Extensions Side"] = 10;
+          }
+          if (i === 1 && j === 4) {
+            button.textContent = "Single Leg Glute Extensions Back";
+            lastImage["Single Leg Glute Extensions Back"] = 13;
+            lastVideo["Single Leg Glute Extensions Back"] = 21;
+          }
+          if (i === 1 && j === 0) {
+            button.textContent = "Bulgarian Split Squats";
+            lastImage["Bulgarian Split Squats"] = 13;
+            lastVideo["Bulgarian Split Squats"] = 17;
+          }
+          if (i === 2 && j === 2) {
+            button.textContent = "Single Angle Leg Press";
+            lastImage["Single Angle Leg Press"] = 5;
+            lastVideo["Single Angle Leg Press"] = 7;
+          }
+         
+         
+          if (i === 2 && j === 0) {
+            button.textContent = "Step Ups";
+            lastImage["Step Ups"] = 7;
+            lastVideo["Step Ups"] = 10;
+          }
+
+          if (i === 4 && j === 0) {
+            button.textContent = "Side Lunge";
+            lastImage["Side Lunge"] = 5;
+            lastVideo["Side Lunge"] = 7;
+          }
+          if (i === 1 && j === 2) { 
+            button.textContent = "Hip Thrust";
+            lastImage["Hip Thrust"] = 15;
+            lastVideo["Hip Thrust"] = 19;
+          }
+
+          if (i === 4 && j === 2) {
+            button.textContent = "Hip Abductions";
+            lastImage["Hip Abductions"] = 18;
+            lastVideo["Hip Abductions"] = 22;
+          }
+          
+      
+          if (i === 4 && j === 4) {
+            button.textContent = "Back Extension";
+            lastImage["Back Extension"] = 9;
+            lastVideo["Back Extension"] = 11;
+          }
+
+          if (i === 3 && j === 2) {
+            button.textContent = "RDLs";
+            lastImage["RDLs"] = 5;
+            lastVideo["RDLs"] = 8;
+          }
+          if (i === 3 && j === 4) {
+            button.textContent = "Reverse Leg Extensions";
+            lastImage["Reverse Leg Extensions"] = 5;
+            lastVideo["Reverse Leg Extensions"] = 8;
+          }
+
+          // Image configuration
+          const img = document.createElement("img");
+          const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
+          const imageName = `1.png`;
+          img.style.width = imgstylewidth; // Adjust as needed
+          img.style.height = imgstyleheight; // Adjust as needed
+          img.alt = button.textContent;
+          img.src = `${folderPath}${imageName}`;
+          img.style.position = "absolute";
+          img.style.top = "0"; // Align with button
+          img.style.left = "0"; // Align with button
+          img.style.zIndex = "1"; // Ensures image is below button
+
+          // Append elements to cell
+          cell.style.position = "relative"; // Needed for absolute positioning within cell
+          cell.appendChild(button);
+          cell.appendChild(img);
+
+          // Button click event
+          button.onclick = function () {
+            handleButtonClick(this, i, j);
+          };
+          img.addEventListener("click", function () {
+            handleButtonClick(this, i, j);
+          });
         }
-    };
+      }
+    }
+  } catch (error) {
+    alert("Error occurred while setting up the table: " + error.message);
+  }
+
+  const backButton = document.getElementById("backbtn");
+  backButton.textContent = "Back"; // Set the text for the back button
+  backButton.onclick = function () { Back(); };
 }
 
-function setLegs()
-{
-    try {
+function setLegs() {
+  try {
+    const table = document.getElementById("LegsTable");
+    for (let i = 0; i < 5; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < 5; j++) {
+        const cell = row.insertCell();
+        // Add buttons to corner, middle, and center cells
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === 2) ||
+          (i === 0 && j === 4) ||
+          (i === 2 && j === 0) ||
+          (i === 2 && j === 2) ||
+          (i === 2 && j === 4) ||
+          (i === 4 && j === 2) 
+        ) {
+          // Button configuration
+          const button = document.createElement("button");
+          button.style.backgroundColor = "rgba(211, 211, 211, 0.3)";
+          button.style.boxShadow =
+            "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
+          button.style.backgroundImage =
+            "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
+          button.style.border = "none";
+          button.style.cursor = "pointer";
+          button.style.width = buttonstylewidth; // Adjust based on your needs
+          button.style.height = buttonstyleheight; // Adjust based on your needs
+          button.style.position = "absolute";
+          button.style.top = "0"; // Anchor to top of cell
+          button.style.left = "0"; // Anchor to left of cell
+          button.style.zIndex = "2"; // Ensures button is above image
+          button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
+
+          // Set button title
+          if (i === 0 && j === 0) {
+            button.textContent = "Squats";
+            lastImage["Squats"] = 24;
+            lastVideo["Squats"] = 28;
+          }
+          if (i === 0 && j === 2) {
+            button.textContent = "Leg Press";
+            lastImage["Leg Press"] = 3;
+            lastVideo["Leg Press"] = 4;
+          }
+          if (i === 2 && j === 0) {
+            button.textContent = "Calf Raises";
+            lastImage["Calf Raises"] = 3;
+            lastVideo["Calf Raises"] = 4;
+          }
+          if (i === 0 && j === 4) {
+            button.textContent = "Lunges";
+            lastImage["Lunges"] = 7;
+            lastVideo["Lunges"] = 15;
+          }
+         
+          if (i === 2 && j === 4) {
+            button.textContent = "Hack Squats";
+            lastImage["Hack Squats"] = 3;
+            lastVideo["Hack Squats"] = 6;
+          }
+          if (i === 2 && j === 2) {
+            button.textContent = "Lying Leg Curls";
+            lastImage["Lying Leg Curls"] = 9;
+            lastVideo["Lying Leg Curls"] = 11;
+          }
+          if (i === 4 && j === 2) {
+            button.textContent = "Leg Extensions";
+            lastImage["Leg Extensions"] = 5;
+            lastVideo["Leg Extensions"] = 7;
+          }
+          
+
+          // Image configuration
+          const img = document.createElement("img");
+          const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
+          const imageName = `1.png`;
+          img.style.width = imgstylewidth; // Adjust as needed
+          img.style.height = imgstyleheight; // Adjust as needed
+          img.alt = button.textContent;
+          img.src = `${folderPath}${imageName}`;
+          img.style.position = "absolute";
+          img.style.top = "0"; // Align with button
+          img.style.left = "0"; // Align with button
+          img.style.zIndex = "1"; // Ensures image is below button
+
+          // Append elements to cell
+          cell.style.position = "relative"; // Needed for absolute positioning within cell
+          cell.appendChild(button);
+          cell.appendChild(img);
+
+          // Button click event
+          button.onclick = function () {
+            handleButtonClick(this, i, j);
+          };
+          img.addEventListener("click", function () {
+            handleButtonClick(this, i, j);
+          });
+        }
+      }
+    }
+  } catch (error) {
+    alert("Error occurred while setting up the table: " + error.message);
+  }
+
+  const backButton = document.getElementById("backbtn");
+  backButton.textContent = "Back"; // Set the text for the back button
+  backButton.onclick = function () { Back(); };
+}
+
+function setChestTable() {
+  try {
+    const table = document.getElementById("ChestTable");
+    for (let i = 0; i < 5; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < 5; j++) {
+        const cell = row.insertCell();
+        // Add buttons to corner, middle, and center cells
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === 2) ||
+          (i === 0 && j === 4) ||
+          (i === 2 && j === 0) ||
+          (i === 2 && j === 2) ||
+          (i === 2 && j === 4) ||
+          (i === 4 && j === 0) ||
+          (i === 4 && j === 4) 
+        ) {
+          // Button configuration
+          const button = document.createElement("button");
+          button.style.backgroundColor = "rgba(211, 211, 211, 0.3)";
+          button.style.boxShadow =
+            "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
+          button.style.backgroundImage =
+            "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
+          button.style.border = "none";
+          button.style.cursor = "pointer";
+          button.style.width = buttonstylewidth; // Adjust based on your needs
+          button.style.height = buttonstyleheight; // Adjust based on your needs
+          button.style.position = "absolute";
+          button.style.top = "0"; // Anchor to top of cell
+          button.style.left = "0"; // Anchor to left of cell
+          button.style.zIndex = "2"; // Ensures button is above image
+          button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
+
+          // Set button title
+          if (i === 0 && j === 0) {
+            button.textContent = "Bench Press";
+            lastImage["Bench Press"] = 10;
+            lastVideo["Bench Press"] = 12;
+          }
+          if (i === 0 && j === 2) {
+            button.textContent = "Incline Dumbell Press";
+            lastImage["Incline Dumbell Press"] = 3;
+            lastVideo["Incline Dumbell Press"] = 5;
+          }
+          if (i === 0 && j === 4) {
+            button.textContent = "Close-Grip Bench Press";
+            lastImage["Close-Grip Bench Press"] = 6;
+            lastVideo["Close-Grip Bench Press"] = 8;
+          }
+          if (i === 2 && j === 0) {
+            button.textContent = "Decline Bench Press";
+            lastImage["Decline Bench Press"] = 7;
+            lastVideo["Decline Bench Press"] = 9;
+          }
+          if (i === 2 && j === 2) {
+            button.textContent = "Front Raises";
+            lastImage["Front Raises"] = 5;
+            lastVideo["Front Raises"] = 11;
+          }
+          if (i === 4 && j === 4) {
+            button.textContent = "Cross Over Chest Cables";
+            lastImage["Cross Over Chest Cables"] = 5;
+            lastVideo["Cross Over Chest Cables"] = 9;
+          }
+          if (i === 2 && j === 4) {
+            button.textContent = "Flys";
+            lastImage["Flys"] = 14;
+            lastVideo["Flys"] = 18;
+          }
+          if (i === 4 && j === 0) {
+            button.textContent = "Peck Deck Flys";
+            lastImage["Peck Deck Flys"] = 5;
+            lastVideo["Peck Deck Flys"] = 7;
+          }
         
-        const table = document.getElementById("LegsTable");
-        for (let i = 0; i < 5; i++) {
-            const row = table.insertRow();
-            for (let j = 0; j < 5; j++) {
-                const cell = row.insertCell();
-                // Add buttons to corner, middle, and center cells
-                if (((i === 0) && (j === 0)) 
-                || ((i === 0) && (j === 2)) 
-                || ((i === 0) && (j === 4))
-                || ((i === 2) && (j === 0))
-                || ((i === 2) && (j === 2))
-                || ((i === 2) && (j === 4))
-                || ((i === 4) && (j === 0))
-                || ((i === 4) && (j === 2))
-                || ((i === 4) && (j === 4))) {
-                    // Button configuration
-                    const button = document.createElement("button");
-                    button.style.backgroundColor = 'rgba(211, 211, 211, 0.3)';
-                    button.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
-                    button.style.backgroundImage = "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
-                    button.style.border = "none";
-                    button.style.cursor = "pointer";
-                    button.style.width = buttonstylewidth; // Adjust based on your needs
-                    button.style.height = buttonstyleheight; // Adjust based on your needs
-                    button.style.position = "absolute";
-                    button.style.top = "0"; // Anchor to top of cell
-                    button.style.left = "0"; // Anchor to left of cell
-                    button.style.zIndex = "2"; // Ensures button is above image
-                    button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
 
-                    // Set button title
-                    if ((i === 0) && (j === 0)) {
-                        button.textContent = "Squats"; 
-                        lastImage["Squats"] = 35;
-                    }
-                    if ((i === 0) && (j === 2)) {
-                        button.textContent = "Dead Lifts"; 
-                        lastImage["Dead Lifts"] = 19;
-                    }
-                    if ((i === 0) && (j === 4)) {
-                        button.textContent = "Calf Raises"; 
-                        lastImage["Calf Raises"] = 6;
-                    }
-                    if ((i === 2) && (j === 0)) {
-                        button.textContent = "Lunges"; 
-                        lastImage["Lunges"] = 18;
-                    }
-                    if ((i === 2) && (j === 2)) {
-                        button.textContent = "Angled Leg Press";
-                        lastImage["Angled Leg Press"] = 11; 
-                    }
-                    if ((i === 2) && (j === 4)) {
-                        button.textContent = "Lying Leg Curls"; 
-                        lastImage["Lying Leg Curls"] = 15;
-                    }
-                    if ((i === 4) && (j === 0)) {
-                        button.textContent = "Hack Squats"; 
-                        lastImage["Hack Squats"] = 4;
-                    }
-                    if ((i === 4) && (j === 2)) {
-                        button.textContent = "Leg Extensions"; 
-                        lastImage["Leg Extensions"] = 6;
-                    }
-                    if ((i === 4) && (j === 4)) {
-                        button.textContent = "Reverse Leg Extensions"; 
-                        lastImage["Reverse Leg Extensions"] = 4;
-                    }
-                
-                    // Image configuration
-                    const img = document.createElement("img");
-                    const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
-                    const imageName = `1.png`;
-                    img.style.width = imgstylewidth; // Adjust as needed
-                    img.style.height = imgstyleheight; // Adjust as needed
-                    img.alt = button.textContent;
-                    img.src = `${folderPath}${imageName}`;
-                    img.style.position = "absolute";
-                    img.style.top = "0"; // Align with button
-                    img.style.left = "0"; // Align with button
-                    img.style.zIndex = "1"; // Ensures image is below button
-                
-                    // Append elements to cell
-                    cell.style.position = "absolute"; // Needed for absolute positioning within cell
-                    cell.appendChild(button);
-                    cell.appendChild(img);
-                
-                    // Button click event
-                    button.onclick = function () { handleButtonClick(this, i, j); };
-                    img.addEventListener('click', function () { handleButtonClick(this, i, j); });
-                }
-            }
+          // Image configuration
+          const img = document.createElement("img");
+          const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
+          const imageName = `1.png`;
+          img.style.width = imgstylewidth; // Adjust as needed
+          img.style.height = imgstyleheight; // Adjust as needed
+          img.alt = button.textContent;
+          img.src = `${folderPath}${imageName}`;
+          img.style.position = "absolute";
+          img.style.top = "0"; // Align with button
+          img.style.left = "0"; // Align with button
+          img.style.zIndex = "1"; // Ensures image is below button
+
+          // Append elements to cell
+          cell.style.position = "relative"; // Needed for absolute positioning within cell
+          cell.appendChild(button);
+          cell.appendChild(img);
+
+          // Button click event
+          button.onclick = function () {
+            handleButtonClick(this, i, j);
+          };
+          img.addEventListener("click", function () {
+            handleButtonClick(this, i, j);
+          });
         }
-    } catch (error) {
-        alert("Error occurred while setting up the table: " + error.message);
+      }
     }
+  } catch (error) {
+    alert("Error occurred while setting up the table: " + error.message);
+  }
 
-    const backButton = document.getElementById("backbtn");
-    backButton.textContent = 'Back'; // Set the text for the back button
-    backButton.onclick = function () {
-        if (imageNumber > 1) { // Ensure imageNumber doesn't go below 1
-            imageNumber--;
-            if (lastButton) {
-                const parts = lastButton.split('_'); // Assuming lastButton format is 'row_col'
-                const row = parseInt(parts[0], 10);
-                const col = parseInt(parts[1], 10);
-                showImage(row, col, imageNumber, lastButtonElement); // Display the previous image
-            }
-        }
-    };
+  const backButton = document.getElementById("backbtn");
+  backButton.textContent = "Back"; // Set the text for the back button
+  backButton.onclick = function () { Back(); };
 }
 
-function setChestTable()
-{
-    try {
-        const table = document.getElementById("ChestTable");
-        for (let i = 0; i < 5; i++) {
-            const row = table.insertRow();
-            for (let j = 0; j < 5; j++) {
-                const cell = row.insertCell();
-                // Add buttons to corner, middle, and center cells
-                if (((i === 0) && (j === 0)) ||
-                    ((i === 0) && (j === 2)) ||
-                    ((i === 0) && (j === 4)) ||
-                    ((i === 1) && (j === 2)) ||
-                    ((i === 1) && (j === 4)) ||
-                    ((i === 2) && (j === 0)) ||
-                    ((i === 4) && (j === 2)) ||
-                    ((i === 4) && (j === 0)) ||
-                    ((i === 3) && (j === 2)) ||
-                    ((i === 3) && (j === 4)) ||
-                    ((i === 4) && (j === 4))) {
-                    // Button configuration
-                    const button = document.createElement("button");
-                    button.style.backgroundColor = 'rgba(211, 211, 211, 0.3)';
-                    button.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
-                    button.style.backgroundImage = "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
-                    button.style.border = "none";
-                    button.style.cursor = "pointer";
-                    button.style.width = buttonstylewidth; // Adjust based on your needs
-                    button.style.height = buttonstyleheight; // Adjust based on your needs
-                    button.style.position = "absolute";
-                    button.style.top = "0"; // Anchor to top of cell
-                    button.style.left = "0"; // Anchor to left of cell
-                    button.style.zIndex = "2"; // Ensures button is above image
-                    button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
-  
-                    // Set button title
-                    if ((i === 0) && (j === 0)) {
-                        button.textContent = "Dumbbell Press";
-                        lastImage["Dumbbell Press"] = 10; 
-                    }
-                    if ((i === 0) && (j === 2)) {
-                        button.textContent = "Incline Dumbbell Press";
-                        lastImage["Incline Dumbbell Press"] = 16; 
-                    }
-                    if ((i === 0) && (j === 4)) {
-                        button.textContent = "Incline EZ-bar Skullcrusher";
-                        lastImage["Incline EZ-bar Skullcrusher"] = 6; 
-                    }
-                    if ((i === 1) && (j === 2)) {
-                        button.textContent = "Close-Grip Incline Dumbbell Press";
-                        lastImage["Close-Grip Incline Dumbbell Press"] = 8; 
-                    }
-                    if ((i === 1) && (j === 4)) {
-                        button.textContent = "EZ Bar Close Grip Bench Press";
-                        lastImage["EZ Bar Close Grip Bench Press"] = 4; 
-                    }
-                    if ((i === 2) && (j === 0)) {
-                        button.textContent = "Decline Bench Press";
-                        lastImage["Decline Bench Press"] = 6; 
-                    }
-                    if ((i === 4) && (j === 2)) {
-                        button.textContent = "Peck Deck Flys";
-                        lastImage["Peck Deck Flys"] = 8; 
-                    }
-                    if ((i === 4) && (j === 0)) {
-                        button.textContent = "Flys";
-                        lastImage["Flys"] = 15; 
-                    }
-                    if ((i === 3) && (j === 2)) {
-                        button.textContent = "Plate Front Raises";
-                        lastImage["Plate Front Raises"] = 21; 
-                    }
-                    if ((i === 3) && (j === 4)) {
-                        button.textContent = "Cross Over Chest Cables";
-                        lastImage["Cross Over Chest Cables"] = 9; 
-                    }
-                    if ((i === 4) && (j === 4)) {
-                        button.textContent = "Low Cable Cross Over";
-                        lastImage["Low Cable Cross Over"] = 6; 
-                    }
-                   
-                
-                    // Image configuration
-                    const img = document.createElement("img");
-                    const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
-                    const imageName = `1.png`;
-                    img.style.width = imgstylewidth; // Adjust as needed
-                    img.style.height = imgstyleheight; // Adjust as needed
-                    img.alt = button.textContent;
-                    img.src = `${folderPath}${imageName}`;
-                    img.style.position = "absolute";
-                    img.style.top = "0"; // Align with button
-                    img.style.left = "0"; // Align with button
-                    img.style.zIndex = "1"; // Ensures image is below button
-                
-                    // Append elements to cell
-                    cell.style.position = "absolute"; // Needed for absolute positioning within cell
-                    cell.appendChild(button);
-                    cell.appendChild(img);
-                
-                    // Button click event
-                    button.onclick = function () { handleButtonClick(this, i, j); };
-                    img.addEventListener('click', function () { handleButtonClick(this, i, j); });
-                }
-            }
-        }
-    } catch (error) {
-        alert("Error occurred while setting up the table: " + error.message);
-    }
+function setBackTable() {
+  try {
+    const table = document.getElementById("BackTable");
+    for (let i = 0; i < 5; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < 5; j++) {
+        const cell = row.insertCell();
+        // Add buttons to corner, middle, and center cells
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === 2) ||
+          (i === 0 && j === 4) ||
+          (i === 1 && j === 2) ||
+          (i === 2 && j === 0) ||
+          (i === 2 && j === 2) ||
+          (i === 2 && j === 4) ||
+          (i === 3 && j === 0) ||
+          (i === 4 && j === 0) ||
+          (i === 4 && j === 2) ||
+          (i === 4 && j === 4)
+        ) {
+          // Button configuration
+          const button = document.createElement("button");
+          button.style.backgroundColor = "rgba(211, 211, 211, 0.3)";
+          button.style.boxShadow =
+            "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
+          button.style.backgroundImage =
+            "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
+          button.style.border = "none";
+          button.style.cursor = "pointer";
+          button.style.width = buttonstylewidth; // Adjust based on your needs
+          button.style.height = buttonstyleheight; // Adjust based on your needs
+          button.style.position = "absolute";
+          button.style.top = "0"; // Anchor to top of cell
+          button.style.left = "0"; // Anchor to left of cell
+          button.style.zIndex = "2"; // Ensures button is above image
+          button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
 
-    const backButton = document.getElementById("backbtn");
-    backButton.textContent = 'Back'; // Set the text for the back button
-    backButton.onclick = function () {
-        if (imageNumber > 1) { // Ensure imageNumber doesn't go below 1
-            imageNumber--;
-            if (lastButton) {
-                const parts = lastButton.split('_'); // Assuming lastButton format is 'row_col'
-                const row = parseInt(parts[0], 10);
-                const col = parseInt(parts[1], 10);
-                showImage(row, col, imageNumber,  lastButtonElement); // Display the previous image
-            }
+          // Set button title
+          if (i === 0 && j === 0) {
+            button.textContent = "Back Press";
+            lastImage["Back Press"] = 3;
+            lastVideo["Back Press"] = 7;
+          }
+          if (i === 0 && j === 2) {
+            button.textContent = "One Arm Dumbbell Rows";
+            lastImage["One Arm Dumbbell Rows"] = 9;
+            lastVideo["One Arm Dumbbell Rows"] = 14;
+          }
+          if (i === 0 && j === 4) {
+            button.textContent = "Reverse Fly";
+            lastImage["Reverse Fly"] = 7;
+            lastVideo["Reverse Fly"] = 10;
+          }
+          if (i === 1 && j === 2) {
+            button.textContent = "Dead Lifts";
+            lastImage["Dead Lifts"] = 11;
+            lastVideo["Dead Lifts"] = 14;
+          }
+          if (i === 2 && j === 0) {
+            button.textContent = "Lat Pulldowns";
+            lastImage["Lat Pulldowns"] = 5;
+            lastVideo["Lat Pulldowns"] = 9;
+          }
+          if (i === 2 && j === 2) {
+            button.textContent = "Rear Lat Pulldowns";
+            lastImage["Rear Lat Pulldowns"] = 3;
+            lastVideo["Rear Lat Pulldowns"] = 5;
+          }
+          if (i === 2 && j === 4) {
+            button.textContent = "Seated Row";
+            lastImage["Seated Row"] = 9;
+            lastVideo["Seated Row"] = 12;
+          }
+          if (i === 3 && j === 0) {
+            button.textContent = "Lat Pullup";
+            lastImage["Lat Pullup"] = 5;
+            lastVideo["Lat Pullup"] = 12;
+          }
+          if (i === 4 && j === 0) {
+            button.textContent = "Close Grip Lat Pulldown";
+            lastImage["Close Grip Lat Pulldown"] = 7;
+            lastVideo["Close Grip Lat Pulldown"] = 10;
+          }
+          if (i === 4 && j === 2) {
+            button.textContent = "Straight Arm Lat Pulldown";
+            lastImage["Straight Arm Lat Pulldown"] = 7;
+            lastVideo["Straight Arm Lat Pulldown"] = 13;
+          }
+          if (i === 4 && j === 4) {
+            button.textContent = "Face Pull";
+            lastImage["Face Pull"] = 11;
+            lastVideo["Face Pull"] = 13;
+          }
+
+          // Image configuration
+          const img = document.createElement("img");
+          const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
+          const imageName = `1.png`;
+          img.style.width = imgstylewidth; // Adjust as needed
+          img.style.height = imgstyleheight; // Adjust as needed
+          img.alt = button.textContent;
+          img.src = `${folderPath}${imageName}`;
+          img.style.position = "absolute";
+          img.style.top = "0"; // Align with button
+          img.style.left = "0"; // Align with button
+          img.style.zIndex = "1"; // Ensures image is below button
+
+          // Append elements to cell
+          cell.style.position = "relative"; // Needed for absolute positioning within cell
+          cell.appendChild(button);
+          cell.appendChild(img);
+
+          // Button click event
+          button.onclick = function () {
+            handleButtonClick(this, i, j);
+          };
+          img.addEventListener("click", function () {
+            handleButtonClick(this, i, j);
+          });
         }
-    };
+      }
+    }
+  } catch (error) {
+    alert("Error occurred while setting up the table: " + error.message);
+  }
+
+  const backButton = document.getElementById("backbtn");
+  backButton.textContent = "Back"; // Set the text for the back button
+  backButton.onclick = function () { Back(); };
 }
 
-function setBackTable()
-{
-    try {
-        const table = document.getElementById("BackTable");
-        for (let i = 0; i < 5; i++) {
-            const row = table.insertRow();
-            for (let j = 0; j < 5; j++) {
-                const cell = row.insertCell();
-                // Add buttons to corner, middle, and center cells
-                if (((i === 0) && (j === 0)) ||
-                    ((i === 0) && (j === 2)) ||
-                    ((i === 0) && (j === 4)) ||
-                    ((i === 2) && (j === 0)) ||
-                    ((i === 2) && (j === 2)) ||
-                    ((i === 2) && (j === 4)) ||
-                    ((i === 3) && (j === 0)) ||
-                    ((i === 4) && (j === 0)) ||
-                    ((i === 4) && (j === 2)) ||
-                    ((i === 4) && (j === 4))) {
-                    // Button configuration
-                    const button = document.createElement("button");
-                    button.style.backgroundColor = 'rgba(211, 211, 211, 0.3)';
-                    button.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
-                    button.style.backgroundImage = "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
-                    button.style.border = "none";
-                    button.style.cursor = "pointer";
-                    button.style.width = buttonstylewidth; // Adjust based on your needs
-                    button.style.height = buttonstyleheight; // Adjust based on your needs
-                    button.style.position = "absolute";
-                    button.style.top = "0"; // Anchor to top of cell
-                    button.style.left = "0"; // Anchor to left of cell
-                    button.style.zIndex = "2"; // Ensures button is above image
-                    button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
-                
-                    // Set button title
-                    if ((i === 0) && (j === 0)) {
-                        button.textContent = "Dumbbell Press";
-                        lastImage["Dumbbell Press"] = 14; 
-                    }
-                    if ((i === 0) && (j === 2)) {
-                        button.textContent = "One Arm Dumbbell Rows";
-                        lastImage["One Arm Dumbbell Rows"] = 24; 
-                    }
-                    if ((i === 0) && (j === 4)) {
-                        button.textContent = "Reverse Fly";
-                        lastImage["Reverse Fly"] = 12; 
-                    }
-                    if ((i === 2) && (j === 0)) {
-                        button.textContent = "Lat Pulldowns";
-                        lastImage["Lat Pulldowns"] = 8; 
-                    }
-                    if ((i === 2) && (j === 2)) {
-                        button.textContent = "Lat Pulldowns Back";
-                        lastImage["Lat Pulldowns Back"] = 6; 
-                    }
-                    if ((i === 2) && (j === 4)) {
-                        button.textContent = "Seated Row";
-                        lastImage["Seated Row"] = 12; 
-                    }
-                    if ((i === 3) && (j === 0)) {
-                        button.textContent = "Lat Pullup";
-                        lastImage["Lat Pullup"] = 12; 
-                    }
-                    if ((i === 4) && (j === 0)) {
-                        button.textContent = "Close Grip Lat Pulldown";
-                        lastImage["Close Grip Lat Pulldown"] = 8; 
-                    }
-                    if ((i === 4) && (j === 2)) {
-                        button.textContent = "Straight Arm Lat Pulldown";
-                        lastImage["Straight Arm Lat Pulldown"] = 18; 
-                    }
-                    if ((i === 4) && (j === 4)) {
-                        button.textContent = "Face Pull";
-                        lastImage["Face Pull"] = 21; 
-                    }
-                                     
-                
-                    // Image configuration
-                    const img = document.createElement("img");
-                    const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
-                    const imageName = `1.png`;
-                    img.style.width = imgstylewidth; // Adjust as needed
-                    img.style.height = imgstyleheight; // Adjust as needed
-                    img.alt = button.textContent;
-                    img.src = `${folderPath}${imageName}`;
-                    img.style.position = "absolute";
-                    img.style.top = "0"; // Align with button
-                    img.style.left = "0"; // Align with button
-                    img.style.zIndex = "1"; // Ensures image is below button
-                
-                    // Append elements to cell
-                    cell.style.position = "absolute"; // Needed for absolute positioning within cell
-                    cell.appendChild(button);
-                    cell.appendChild(img);
-                
-                    // Button click event
-                    button.onclick = function () { handleButtonClick(this, i, j); };
-                    img.addEventListener('click', function () { handleButtonClick(this, i, j); });
-                }
-            }
-        }
-    } catch (error) {
-        alert("Error occurred while setting up the table: " + error.message);
-    }
+function setShouldersTable() {
+  try {
+    const table = document.getElementById("ShouldersTable");
+    for (let i = 0; i < 5; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < 5; j++) {
+        const cell = row.insertCell();
+        // Add buttons to corner, middle, and center cells
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === 2) ||
+          (i === 0 && j === 4) ||
+          (i === 2 && j === 0) ||
+          (i === 2 && j === 2) ||
+          (i === 2 && j === 4) ||
+          (i === 4 && j === 0) ||
+          (i === 4 && j === 2) ||
+          (i === 4 && j === 4)
+        ) {
+          // Button configuration
+          const button = document.createElement("button");
+          button.style.backgroundColor = "rgba(211, 211, 211, 0.3)";
+          button.style.boxShadow =
+            "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
+          button.style.backgroundImage =
+            "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
+          button.style.border = "none";
+          button.style.cursor = "pointer";
+          button.style.width = buttonstylewidth; // Adjust based on your needs
+          button.style.height = buttonstyleheight; // Adjust based on your needs
+          button.style.position = "absolute";
+          button.style.top = "0"; // Anchor to top of cell
+          button.style.left = "0"; // Anchor to left of cell
+          button.style.zIndex = "2"; // Ensures button is above image
+          button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
 
-    const backButton = document.getElementById("backbtn");
-    backButton.textContent = 'Back'; // Set the text for the back button
-    backButton.onclick = function () {
-        if (imageNumber > 1) { // Ensure imageNumber doesn't go below 1
-            imageNumber--;
-            if (lastButton) {
-                const parts = lastButton.split('_'); // Assuming lastButton format is 'row_col'
-                const row = parseInt(parts[0], 10);
-                const col = parseInt(parts[1], 10);
-                showImage(row, col, imageNumber,  lastButtonElement); // Display the previous image
-            }
+          // Set button title
+          if (i === 0 && j === 0) {
+            button.textContent = "Shoulder Press";
+            lastImage["Shoulder Press"] = 11;
+            lastVideo["Shoulder Press"] = 15;
+          }
+          
+          
+          if (i === 0 && j === 4) {
+            button.textContent = "Shrugs";
+            lastImage["Shrugs"] = 3;
+            lastVideo["Shrugs"] = 4;
+          }
+          if (i === 0 && j === 2) {
+            button.textContent = "Lateral Raises";
+            lastImage["Lateral Raises"] = 7;
+            lastVideo["Lateral Raises"] = 11;
+          }
+          if (i === 2 && j === 4) {
+            button.textContent = "Dumbell Front Raises";
+            lastImage["Dumbell Front Raises"] = 9;
+            lastVideo["Dumbell Front Raises"] = 11;
+          }
+          if (i === 2 && j === 0) {
+            button.textContent = "Incline Front Raises";
+            lastImage["Incline Front Raises"] = 7;
+            lastVideo["Incline Front Raises"] = 8;
+          }
+          if (i === 4 && j === 0) {
+            button.textContent = "Incline Reverse Flys";
+            lastImage["Incline Reverse Flys"] = 13;
+            lastVideo["Incline Reverse Flys"] = 15;
+          }
+          if (i === 4 && j === 2) {
+            button.textContent = "Upright Rows";
+            lastImage["Upright Rows"] = 9;
+            lastVideo["Upright Rows"] = 12;
+          }
+          if (i === 2 && j === 2) {
+            button.textContent = "Hamer Lat Pull Down Deltoids";
+            lastImage["Hamer Lat Pull Down Deltoids"] = 11;
+            lastVideo["Hamer Lat Pull Down Deltoids"] = 15;
+          }
+          if (i === 4 && j === 4) {
+            button.textContent = "Cable Rear Delt Fly";
+            lastImage["Cable Rear Delt Fly"] = 13;
+            lastVideo["Cable Rear Delt Fly"] = 17;
+          }
+
+          // Image configuration
+          const img = document.createElement("img");
+          const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
+          const imageName = `1.png`;
+          img.style.width = imgstylewidth; // Adjust as needed
+          img.style.height = imgstyleheight; // Adjust as needed
+          img.alt = button.textContent;
+          img.src = `${folderPath}${imageName}`;
+          img.style.position = "absolute";
+          img.style.top = "0"; // Align with button
+          img.style.left = "0"; // Align with button
+          img.style.zIndex = "1"; // Ensures image is below button
+
+          // Append elements to cell
+          cell.style.position = "relative"; // Needed for absolute positioning within cell
+          cell.appendChild(button);
+          cell.appendChild(img);
+
+          // Button click event
+          button.onclick = function () {
+            handleButtonClick(this, i, j);
+          };
+          img.addEventListener("click", function () {
+            handleButtonClick(this, i, j);
+          });
         }
-    };
+      }
+    }
+  } catch (error) {
+    alert("Error occurred while setting up the table: " + error.message);
+  }
+
+  const backButton = document.getElementById("backbtn");
+  backButton.textContent = "Back"; // Set the text for the back button
+  backButton.onclick = function () { Back(); };
 }
 
-function setShouldersTable()
-{
-    try {
-        const table = document.getElementById("ShouldersTable");
-        for (let i = 0; i < 5; i++) {
-            const row = table.insertRow();
-            for (let j = 0; j < 5; j++) {
-                const cell = row.insertCell();
-                // Add buttons to corner, middle, and center cells
-                if (((i === 0) && (j === 0)) ||
-                    ((i === 1) && (j === 0)) ||
-                    ((i === 0) && (j === 2)) ||
-                    ((i === 0) && (j === 4)) ||
-                    ((i === 2) && (j === 2)) ||
-                    ((i === 2) && (j === 4)) ||
-                    ((i === 3) && (j === 0)) ||
-                    ((i === 4) && (j === 0)) ||
-                    ((i === 4) && (j === 2)) ||
-                    ((i === 3) && (j === 2)) ||
-                    ((i === 4) && (j === 4))) {
-                    // Button configuration
-                    const button = document.createElement("button");
-                    button.style.backgroundColor = 'rgba(211, 211, 211, 0.3)';
-                    button.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
-                    button.style.backgroundImage = "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
-                    button.style.border = "none";
-                    button.style.cursor = "pointer";
-                    button.style.width = buttonstylewidth; // Adjust based on your needs
-                    button.style.height = buttonstyleheight; // Adjust based on your needs
-                    button.style.position = "absolute";
-                    button.style.top = "0"; // Anchor to top of cell
-                    button.style.left = "0"; // Anchor to left of cell
-                    button.style.zIndex = "2"; // Ensures button is above image
-                    button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
-                    
-                    // Set button title
-                    if ((i === 0) && (j === 0)) {
-                        button.textContent = "Shoulder Press";
-                        lastImage["Shoulder Press"] = 18; 
-                    }
-                    if ((i === 1) && (j === 0)) {
-                        button.textContent = "Seated Neutral-Grip Dumbbell Overhead Press";
-                        lastImage["Seated Neutral-Grip Dumbbell Overhead Press"] = 6; 
-                    }
-                    if ((i === 0) && (j === 2)) {
-                        button.textContent = "Behind Neck Barbell Shoulder Press";
-                        lastImage["Behind Neck Barbell Shoulder Press"] = 5; 
-                    }
-                    if ((i === 0) && (j === 4)) {
-                        button.textContent = "Shrugs";
-                        lastImage["Shrugs"] = 4; 
-                    }
-                    if ((i === 2) && (j === 2)) {
-                        button.textContent = "Lateral Raises";
-                        lastImage["Lateral Raises"] = 12; 
-                    }
-                    if ((i === 2) && (j === 4)) {
-                        button.textContent = "Dumbell Front Raises";
-                        lastImage["Dumbell Front Raises"] = 10; 
-                    }
-                    if ((i === 3) && (j === 0)) {
-                        button.textContent = "Incline Front Raises";
-                        lastImage["Incline Front Raises"] = 8; 
-                    }
-                    if ((i === 4) && (j === 0)) {
-                        button.textContent = "Incline Reverse Flys";
-                        lastImage["Incline Reverse Flys"] = 10; 
-                    }
-                    if ((i === 4) && (j === 2)) {
-                        button.textContent = "Upright Rows";
-                        lastImage["Upright Rows"] = 10; 
-                    }
-                    if ((i === 3) && (j === 2)) {
-                        button.textContent = "Hamer Lat Pull Down Deltoids";
-                        lastImage["Hamer Lat Pull Down Deltoids"] = 6; 
-                    }
-                    if ((i === 4) && (j === 4)) {
-                        button.textContent = "Cable Rear Delt Fly";
-                        lastImage["Cable Rear Delt Fly"] = 12; 
-                    }
-                    
-                
-                    // Image configuration
-                    const img = document.createElement("img");
-                    const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
-                    const imageName = `1.png`;
-                    img.style.width = imgstylewidth; // Adjust as needed
-                    img.style.height = imgstyleheight; // Adjust as needed
-                    img.alt = button.textContent;
-                    img.src = `${folderPath}${imageName}`;
-                    img.style.position = "absolute";
-                    img.style.top = "0"; // Align with button
-                    img.style.left = "0"; // Align with button
-                    img.style.zIndex = "1"; // Ensures image is below button
-                
-                    // Append elements to cell
-                    cell.style.position = "absolute"; // Needed for absolute positioning within cell
-                    cell.appendChild(button);
-                    cell.appendChild(img);
-                
-                    // Button click event
-                    button.onclick = function () { handleButtonClick(this, i, j); };
-                    img.addEventListener('click', function () { handleButtonClick(this, i, j); });
-                }
-            }
-        }
-    } catch (error) {
-        alert("Error occurred while setting up the table: " + error.message);
-    }
+function setArmsTable() {
+  try {
+    const table = document.getElementById("ArmsTable");
+    for (let i = 0; i < 5; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < 5; j++) {
+        const cell = row.insertCell();
+        // Add buttons to corner, middle, and center cells
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === 2) ||
+          (i === 0 && j === 4) ||
+          (i === 2 && j === 2) ||
+          (i === 4 && j === 0) ||
+          (i === 4 && j === 2) ||
+          (i === 4 && j === 4)
+        ) {
+          // Button configuration
+          const button = document.createElement("button");
+          button.style.backgroundColor = "rgba(211, 211, 211, 0.3)";
+          button.style.boxShadow =
+            "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
+          button.style.backgroundImage =
+            "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
+          button.style.border = "none";
+          button.style.cursor = "pointer";
+          button.style.width = buttonstylewidth; // Adjust based on your needs
+          button.style.height = buttonstyleheight; // Adjust based on your needs
+          button.style.position = "absolute";
+          button.style.top = "0"; // Anchor to top of cell
+          button.style.left = "0"; // Anchor to left of cell
+          button.style.zIndex = "2"; // Ensures button is above image
+          button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
 
-    const backButton = document.getElementById("backbtn");
-    backButton.textContent = 'Back'; // Set the text for the back button
-    backButton.onclick = function () {
-        if (imageNumber > 1) { // Ensure imageNumber doesn't go below 1
-            imageNumber--;
-            if (lastButton) {
-                const parts = lastButton.split('_'); // Assuming lastButton format is 'row_col'
-                const row = parseInt(parts[0], 10);
-                const col = parseInt(parts[1], 10);
-                showImage(row, col, imageNumber,  lastButtonElement); // Display the previous image
-            }
+          // Set button title
+          if (i === 0 && j === 0) {
+            button.textContent = "Biceps Hammer Curls";
+            lastImage["Biceps Hammer Curls"] = 7;
+            lastVideo["Biceps Hammer Curls"] = 8;
+          }
+          if (i === 0 && j === 2) {
+            button.textContent = "Cable Overhead Bicep Curl";
+            lastImage["Cable Overhead Bicep Curl"] = 3;
+            lastVideo["Cable Overhead Bicep Curl"] = 4;
+          }
+          if (i === 0 && j === 4) {
+            button.textContent = "Bicep Barbell Curls";
+            lastImage["Bicep Barbell Curls"] = 7;
+            lastVideo["Bicep Barbell Curls"] = 9;
+          }
+          if (i === 2 && j === 2) {
+            button.textContent = "Reverse EZ Barbell Curls";
+            lastImage["Reverse EZ Barbell Curls"] = 3;
+            lastVideo["Reverse EZ Barbell Curls"] = 4;
+          }
+          if (i === 4 && j === 0) {
+            button.textContent = "Skullcrushers, Tricep Kickbacks and Overhead Extensions";
+            lastImage["Skullcrushers, Tricep Kickbacks and Overhead Extensions"] = 9;
+            lastVideo["Skullcrushers, Tricep Kickbacks and Overhead Extensions"] = 13;
+          }
+          
+          if (i === 4 && j === 2) {
+            button.textContent = "Machine Tricep Dips";
+            lastImage["Machine Tricep Dips"] = 5;
+            lastVideo["Machine Tricep Dips"] = 7;
+          }
+
+          if (i === 4 && j === 4) {
+            button.textContent = "Triceps Pushdowns";
+            lastImage["Triceps Pushdowns"] = 7;
+            lastVideo["Triceps Pushdowns"] = 9;
+          }
+
+          // Image configuration
+          const img = document.createElement("img");
+          const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
+          const imageName = `1.png`;
+          img.style.width = imgstylewidth; // Adjust as needed
+          img.style.height = imgstyleheight; // Adjust as needed
+          img.alt = button.textContent;
+          img.src = `${folderPath}${imageName}`;
+          img.style.position = "absolute";
+          img.style.top = "0"; // Align with button
+          img.style.left = "0"; // Align with button
+          img.style.zIndex = "1"; // Ensures image is below button
+
+          // Append elements to cell
+          cell.style.position = "relative"; // Needed for absolute positioning within cell
+          cell.appendChild(button);
+          cell.appendChild(img);
+
+          // Button click event
+          button.onclick = function () {
+            handleButtonClick(this, i, j);
+          };
+          img.addEventListener("click", function () {
+            handleButtonClick(this, i, j);
+          });
         }
-    };
+      }
+    }
+  } catch (error) {
+    alert("Error occurred while setting up the table: " + error.message);
+  }
+
+  const backButton = document.getElementById("backbtn");
+  backButton.textContent = "Back"; // Set the text for the back button
+  backButton.onclick = function () { Back(); };
 }
 
-function setArmsTable()
-{
-    try {
-        const table = document.getElementById("ArmsTable");
-        for (let i = 0; i < 5; i++) {
-            const row = table.insertRow();
-            for (let j = 0; j < 5; j++) {
-                const cell = row.insertCell();
-                // Add buttons to corner, middle, and center cells
-                if (((i === 0) && (j === 0)) ||
-                    ((i === 0) && (j === 2)) ||
-                    ((i === 0) && (j === 4)) ||
-                    ((i === 2) && (j === 0)) ||
-                    ((i === 2) && (j === 2)) ||
-                    ((i === 2) && (j === 4)) ||
-                    ((i === 4) && (j === 2))) {
-                    // Button configuration
-                    const button = document.createElement("button");
-                    button.style.backgroundColor = 'rgba(211, 211, 211, 0.3)';
-                    button.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
-                    button.style.backgroundImage = "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
-                    button.style.border = "none";
-                    button.style.cursor = "pointer";
-                    button.style.width = buttonstylewidth; // Adjust based on your needs
-                    button.style.height = buttonstyleheight; // Adjust based on your needs
-                    button.style.position = "absolute";
-                    button.style.top = "0"; // Anchor to top of cell
-                    button.style.left = "0"; // Anchor to left of cell
-                    button.style.zIndex = "2"; // Ensures button is above image
-                    button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
-    
-                    // Set button title
-                    if ((i === 0) && (j === 0)) {
-                        button.textContent = "Biceps Hammer Curls";
-                        lastImage["Biceps Hammer Curls"] = 9; 
-                    }
-                    if ((i === 0) && (j === 2)) {
-                        button.textContent = "Machine Tricep Dips";
-                        lastImage["Machine Tricep Dips"] = 6; 
-                    }
-                    if ((i === 0) && (j === 4)) {
-                        button.textContent = "Preacher Curl Bench";
-                        lastImage["Preacher Curl Bench"] = 5; 
-                    }
-                    if ((i === 2) && (j === 0)) {
-                        button.textContent = "Triceps Pushdowns";
-                        lastImage["Triceps Pushdowns"] = 12; 
-                    }
-                    if ((i === 2) && (j === 2)) {
-                        button.textContent = "Bicep Barbell Curls";
-                        lastImage["Bicep Barbell Curls"] = 10; 
-                    }
-                    if ((i === 2) && (j === 4)) {
-                        button.textContent = "Reverse EZ Barbell Curls";
-                        lastImage["Reverse EZ Barbell Curls"] = 6; 
-                    }
-                    if ((i === 4) && (j === 2)) {
-                        button.textContent = "Cable Overhead Bicep Curl";
-                        lastImage["Cable Overhead Bicep Curl"] = 4; 
-                    }
-                    
-                    // Image configuration
-                    const img = document.createElement("img");
-                    const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
-                    const imageName = `1.png`;
-                    img.style.width = imgstylewidth; // Adjust as needed
-                    img.style.height = imgstyleheight; // Adjust as needed
-                    img.alt = button.textContent;
-                    img.src = `${folderPath}${imageName}`;
-                    img.style.position = "absolute";
-                    img.style.top = "0"; // Align with button
-                    img.style.left = "0"; // Align with button
-                    img.style.zIndex = "1"; // Ensures image is below button
-                
-                    // Append elements to cell
-                    cell.style.position = "absolute"; // Needed for absolute positioning within cell
-                    cell.appendChild(button);
-                    cell.appendChild(img);
-                
-                    // Button click event
-                    button.onclick = function () { handleButtonClick(this, i, j); };
-                    img.addEventListener('click', function () { handleButtonClick(this, i, j); });
-                }
-            }
-        }
-    } catch (error) {
-        alert("Error occurred while setting up the table: " + error.message);
-    }
+function setStomachTable() {
+  try {
+    const table = document.getElementById("StomachTable");
+    for (let i = 0; i < 5; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < 5; j++) {
+        const cell = row.insertCell();
+        // Add buttons to corner, middle, and center cells
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === 2) ||
+          (i === 0 && j === 4) ||
+          (i === 2 && j === 0) ||
+          (i === 2 && j === 4) ||
+          (i === 2 && j === 2)
+        ) {
+          // Button configuration
+          const button = document.createElement("button");
+          button.style.backgroundColor = "rgba(211, 211, 211, 0.3)";
+          button.style.boxShadow =
+            "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
+          button.style.backgroundImage =
+            "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
+          button.style.border = "none";
+          button.style.cursor = "pointer";
+          button.style.width = buttonstylewidth; // Adjust based on your needs
+          button.style.height = buttonstyleheight; // Adjust based on your needs
+          button.style.position = "absolute";
+          button.style.top = "0"; // Anchor to top of cell
+          button.style.left = "0"; // Anchor to left of cell
+          button.style.zIndex = "2"; // Ensures button is above image
+          button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
 
-    const backButton = document.getElementById("backbtn");
-    backButton.textContent = 'Back'; // Set the text for the back button
-    backButton.onclick = function () {
-        if (imageNumber > 1) { // Ensure imageNumber doesn't go below 1
-            imageNumber--;
-            if (lastButton) {
-                const parts = lastButton.split('_'); // Assuming lastButton format is 'row_col'
-                const row = parseInt(parts[0], 10);
-                const col = parseInt(parts[1], 10);
-                showImage(row, col, imageNumber,  lastButtonElement); // Display the previous image
-            }
+          // Set button title
+          if (i === 0 && j === 2) {
+            button.textContent = "Upper Abs";
+            lastImage["Upper Abs"] = 17;
+          }
+          if (i === 0 && j === 0) {
+            button.textContent = "Lower Abs";
+            lastImage["Lower Abs"] = 28;
+          }
+          if (i === 0 && j === 4) {
+            button.textContent = "Six Pack";
+            lastImage["Six Pack"] = 23;
+          }
+          if (i === 2 && j === 0) {
+            button.textContent = "Obliques";
+            lastImage["Obliques"] = 12;
+          }
+          if (i === 2 && j === 2) {
+            button.textContent = "Complete";
+            lastImage["Complete"] = 8;
+          }
+          if (i === 2 && j === 4) {
+            button.textContent = "Core";
+            lastImage["Core"] = 11;
+          }
+
+          // Image configuration
+          const img = document.createElement("img");
+          const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
+          const imageName = `1.png`;
+          img.style.width = imgstylewidth; // Adjust as needed
+          img.style.height = imgstyleheight; // Adjust as needed
+          img.alt = button.textContent;
+          img.src = `${folderPath}${imageName}`;
+          img.style.position = "absolute";
+          img.style.top = "0"; // Align with button
+          img.style.left = "0"; // Align with button
+          img.style.zIndex = "1"; // Ensures image is below button
+
+          // Append elements to cell
+          cell.style.position = "relative"; // Needed for absolute positioning within cell
+          cell.appendChild(button);
+          cell.appendChild(img);
+
+          // Button click event
+          button.onclick = function () {
+            handleButtonClick(this, i, j);
+          };
+          img.addEventListener("click", function () {
+            handleButtonClick(this, i, j);
+          });
         }
-    };
+      }
+    }
+  } catch (error) {
+    alert("Error occurred while setting up the table: " + error.message);
+  }
+
+  const backButton = document.getElementById("backbtn");
+  backButton.textContent = "Back"; // Set the text for the back button
+  backButton.onclick = function () { Back(); };
 }
 
-function setStomachTable()
-{
-    try {
-        const table = document.getElementById("StomachTable");
-        for (let i = 0; i < 5; i++) {
-            const row = table.insertRow();
-            for (let j = 0; j < 5; j++) {
-                const cell = row.insertCell();
-                // Add buttons to corner, middle, and center cells
-                if (((i === 0) && (j === 0)) ||
-                    ((i === 0) && (j === 2)) ||
-                    ((i === 0) && (j === 4)) ||
-                    ((i === 2) && (j === 0)) ||
-                    ((i === 2) && (j === 4)) ||
-                    ((i === 2) && (j === 2))
-                    ) {
-                    // Button configuration
-                    const button = document.createElement("button");
-                    button.style.backgroundColor = 'rgba(211, 211, 211, 0.3)';
-                    button.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
-                    button.style.backgroundImage = "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
-                    button.style.border = "none";
-                    button.style.cursor = "pointer";
-                    button.style.width = buttonstylewidth; // Adjust based on your needs
-                    button.style.height = buttonstyleheight; // Adjust based on your needs
-                    button.style.position = "absolute";
-                    button.style.top = "0"; // Anchor to top of cell
-                    button.style.left = "0"; // Anchor to left of cell
-                    button.style.zIndex = "2"; // Ensures button is above image
-                    button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
-                    
-                    // Set button title
-                    if ((i === 0) && (j === 0)) {
-                        button.textContent = "Upper Abs";
-                        lastImage["Upper Abs"] = 22; 
-                    }
-                    if ((i === 0) && (j === 2)) {
-                        button.textContent = "Lower Abs";
-                        lastImage["Lower Abs"] = 38; 
-                    }
-                    if ((i === 0) && (j === 4)) {
-                        button.textContent = "Six Pack";
-                        lastImage["Six Pack"] = 13; 
-                    }
-                    if ((i === 2) && (j === 0)) {
-                        button.textContent = "Obliques";
-                        lastImage["Obliques"] = 13; 
-                    }
-                    if ((i === 2) && (j === 2)) {
-                        button.textContent = "Complete";
-                        lastImage["Complete"] = 10; 
-                    }
-                    if ((i === 2) && (j === 4)) {
-                        button.textContent = "Core";
-                        lastImage["Core"] = 13; 
-                    }
+function setCardioTable() {
+  try {
+    const table = document.getElementById("CardioTable");
+    for (let i = 0; i < 5; i++) {
+      const row = table.insertRow();
+      for (let j = 0; j < 5; j++) {
+        const cell = row.insertCell();
+        // Add buttons to corner, middle, and center cells
+        if (
+          (i === 0 && j === 0) ||
+          (i === 0 && j === 2) ||
+          (i === 0 && j === 4) ||
+          (i === 2 && j === 2) ||
+          (i === 4 && j === 0) ||
+          (i === 4 && j === 4)
+        ) {
+          // Button configuration
+          const button = document.createElement("button");
+          button.style.backgroundColor = "rgba(211, 211, 211, 0.3)";
+          button.style.boxShadow =
+            "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
+          button.style.backgroundImage =
+            "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
+          button.style.border = "none";
+          button.style.cursor = "pointer";
+          button.style.width = buttonstylewidth; // Adjust based on your needs
+          button.style.height = buttonstyleheight; // Adjust based on your needs
+          button.style.position = "absolute";
+          button.style.top = "0"; // Anchor to top of cell
+          button.style.left = "0"; // Anchor to left of cell
+          button.style.zIndex = "2"; // Ensures button is above image
+          button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
 
-                    
-                    // Image configuration
-                    const img = document.createElement("img");
-                    const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
-                    const imageName = `1.png`;
-                    img.style.width = imgstylewidth; // Adjust as needed
-                    img.style.height = imgstyleheight; // Adjust as needed
-                    img.alt = button.textContent;
-                    img.src = `${folderPath}${imageName}`;
-                    img.style.position = "absolute";
-                    img.style.top = "0"; // Align with button
-                    img.style.left = "0"; // Align with button
-                    img.style.zIndex = "1"; // Ensures image is below button
-                
-                    // Append elements to cell
-                    cell.style.position = "absolute"; // Needed for absolute positioning within cell
-                    cell.appendChild(button);
-                    cell.appendChild(img);
-                
-                    // Button click event
-                    button.onclick = function () { handleButtonClick(this, i, j); };
-                    img.addEventListener('click', function () { handleButtonClick(this, i, j); });
-                }
-            }
+          // Set button title
+          if (i === 0 && j === 0) {
+            button.textContent = "Steps";
+            lastImage["Steps"] = 4;
+          }
+          if (i === 0 && j === 2) {
+            button.textContent = "Treadmill";
+            lastImage["Treadmill"] = 7;
+          }
+          if (i === 0 && j === 4) {
+            button.textContent = "Spinning";
+            lastImage["Spinning"] = 2;
+          }
+          if (i === 2 && j === 2) {
+            button.textContent = "Yoga";
+            lastImage["Yoga"] = 161;
+          }
+          if (i === 4 && j === 0) {
+            button.textContent = "Rowing";
+            lastImage["Rowing"] = 4;
+          }
+          if (i === 4 && j === 4) {
+            button.textContent = "Boxing";
+            lastImage["Boxing"] = 27;
+          }
+
+          // Image configuration
+          const img = document.createElement("img");
+          const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
+          const imageName = `1.png`;
+          img.style.width = imgstylewidth; // Adjust as needed
+          img.style.height = imgstyleheight; // Adjust as needed
+          img.alt = button.textContent;
+          img.src = `${folderPath}${imageName}`;
+          img.style.position = "absolute";
+          img.style.top = "0"; // Align with button
+          img.style.left = "0"; // Align with button
+          img.style.zIndex = "1"; // Ensures image is below button
+
+          // Append elements to cell
+          cell.style.position = "relative"; // Needed for absolute positioning within cell
+          cell.appendChild(button);
+          cell.appendChild(img);
+
+          // Button click event
+          button.onclick = function () {
+            handleButtonClick(this, i, j);
+          };
+          img.addEventListener("click", function () {
+            handleButtonClick(this, i, j);
+          });
         }
-    } catch (error) {
-        alert("Error occurred while setting up the table: " + error.message);
+      }
     }
+  } catch (error) {
+    alert("Error occurred while setting up the table: " + error.message);
+  }
 
-    const backButton = document.getElementById("backbtn");
-    backButton.textContent = 'Back'; // Set the text for the back button
-    backButton.onclick = function () {
-        if (imageNumber > 1) { // Ensure imageNumber doesn't go below 1
-            imageNumber--;
-            if (lastButton) {
-                const parts = lastButton.split('_'); // Assuming lastButton format is 'row_col'
-                const row = parseInt(parts[0], 10);
-                const col = parseInt(parts[1], 10);
-                showImage(row, col, imageNumber,  lastButtonElement); // Display the previous image
-            }
-        }
-    };
+  const backButton = document.getElementById("backbtn");
+  backButton.textContent = "Back"; // Set the text for the back button
+  backButton.onclick = function () { Back(); };
 }
-
-function setCardioTable()
-{
-    try {
-        const table = document.getElementById("CardioTable");
-        for (let i = 0; i < 5; i++) {
-            const row = table.insertRow();
-            for (let j = 0; j < 5; j++) {
-                const cell = row.insertCell();
-                // Add buttons to corner, middle, and center cells
-                if (((i === 0) && (j === 0)) || 
-                    ((i === 0) && (j === 2)) || 
-                    ((i === 0) && (j === 4)) || 
-                    ((i === 2) && (j === 2)) || 
-                    ((i === 4) && (j === 0)) || 
-                    ((i === 4) && (j === 4))) {
-                    // Button configuration
-                    const button = document.createElement("button");
-                    button.style.backgroundColor = 'rgba(211, 211, 211, 0.3)';
-                    button.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.3)";
-                    button.style.backgroundImage = "linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(211, 211, 211, 0.3))";
-                    button.style.border = "none";
-                    button.style.cursor = "pointer";
-                    button.style.width = buttonstylewidth; // Adjust based on your needs
-                    button.style.height = buttonstyleheight; // Adjust based on your needs
-                    button.style.position = "absolute";
-                    button.style.top = "0"; // Anchor to top of cell
-                    button.style.left = "0"; // Anchor to left of cell
-                    button.style.zIndex = "2"; // Ensures button is above image
-                    button.style.fontSize = buttonstylefontSize; // Adjust the font size as needed
-                     
-                    // Set button title
-                    if ((i === 0) && (j === 0)) {
-                        button.textContent = "Steps";
-                        lastImage["Steps"] = 5; 
-                    }
-                    if ((i === 0) && (j === 2)) {
-                        button.textContent = "Threadmill";
-                        lastImage["Threadmill"] = 9; 
-                    }
-                    if ((i === 0) && (j === 4)) {
-                        button.textContent = "Spinning";
-                        lastImage["Spinning"] = 8; 
-                    }
-                    if ((i === 2) && (j === 2)) {
-                        button.textContent = "Yoga";
-                        lastImage["Yoga"] = 163; 
-                    }
-                    if ((i === 4) && (j === 0)) {
-                        button.textContent = "Rowing";
-                        lastImage["Rowing"] = 5; 
-                    }
-                    if ((i === 4) && (j === 4)) {
-                        button.textContent = "Boxing";
-                        lastImage["Boxing"] = 28; 
-                    }
-                    
-                    // Image configuration
-                    const img = document.createElement("img");
-                    const folderPath = `images_${currentTab_}/folder_${i}_${j}/`;
-                    const imageName = `1.png`;
-                    img.style.width = imgstylewidth; // Adjust as needed
-                    img.style.height = imgstyleheight; // Adjust as needed
-                    img.alt = button.textContent;
-                    img.src = `${folderPath}${imageName}`;
-                    img.style.position = "absolute";
-                    img.style.top = "0"; // Align with button
-                    img.style.left = "0"; // Align with button
-                    img.style.zIndex = "1"; // Ensures image is below button
-                
-                    // Append elements to cell
-                    cell.style.position = "absolute"; // Needed for absolute positioning within cell
-                    cell.appendChild(button);
-                    cell.appendChild(img);
-                
-                    // Button click event
-                    button.onclick = function () { handleButtonClick(this, i, j); };
-                    img.addEventListener('click', function () { handleButtonClick(this, i, j); });
-                }
-            }
-        }
-    } catch (error) {
-        alert("Error occurred while setting up the table: " + error.message);
-    }
-
-    const backButton = document.getElementById("backbtn");
-    backButton.textContent = 'Back'; // Set the text for the back button
-    backButton.onclick = function () {
-        if (imageNumber > 1) { // Ensure imageNumber doesn't go below 1
-            imageNumber--;
-            if (lastButton) {
-                const parts = lastButton.split('_'); // Assuming lastButton format is 'row_col'
-                const row = parseInt(parts[0], 10);
-                const col = parseInt(parts[1], 10);
-                showImage(row, col, imageNumber,  lastButtonElement); // Display the previous image
-            }
-        }
-    };
-}
-
 
 document.addEventListener("DOMContentLoaded", function () {
-    window.addEventListener('resize', updateStylesBasedOnDevice);
+  window.addEventListener("resize", updateStylesBasedOnDevice);
 
-    updateStylesBasedOnDevice();
-    
-    if (isSet[1] == false)
-        {
-            setGlutesTable();
-            isSet[1] = 1;
-        }
+  updateStylesBasedOnDevice();
 
-    drawDefaultImage(1);
-    
+  if (isSet[1] == false) {
+    setGlutesTable();
+    isSet[1] = 1;
+  }
+
+  drawDefaultImage(1);
 });
 
-
-
-
-
-function handleButtonClick(buttonElement, row, col) {
-    try
-    {
-        //alert("handleButtonClick");
-
-        lastButtonElement = buttonElement;
-
-        const currentButtonClickName_ = buttonElement.innerHTML;
-        if (currentButtonClickName != currentButtonClickName_)
-        {
-            imageNumber = 0
-        }
-        currentButtonClickName = currentButtonClickName_;
-
-        const lastNumberOfImage = lastImage[currentButtonClickName]; 
-
-        //alert("currentButtonClickName: " + currentButtonClickName + " imageNumber: " + imageNumber + " - lastNumberOfImage: " + lastNumberOfImage)
-
-        if (imageNumber <= lastNumberOfImage)
-        {
-            const currentButton = `${row}_${col}`;
-            if (imageNumber < lastNumberOfImage)
-            {
-                imageNumber++;
-                lastButton = currentButton;
-            }
-            showImage(row, col, imageNumber, buttonElement);
-        }
-    }
-    catch (exception) {
-        alert('handleButtonClick Error:', exception);
-    }  
+function getRandomLoadingMessage() {
+  const randomIndex = Math.floor(Math.random() * loadingMessages.length);
+  return loadingMessages[randomIndex];
 }
 
-function getRandomLoadingMessage() {
-    const randomIndex = Math.floor(Math.random() * loadingMessages.length);
-    return loadingMessages[randomIndex];
+function handleButtonClick(buttonElement, row, col) {
+  try {
+    //alert("handleButtonClick");
+
+    lastButtonElement = buttonElement;
+
+    const currentButtonClickName_ = buttonElement.innerHTML;
+
+    const currentButton = `${row}_${col}`;
+
+    if (currentButtonClickName != currentButtonClickName_) {
+      imageNumber = 0;
+
+      //alert(row + '_' + col);
+    }
+    currentButtonClickName = currentButtonClickName_;
+
+    lastNumberOfImage = lastImage[currentButtonClickName];
+    const lastNumberOfVideos = lastVideo[currentButtonClickName];
+
+    //alert("currentButtonClickName: " + currentButtonClickName + " imageNumber: " + imageNumber + " - lastNumberOfImage: " + lastNumberOfImage)
+
+    
+
+    //alert("lastNumberOfVideos: " + lastNumberOfVideos + " videoNumber: " + videoNumber + " - imageNumber: " + imageNumber)
+
+    if (imageNumber >= lastNumberOfImage) {
+      imageMode = false;
+    }
+    if (imageNumber <= lastNumberOfImage) {
+      if (imageNumber < lastNumberOfImage) {
+        imageNumber++;
+        lastButton = currentButton;
+        showImage(row, col, imageNumber, buttonElement);
+        imageMode = true;
+      }
+    }
+    if (imageMode == false) {
+      if (imageNumber <= lastNumberOfVideos) {
+        if (imageNumber < lastNumberOfVideos) {
+          imageNumber++;
+          lastButton = currentButton;
+        }
+        showVideo(row, col, imageNumber, buttonElement);
+        imageMode = false;
+        //alert('imageMode: ' + imageMode);
+      }
+    }
+  } catch (exception) {
+    alert("handleButtonClick Error:", exception);
+  }
 }
 
 const isTestingMode = false; // Set to false when not testing
 
-
 function showImage(row, col, imgNumber, buttonElement) {
-    try {
-        const folderPath = `images_${currentTab_}/folder_${row}_${col}/`;
-        const imageName = `${imgNumber}.png`;
-        const imageFrame = document.getElementById("imageFrame");
+  try {
+    const folderPath = `images_${currentTab_}/folder_${row}_${col}/`;
+    const imageName = `${imgNumber}.png`;
+    const imageFrame = document.getElementById("imageFrame");
 
-        const IsBusyMessage = getRandomLoadingMessage(); // Get a random loading message
-        imageFrame.innerHTML = '<div class="loading" style="color: white;"><div class="spinner"></div><div>'+ IsBusyMessage +'</div></div>';
+    const IsBusyMessage = getRandomLoadingMessage(); // Get a random loading message
+    imageFrame.innerHTML =
+      '<div class="loading" style="color: white;"><div class="spinner"></div><div>' +
+      IsBusyMessage +
+      "</div></div>";
 
-        // Create new img element
-        const img = new Image();
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'contain';
+    // Create new img element
+    const img = new Image();
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "contain";
 
-        const loadImage = () => {
-            const imageUrl = `${folderPath}${imageName}`;
-            img.src = imageUrl;
-            img.onload = () => {
-                imageFrame.innerHTML = ''; // Clear loading indicator once the image has loaded
-                imageFrame.appendChild(img);
-                // Create and append the share icon
-                const shareIcon = document.createElement("a");
-                shareIcon.id = "shareIcon";
-                shareIcon.innerHTML = '<img src="shareicon.svg" alt="Share" style="border: 2px solid white; border-radius: 50%;" />'; // Add border styling here
-                shareIcon.style.position = "absolute";
-                shareIcon.style.top = "5px";
-                shareIcon.style.right = "5px";
-                shareIcon.style.display = "block";
-                shareIcon.style.cursor = "pointer";
-                imageFrame.style.position = 'relative'; // Reinforce positioning context
-                imageFrame.appendChild(shareIcon);
+    const loadImage = () => {
+      const imageUrl = `${folderPath}${imageName}`;
+      img.src = imageUrl;
+      img.onload = () => {
+        imageFrame.innerHTML = ""; // Clear loading indicator once the image has loaded
+        imageFrame.appendChild(img);
+        // Create and append the share icon
+        const shareIcon = document.createElement("a");
+        shareIcon.id = "shareIcon";
+        shareIcon.innerHTML =
+          '<img src="shareicon.svg" alt="Share" style="border: 2px solid white; border-radius: 50%;" />'; // Add border styling here
+        shareIcon.style.position = "absolute";
+        shareIcon.style.top = "5px";
+        shareIcon.style.right = "5px";
+        shareIcon.style.display = "block";
+        shareIcon.style.cursor = "pointer";
+        imageFrame.style.position = "relative"; // Reinforce positioning context
+        imageFrame.appendChild(shareIcon);
 
-                shareIcon.addEventListener('click', function(event) {
-                    try{
-                    event.preventDefault();
+        shareIcon.addEventListener("click", function (event) {
+          try {
+            event.preventDefault();
 
-                    downloadImage(imageUrl);
+            downloadImage(imageUrl);
 
-                    // Example: Share text via WhatsApp
-                    const text = "Check out this image!";
-                    const whatsappUrl = `https://wa.me/?image=${(imageUrl)}`;
-                    window.open(whatsappUrl, '_blank');
+            // Example: Share text via WhatsApp
+            const text = "Check out this image!";
+            const whatsappUrl = `https://wa.me/?image=${imageUrl}`;
+            window.open(whatsappUrl, "_blank");
+          } catch (exception) {
+            alert("Error during sharing:", exception);
+          }
+        });
+      };
+      img.onerror = () => {
+        imageFrame.innerHTML = '<div class="error">Error loading image</div>'; // Provide error handling
+      };
+    };
 
-                   
-                 } catch (exception) {
-                        alert('Error during sharing:', exception);
-                    }   
+    if (isTestingMode) {
+      // If in testing mode, delay loading
+      setTimeout(loadImage, 2000); // Adjust delay as needed
+    } else {
+      // If not in testing mode, load immediately
+      loadImage();
+    }
 
-                });
-            };
-            img.onerror = () => {
-                imageFrame.innerHTML = '<div class="error">Error loading image</div>'; // Provide error handling
-            };
-        };
+    img.addEventListener("click", function () {
+      handleButtonClick(buttonElement, row, col);
+    });
+  } catch (error) {
+    alert("Error occurred while displaying the image: " + error.message);
+  }
+}
 
-        if (isTestingMode) {
-            // If in testing mode, delay loading
-            setTimeout(loadImage, 2000); // Adjust delay as needed
-        } else {
-            // If not in testing mode, load immediately
-            loadImage();
+function showVideo(row, col, imgNumber, buttonElement) {
+  try {
+    const folderPath = `images_${currentTab_}/folder_${row}_${col}/`;
+    const videoName = `${imgNumber}.mp4`;
+    const videoUrl = `${folderPath}${videoName}`;
+    const imageFrame = document.getElementById("imageFrame");
+
+    //alert("folderPath: " + folderPath + " videoName: " + videoName + " - videoUrl: " + videoUrl)
+
+    imageFrame.innerHTML = `
+            <video id="videoPlayer" autoplay muted controls style="width: 100%; height: 100%; object-fit: contain;">
+                <source src="${videoUrl}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        `;
+
+    const videoPlayer = document.getElementById("videoPlayer");
+    videoPlayer.addEventListener("ended", () => {
+      //alert('Video playback finished.');
+    });
+  } catch (error) {
+    alert("Error occurred while displaying the video: " + error.message);
+  }
+}
+
+function Back() {
+  try {
+    if (imageNumber > 1) {
+      // Ensure imageNumber doesn't go below 1
+      imageNumber--;
+      if (lastButton) {
+        const parts = lastButton.split("_"); // Assuming lastButton format is 'row_col'
+        const row = parseInt(parts[0], 10);
+        const col = parseInt(parts[1], 10);
+
+        if (imageNumber <= lastNumberOfImage) {
+          imageMode = true;
         }
 
-        img.addEventListener('click', function () { handleButtonClick(buttonElement, row, col); });
-    } catch (error) {
-        alert("Error occurred while displaying the image: " + error.message);
+        if (imageMode == true) {
+          showImage(row, col, imageNumber, lastButtonElement); // Display the previous image
+        } else {
+          showVideo(row, col, imageNumber, lastButtonElement); // Display the previous video
+        }
+      }
     }
+  } catch (error) {
+    alert("Error on back button: " + error.message);
+  }
 }
 
 function downloadImage(imageUrl) {
-    const imageDisplayUrl = 'image-display.html?image=' + encodeURIComponent(imageUrl);
-    window.open(imageDisplayUrl, '_blank');
-  }
-
-document.getElementById('goToPaymentPage').addEventListener('click', function() {
-    fetch('https://ipapi.co/json/')
-        .then(response => response.json())
-        .then(data => {
-            if (data.country_code === "ZA") { // If the user is in South Africa
-                window.location.href = 'payment.html'; // Redirect to Yoco payment
-            } else { // If the user is not in South Africa
-                window.location.href = 'payment_paypal.html'; // Redirect to PayPal payment
-            }
-        })
-        .catch(error => {
-            console.error('Error determining location:', error);
-            // Fallback or default redirection in case the fetch fails
-            window.location.href = 'payment_paypal.html';
-        });
-});
+  const imageDisplayUrl =
+    "image-display.html?image=" + encodeURIComponent(imageUrl);
+  window.open(imageDisplayUrl, "_blank");
+}
 
 //document.getElementById('goToPaymentPage').addEventListener('click', function() {
 //    window.location.href = 'payment.html' or window.location.href = 'payment_paypale.html'; // Assuming 'payment.html' is the payment form page
 //});
-document.getElementById('homebtn').addEventListener('click', function() {
-window.location.href = 'index.html'; // Assuming 'payment.html' is the payment form page
+document.getElementById("homebtn").addEventListener("click", function () {
+  window.location.href = "index.html"; // Assuming 'payment.html' is the payment form page
 });
 
 function updateStylesBasedOnDevice() {
-    // Define your media query for smaller devices like phones
+  // Define your media query for smaller devices like phones
 
-    clearTables();
+  clearTables();
 
-    const phoneMediaQuery = window.matchMedia("(max-width: 940px)");
-    
-    //alert("phoneMediaQuery.matches " + phoneMediaQuery.matches);
+  const phoneMediaQuery = window.matchMedia("(max-width: 940px)");
 
+  //alert("phoneMediaQuery.matches " + phoneMediaQuery.matches);
 
-    if (phoneMediaQuery.matches) {
-        
-        buttonstylewidth = "94px"; 
-        buttonstyleheight = "85px"; 
-        imgstylewidth = "94px"; 
-        imgstyleheight = "85px"; 
-        buttonstylefontSize = "10px"; 
-    } else {
-        buttonstylewidth = "188px"; 
-        buttonstyleheight = "170px"; 
-        imgstylewidth = "188px"; 
-        imgstyleheight = "170px"; 
-        buttonstylefontSize = "18px"; 
-    }
+  if (phoneMediaQuery.matches) {
+    buttonstylewidth = "94px";
+    buttonstyleheight = "85px";
+    imgstylewidth = "94px";
+    imgstyleheight = "85px";
+    buttonstylefontSize = "10px";
+  } else {
+    buttonstylewidth = "188px";
+    buttonstyleheight = "170px";
+    imgstylewidth = "188px";
+    imgstyleheight = "170px";
+    buttonstylefontSize = "18px";
+  }
 
-    handleTab(currentTab_);
+  handleTab(currentTab_);
 }
 
 function clearTables() {
-    const tables = ["GlutesTable", "LegsTable", "ChestTable", "BackTable", "ShouldersTable", "ArmsTable", "StomachTable", "CardioTable", "MMATable", "NutritionTable"];
-    tables.forEach(function(tableName) {
-        const table = document.getElementById(tableName);
-        while (table && table.rows.length > 0) {
-            table.deleteRow(0);
-        }
-    });
-    isSet.fill(false); // Reset the isSet array to indicate that tables need to be repopulated
+  const tables = [
+    "GlutesTable",
+    "LegsTable",
+    "ChestTable",
+    "BackTable",
+    "ShouldersTable",
+    "ArmsTable",
+    "StomachTable",
+    "CardioTable",
+    "MMATable",
+    "NutritionTable",
+  ];
+  tables.forEach(function (tableName) {
+    const table = document.getElementById(tableName);
+    while (table && table.rows.length > 0) {
+      table.deleteRow(0);
+    }
+  });
+  isSet.fill(false); // Reset the isSet array to indicate that tables need to be repopulated
 }
-
-
-
-
