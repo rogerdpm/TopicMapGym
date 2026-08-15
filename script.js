@@ -218,7 +218,7 @@ function setGlutesTable() {
           if (i === 2 && j === 0) {
             button.textContent = "Step Ups";
             lastImage["Step Ups"] = 7;
-            lastVideo["Step Ups"] = 10;
+            lastVideo["Step Ups"] = 11;
           }
 
           if (i === 4 && j === 0) {
@@ -346,7 +346,7 @@ function setLegs() {
           if (i === 0 && j === 4) {
             button.textContent = "Lunges";
             lastImage["Lunges"] = 7;
-            lastVideo["Lunges"] = 15;
+            lastVideo["Lunges"] = 14;
           }
          
           if (i === 2 && j === 4) {
