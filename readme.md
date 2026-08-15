@@ -1,69 +1,65 @@
 # TopicMapGym
 
-TopicMapGym is an interactive exercise reference web app that organizes gym movements by training focus and muscle group.
+An interactive exercise guide. Browse gym movements by muscle group and watch clear demonstrations — diagrams first, then real video.
 
-Users can:
-- switch between tabs such as Glutes, Legs, Chest, Back, Shoulders, Arms, Stomach, and Cardio
-- click an exercise tile to cycle through demonstration images
-- continue clicking to move from images to short video demonstrations (when available)
-- use the Back button to navigate backward through the currently selected exercise media
+## How to Use
 
-The app is designed for fast browsing during workouts, coaching, or exercise planning.
+1. **Pick a muscle group** from the top tabs: Glutes, Legs, Chest, Back, Shoulders, Arms, Stomach, Cardio.
+2. **Click an exercise tile** to open its demonstration on the right.
+3. **Keep clicking** the tile (or the image) to cycle through more views — diagrams first, then video demonstrations where available.
+4. **Use the Back button** to step back through the demonstrations.
 
-## Project Structure
+That's it — no login, no setup for viewers.
 
-- [index.html](index.html): main application page and tab layout
-- [script.js](script.js): table generation, exercise mapping, media navigation logic
-- [styles_phone.css](styles_phone.css): mobile styling (`max-width: 940px`)
-- [styles_laptop.css](styles_laptop.css): desktop/laptop styling (`min-width: 941px`)
-- [images_1](images_1) to [images_8](images_8): media assets grouped by tab
+## Quick Start (Hosting Your Own Copy)
 
-## Media Organization
+The site runs from a local web server so all images and videos load correctly.
 
-Exercise media is loaded dynamically from folder coordinates:
+1. Download or clone this repository.
+2. Start a local server from the project folder — pick one:
+   - **VS Code:** install the *Live Server* extension, then right-click [index.html](index.html) → *Open with Live Server*.
+   - **Python:** run `python -m http.server` and open http://localhost:8000
+   - **Node:** run `npx serve` and open the shown URL.
+3. Open [index.html](index.html) through that server URL.
 
-- folder pattern: `images_<tab>/folder_<row>_<col>/`
-- image pattern: `1.png`, `2.png`, `3.png`, ...
-- video pattern: continuing numeric sequence as `.mp4`
+> Tip: Opening [index.html](index.html) directly from disk may not load media — always use a local server.
 
-Example:
+## Publishing Online (Optional)
 
-- `images_1/folder_0_0/1.png`
-- `images_1/folder_0_0/2.png`
-- `images_1/folder_0_0/9.mp4`
+This project is ready for **GitHub Pages**:
 
-The maximum image/video count for each exercise tile is controlled in [script.js](script.js) through the `lastImage` and `lastVideo` mappings.
+1. Push to the `main` branch.
+2. In your repo: *Settings → Pages → Deploy from branch → `main`*.
+3. Your site goes live at `https://<username>.github.io/<repo>/`.
 
-## Running Locally
+If updates don't show right away: wait for Pages to finish, then hard refresh with `Ctrl+Shift+R`.
 
-Because this project uses many relative media paths, run it from a local web server (recommended) instead of opening HTML directly from disk.
+## Adding or Updating Exercises
 
-Options:
+Media lives in numbered folders by muscle group and grid position:
 
-- VS Code Live Server extension
-- Python: `python -m http.server`
-- Node tools such as `npx serve`
-
-Then open [index.html](index.html) through the local server URL.
-
-## Updating Content
+```
+images_<tab>/folder_<row>_<col>/
+  1.png   2.png   3.png   ...   (diagrams / images)
+  9.mp4   10.mp4  ...           (videos continue the numbering)
+```
 
 To update an exercise:
 
-1. Place new media files into the correct `images_<tab>/folder_<row>_<col>/` directory.
-2. Ensure numbering is continuous (`1.png`, `2.png`, ...).
-3. Update `lastImage[...]` and `lastVideo[...]` in [script.js](script.js) if media counts changed.
+1. Drop new files into the correct `images_<tab>/folder_<row>_<col>/` folder.
+2. Keep numbering continuous (`1.png`, `2.png`, …).
+3. If the number of files changed, update `lastImage` and `lastVideo` in [script.js](script.js).
 
-## Deployment
+## Files at a Glance
 
-This repository is deployed via GitHub Pages from the `main` branch.
-
-If changes do not appear immediately after push:
-
-- wait for Pages deployment to complete
-- hard refresh browser cache (`Ctrl+Shift+R`)
-- bump asset query versions in [index.html](index.html) if needed
+| File | Purpose |
+| --- | --- |
+| [index.html](index.html) | Main page and tab layout |
+| [script.js](script.js) | Exercise mapping and media navigation |
+| [styles_laptop.css](styles_laptop.css) | Desktop styling (≥ 941px) |
+| [styles_phone.css](styles_phone.css) | Mobile styling (≤ 940px) |
+| `images_1` … `images_8` | Media assets, one set per muscle-group tab |
 
 ## Contact
 
-For suggestions, corrections, or collaboration, open an issue in this repository.
+Questions or suggestions? Open an issue, or email **jjloubser@symbioses.co.za**.
