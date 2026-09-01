@@ -8,7 +8,7 @@ let buttonstyleheight = "85px";
 let imgstylewidth = "94px";
 let imgstyleheight = "85px";
 let buttonstylefontSize = "10px";
-let currentTab_ = 1;
+let currentTab_ = null;
 
 const lastImage = {};
 const lastVideo = {};
@@ -97,16 +97,30 @@ function setTab(tabNumber) {
   imageNumber = 0;
   videoNumber = 0;
 
+  // Keep the landing page uncluttered until the user chooses a category.
+  document.getElementById("workoutContent").hidden = false;
+  document.getElementById("landingPrompt").hidden = true;
+
   document.querySelectorAll(".table").forEach(function (table) {
     table.style.display = "none";
   });
   var selectedTable = document.getElementById(getTableName(tabNumber));
   if (selectedTable) {
-    selectedTable.style.display = "block";
+    selectedTable.style.display = "table";
   }
 
   handleTab(currentTab_);
   drawDefaultImage(currentTab_);
+}
+
+function showHomePage() {
+  currentTab_ = null;
+  document.getElementById("workoutContent").hidden = true;
+  document.getElementById("landingPrompt").hidden = false;
+
+  document.querySelectorAll(".table").forEach(function (table) {
+    table.style.display = "none";
+  });
 }
 
 function getTableName(tabNumber) {
@@ -1078,13 +1092,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateStylesBasedOnDevice);
 
   updateStylesBasedOnDevice();
-
-  if (isSet[1] == false) {
-    setGlutesTable();
-    isSet[1] = 1;
-  }
-
-  drawDefaultImage(1);
 });
 
 function getRandomLoadingMessage() {
@@ -1310,7 +1317,10 @@ function updateStylesBasedOnDevice() {
     buttonstylefontSize = "18px";
   }
 
-  handleTab(currentTab_);
+  // A resize should rebuild only a category the user has already selected.
+  if (currentTab_ !== null) {
+    handleTab(currentTab_);
+  }
 }
 
 function clearTables() {

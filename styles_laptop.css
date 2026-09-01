@@ -2,12 +2,21 @@
     box-sizing: border-box;
 }
 
-body {
+html {
     background-color: lightblue;
     background-image: url('1.PNG');
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-blend-mode: multiply;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: transparent;
     font-family: Arial, sans-serif;
 }
 
@@ -28,21 +37,41 @@ table {
     border-collapse: collapse;
     margin-left: 0;
     margin-right: auto;
-    width: 60%; /* Adjusted width for better layout */
+    width: 100%;
     top: 0 ;
     left: 0;
     border-radius: 1px;
     margin-bottom: auto; /* Add some bottom margin for spacing */
-    min-width: 950px;
+    min-width: 0;
+    height: calc(100vh - 50px);
 }
 
 /* Style adjustments for table cells */
 #GlutesTable td, #LegsTable td, #ChestTable td, #BackTable td, #ShouldersTable td, #ArmsTable td, #StomachTable td, #CardioTable td, #MMATable td, #NutritionTable td {
     border: 0.5px solid #d3d3d3; /* Lighter and thinner border for a refined look */
-    width: 190px;
-    height: 173px;
+    width: 20%;
+    height: 20%;
     text-align: center;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.1); /* Soften the shadow for depth without being too pronounced */
+}
+
+#GlutesTable td > button, #LegsTable td > button, #ChestTable td > button, #BackTable td > button, #ShouldersTable td > button, #ArmsTable td > button, #StomachTable td > button, #CardioTable td > button,
+#GlutesTable td > img, #LegsTable td > img, #ChestTable td > img, #BackTable td > img, #ShouldersTable td > img, #ArmsTable td > img, #StomachTable td > img, #CardioTable td > img {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.workout-layout {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.exercise-panel-cell {
+    width: 45%;
+}
+
+.image-panel-cell {
+    width: 54%;
 }
 
 /* Enhanced button styles for 3D effect */
@@ -70,10 +99,10 @@ button:active {
 }
 
 .flexible-spacer {
-    width: 100%; /* Ensures the spacer takes up the remaining space */
+    display: none;
 }
 .flexible-spacer-middle {
-    width: 10%; /* Ensures the spacer takes up the remaining space */
+    width: 1%;
 }
 
 td {
@@ -82,17 +111,15 @@ td {
 
 #rightDiv
 {
-    margin-left: auto;
-    margin-right: 0;
-    width: 50%;
-    width: 908px; /* Set a minimum width */
-    height: 860px; /* Set a minimum height */
-    overflow-y: auto;
+    margin: 0;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow: hidden;
 }
 
 #imageFrame {
-    width: 848px;
-    height: 795px;
+    width: 100%;
+    height: calc(100% - 32px);
     border: 0.5px solid #d3d3d3;
     display: inline-block;
     vertical-align: top;
@@ -132,6 +159,38 @@ td {
 .tab:hover {
     background-color: rgb(70, 130, 180);
     box-shadow: 0 0 8px rgba(255,255,255,0.5); /* Lighter shadow on hover for lifted effect */
+}
+
+.home-tab {
+    flex: 0 0 70px;
+    width: 70px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.home-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+#landingPrompt {
+    width: fit-content;
+    max-width: calc(100% - 32px);
+    margin: 16px auto 0;
+    padding: 9px 20px;
+    color: white;
+    background: rgba(20, 35, 55, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 22px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 #buttonsTable{
@@ -275,16 +334,8 @@ td {
     font-size: 0.6em; /* Adjusts the font size */
 }
 
-@media screen and (max-width: 1600px) {
-    body {
-        transform: scale(0.65);
-        transform-origin: top left;
-        width: 153.8%;
-    }
-
-    #tabs {
-        max-width: none;
-    }
+#tabs {
+    max-width: none;
 }
 
 #shareIcon {
