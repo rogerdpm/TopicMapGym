@@ -61,7 +61,7 @@ function handleTab(currentTab) {
 function drawDefaultImage(currentTab) {
   const imageFrame = document.getElementById("imageFrame");
   imageFrame.innerHTML = "";
-  const imageVersion = "v1.9";
+  const imageVersion = "v12";
   let imagename = "";
   currentTab_ = currentTab;
   if (currentTab == 1) {
