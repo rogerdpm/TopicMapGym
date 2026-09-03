@@ -61,7 +61,7 @@ function handleTab(currentTab) {
 function drawDefaultImage(currentTab) {
   const imageFrame = document.getElementById("imageFrame");
   imageFrame.innerHTML = "";
-  const imageVersion = "v12";
+  const imageVersion = "v13";
   let imagename = "";
   currentTab_ = currentTab;
   if (currentTab == 1) {
@@ -96,6 +96,10 @@ function setTab(tabNumber) {
   currentTab_ = tabNumber;
   imageNumber = 0;
   videoNumber = 0;
+  imageMode = true;
+  currentButtonClickName = "";
+  lastButton = null;
+  lastButtonElement = null;
 
   // Keep the landing page uncluttered until the user chooses a category.
   document.getElementById("workoutContent").hidden = false;
@@ -194,80 +198,80 @@ function setGlutesTable() {
           // Set button title
           if (i === 0 && j === 0) {
             button.textContent = "Reverse Hack Squats";
-            lastImage["Reverse Hack Squats"] = 5;
-            lastVideo["Reverse Hack Squats"] = 9;
+            lastImage["Reverse Hack Squats"] = 3;
+            lastVideo["Reverse Hack Squats"] = 6;
           }
           if (i === 0 && j === 2) {
             button.textContent = "Good Mornings";
-            lastImage["Good Mornings"] = 9;
-            lastVideo["Good Mornings"] = 17;
+            lastImage["Good Mornings"] = 3;
+            lastVideo["Good Mornings"] = 8;
           }
           if (i === 0 && j === 4) {  // 0 4
             button.textContent = "Donkey Kicks";
-            lastImage["Donkey Kicks"] = 11;
-            lastVideo["Donkey Kicks"] = 18;
+            lastImage["Donkey Kicks"] = 3;
+            lastVideo["Donkey Kicks"] = 7;
           }
           if (i === 2 && j === 4) {
             button.textContent = "Single Leg Glute Extensions Side";
-            lastImage["Single Leg Glute Extensions Side"] = 7;
-            lastVideo["Single Leg Glute Extensions Side"] = 10;
+            lastImage["Single Leg Glute Extensions Side"] = 3;
+            lastVideo["Single Leg Glute Extensions Side"] = 6;
           }
           if (i === 1 && j === 4) {
             button.textContent = "Single Leg Glute Extensions Back";
-            lastImage["Single Leg Glute Extensions Back"] = 13;
-            lastVideo["Single Leg Glute Extensions Back"] = 21;
+            lastImage["Single Leg Glute Extensions Back"] = 3;
+            lastVideo["Single Leg Glute Extensions Back"] = 7;
           }
           if (i === 1 && j === 0) {
             button.textContent = "Bulgarian Split Squats";
-            lastImage["Bulgarian Split Squats"] = 13;
-            lastVideo["Bulgarian Split Squats"] = 17;
+            lastImage["Bulgarian Split Squats"] = 3;
+            lastVideo["Bulgarian Split Squats"] = 6;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Single Angle Leg Press";
-            lastImage["Single Angle Leg Press"] = 5;
-            lastVideo["Single Angle Leg Press"] = 7;
+            lastImage["Single Angle Leg Press"] = 3;
+            lastVideo["Single Angle Leg Press"] = 5;
           }
          
          
           if (i === 2 && j === 0) {
             button.textContent = "Step Ups";
-            lastImage["Step Ups"] = 7;
-            lastVideo["Step Ups"] = 11;
+            lastImage["Step Ups"] = 3;
+            lastVideo["Step Ups"] = 7;
           }
 
           if (i === 4 && j === 0) {
             button.textContent = "Side Lunge";
-            lastImage["Side Lunge"] = 5;
-            lastVideo["Side Lunge"] = 7;
+            lastImage["Side Lunge"] = 4;
+            lastVideo["Side Lunge"] = 6;
           }
           if (i === 1 && j === 2) { 
             button.textContent = "Hip Thrust";
-            lastImage["Hip Thrust"] = 15;
-            lastVideo["Hip Thrust"] = 19;
+            lastImage["Hip Thrust"] = 3;
+            lastVideo["Hip Thrust"] = 7;
           }
 
           if (i === 4 && j === 2) {
             button.textContent = "Hip Abductions";
-            lastImage["Hip Abductions"] = 18;
-            lastVideo["Hip Abductions"] = 22;
+            lastImage["Hip Abductions"] = 3;
+            lastVideo["Hip Abductions"] = 7;
           }
           
       
           if (i === 4 && j === 4) {
             button.textContent = "Back Extension";
-            lastImage["Back Extension"] = 9;
-            lastVideo["Back Extension"] = 11;
+            lastImage["Back Extension"] = 3;
+            lastVideo["Back Extension"] = 6;
           }
 
           if (i === 3 && j === 2) {
             button.textContent = "RDLs";
-            lastImage["RDLs"] = 5;
-            lastVideo["RDLs"] = 8;
+            lastImage["RDLs"] = 3;
+            lastVideo["RDLs"] = 6;
           }
           if (i === 3 && j === 4) {
             button.textContent = "Reverse Leg Extensions";
-            lastImage["Reverse Leg Extensions"] = 5;
-            lastVideo["Reverse Leg Extensions"] = 8;
+            lastImage["Reverse Leg Extensions"] = 3;
+            lastVideo["Reverse Leg Extensions"] = 6;
           }
 
           // Image configuration
@@ -344,8 +348,8 @@ function setLegs() {
           // Set button title
           if (i === 0 && j === 0) {
             button.textContent = "Squats";
-            lastImage["Squats"] = 24;
-            lastVideo["Squats"] = 28;
+            lastImage["Squats"] = 3;
+            lastVideo["Squats"] = 7;
           }
           if (i === 0 && j === 2) {
             button.textContent = "Leg Press";
@@ -359,8 +363,8 @@ function setLegs() {
           }
           if (i === 0 && j === 4) {
             button.textContent = "Lunges";
-            lastImage["Lunges"] = 7;
-            lastVideo["Lunges"] = 14;
+            lastImage["Lunges"] = 3;
+            lastVideo["Lunges"] = 9;
           }
          
           if (i === 2 && j === 4) {
@@ -370,13 +374,13 @@ function setLegs() {
           }
           if (i === 2 && j === 2) {
             button.textContent = "Lying Leg Curls";
-            lastImage["Lying Leg Curls"] = 9;
-            lastVideo["Lying Leg Curls"] = 11;
+            lastImage["Lying Leg Curls"] = 4;
+            lastVideo["Lying Leg Curls"] = 6;
           }
           if (i === 4 && j === 2) {
             button.textContent = "Leg Extensions";
-            lastImage["Leg Extensions"] = 5;
-            lastVideo["Leg Extensions"] = 7;
+            lastImage["Leg Extensions"] = 3;
+            lastVideo["Leg Extensions"] = 5;
           }
           
 
@@ -454,9 +458,9 @@ function setChestTable() {
 
           // Set button title
           if (i === 0 && j === 0) {
-            button.textContent = "Bench Press";
-            lastImage["Bench Press"] = 10;
-            lastVideo["Bench Press"] = 12;
+            button.textContent = "Flat Bench Press";
+            lastImage["Flat Bench Press"] = 3;
+            lastVideo["Flat Bench Press"] = 7;
           }
           if (i === 0 && j === 2) {
             button.textContent = "Incline Dumbell Press";
@@ -465,33 +469,33 @@ function setChestTable() {
           }
           if (i === 0 && j === 4) {
             button.textContent = "Close-Grip Bench Press";
-            lastImage["Close-Grip Bench Press"] = 6;
-            lastVideo["Close-Grip Bench Press"] = 8;
+            lastImage["Close-Grip Bench Press"] = 3;
+            lastVideo["Close-Grip Bench Press"] = 5;
           }
           if (i === 2 && j === 0) {
             button.textContent = "Decline Bench Press";
-            lastImage["Decline Bench Press"] = 7;
-            lastVideo["Decline Bench Press"] = 9;
+            lastImage["Decline Bench Press"] = 3;
+            lastVideo["Decline Bench Press"] = 7;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Front Raises";
-            lastImage["Front Raises"] = 5;
-            lastVideo["Front Raises"] = 11;
+            lastImage["Front Raises"] = 4;
+            lastVideo["Front Raises"] = 7;
           }
           if (i === 4 && j === 4) {
             button.textContent = "Cross Over Chest Cables";
-            lastImage["Cross Over Chest Cables"] = 5;
-            lastVideo["Cross Over Chest Cables"] = 9;
+            lastImage["Cross Over Chest Cables"] = 3;
+            lastVideo["Cross Over Chest Cables"] = 5;
           }
           if (i === 2 && j === 4) {
             button.textContent = "Flys";
-            lastImage["Flys"] = 14;
-            lastVideo["Flys"] = 18;
+            lastImage["Flys"] = 3;
+            lastVideo["Flys"] = 6;
           }
           if (i === 4 && j === 0) {
             button.textContent = "Peck Deck Flys";
-            lastImage["Peck Deck Flys"] = 5;
-            lastVideo["Peck Deck Flys"] = 7;
+            lastImage["Peck Deck Flys"] = 3;
+            lastVideo["Peck Deck Flys"] = 5;
           }
         
 
@@ -574,57 +578,57 @@ function setBackTable() {
           if (i === 0 && j === 0) {
             button.textContent = "Back Press";
             lastImage["Back Press"] = 3;
-            lastVideo["Back Press"] = 7;
+            lastVideo["Back Press"] = 6;
           }
           if (i === 0 && j === 2) {
             button.textContent = "One Arm Dumbbell Rows";
-            lastImage["One Arm Dumbbell Rows"] = 9;
-            lastVideo["One Arm Dumbbell Rows"] = 14;
+            lastImage["One Arm Dumbbell Rows"] = 3;
+            lastVideo["One Arm Dumbbell Rows"] = 6;
           }
           if (i === 0 && j === 4) {
             button.textContent = "Reverse Fly";
-            lastImage["Reverse Fly"] = 7;
-            lastVideo["Reverse Fly"] = 10;
+            lastImage["Reverse Fly"] = 3;
+            lastVideo["Reverse Fly"] = 6;
           }
           if (i === 1 && j === 2) {
             button.textContent = "Dead Lifts";
-            lastImage["Dead Lifts"] = 11;
-            lastVideo["Dead Lifts"] = 14;
+            lastImage["Dead Lifts"] = 3;
+            lastVideo["Dead Lifts"] = 6;
           }
           if (i === 2 && j === 0) {
             button.textContent = "Lat Pulldowns";
-            lastImage["Lat Pulldowns"] = 5;
-            lastVideo["Lat Pulldowns"] = 9;
+            lastImage["Lat Pulldowns"] = 3;
+            lastVideo["Lat Pulldowns"] = 7;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Rear Lat Pulldowns";
             lastImage["Rear Lat Pulldowns"] = 3;
-            lastVideo["Rear Lat Pulldowns"] = 5;
+            lastVideo["Rear Lat Pulldowns"] = 4;
           }
           if (i === 2 && j === 4) {
             button.textContent = "Seated Row";
-            lastImage["Seated Row"] = 9;
-            lastVideo["Seated Row"] = 12;
+            lastImage["Seated Row"] = 3;
+            lastVideo["Seated Row"] = 6;
           }
           if (i === 3 && j === 0) {
             button.textContent = "Lat Pullup";
-            lastImage["Lat Pullup"] = 5;
-            lastVideo["Lat Pullup"] = 12;
+            lastImage["Lat Pullup"] = 3;
+            lastVideo["Lat Pullup"] = 10;
           }
           if (i === 4 && j === 0) {
             button.textContent = "Close Grip Lat Pulldown";
-            lastImage["Close Grip Lat Pulldown"] = 7;
-            lastVideo["Close Grip Lat Pulldown"] = 10;
+            lastImage["Close Grip Lat Pulldown"] = 3;
+            lastVideo["Close Grip Lat Pulldown"] = 5;
           }
           if (i === 4 && j === 2) {
             button.textContent = "Straight Arm Lat Pulldown";
-            lastImage["Straight Arm Lat Pulldown"] = 7;
-            lastVideo["Straight Arm Lat Pulldown"] = 13;
+            lastImage["Straight Arm Lat Pulldown"] = 3;
+            lastVideo["Straight Arm Lat Pulldown"] = 7;
           }
           if (i === 4 && j === 4) {
             button.textContent = "Face Pull";
-            lastImage["Face Pull"] = 11;
-            lastVideo["Face Pull"] = 13;
+            lastImage["Face Pull"] = 3;
+            lastVideo["Face Pull"] = 5;
           }
 
           // Image configuration
@@ -703,8 +707,8 @@ function setShouldersTable() {
           // Set button title
           if (i === 0 && j === 0) {
             button.textContent = "Shoulder Press";
-            lastImage["Shoulder Press"] = 11;
-            lastVideo["Shoulder Press"] = 15;
+            lastImage["Shoulder Press"] = 3;
+            lastVideo["Shoulder Press"] = 8;
           }
           
           
@@ -715,38 +719,38 @@ function setShouldersTable() {
           }
           if (i === 0 && j === 2) {
             button.textContent = "Lateral Raises";
-            lastImage["Lateral Raises"] = 7;
-            lastVideo["Lateral Raises"] = 11;
+            lastImage["Lateral Raises"] = 3;
+            lastVideo["Lateral Raises"] = 6;
           }
           if (i === 2 && j === 4) {
             button.textContent = "Dumbell Front Raises";
-            lastImage["Dumbell Front Raises"] = 9;
-            lastVideo["Dumbell Front Raises"] = 11;
+            lastImage["Dumbell Front Raises"] = 3;
+            lastVideo["Dumbell Front Raises"] = 5;
           }
           if (i === 2 && j === 0) {
             button.textContent = "Incline Front Raises";
-            lastImage["Incline Front Raises"] = 7;
-            lastVideo["Incline Front Raises"] = 8;
+            lastImage["Incline Front Raises"] = 3;
+            lastVideo["Incline Front Raises"] = 4;
           }
           if (i === 4 && j === 0) {
             button.textContent = "Incline Reverse Flys";
-            lastImage["Incline Reverse Flys"] = 13;
-            lastVideo["Incline Reverse Flys"] = 15;
+            lastImage["Incline Reverse Flys"] = 3;
+            lastVideo["Incline Reverse Flys"] = 5;
           }
           if (i === 4 && j === 2) {
             button.textContent = "Upright Rows";
-            lastImage["Upright Rows"] = 9;
-            lastVideo["Upright Rows"] = 12;
+            lastImage["Upright Rows"] = 3;
+            lastVideo["Upright Rows"] = 6;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Hamer Lat Pull Down Deltoids";
-            lastImage["Hamer Lat Pull Down Deltoids"] = 11;
-            lastVideo["Hamer Lat Pull Down Deltoids"] = 15;
+            lastImage["Hamer Lat Pull Down Deltoids"] = 3;
+            lastVideo["Hamer Lat Pull Down Deltoids"] = 5;
           }
           if (i === 4 && j === 4) {
             button.textContent = "Cable Rear Delt Fly";
-            lastImage["Cable Rear Delt Fly"] = 13;
-            lastVideo["Cable Rear Delt Fly"] = 17;
+            lastImage["Cable Rear Delt Fly"] = 3;
+            lastVideo["Cable Rear Delt Fly"] = 7;
           }
 
           // Image configuration
@@ -823,8 +827,8 @@ function setArmsTable() {
           // Set button title
           if (i === 0 && j === 0) {
             button.textContent = "Biceps Hammer Curls";
-            lastImage["Biceps Hammer Curls"] = 7;
-            lastVideo["Biceps Hammer Curls"] = 8;
+            lastImage["Biceps Hammer Curls"] = 3;
+            lastVideo["Biceps Hammer Curls"] = 4;
           }
           if (i === 0 && j === 2) {
             button.textContent = "Cable Overhead Bicep Curl";
@@ -833,8 +837,8 @@ function setArmsTable() {
           }
           if (i === 0 && j === 4) {
             button.textContent = "Bicep Barbell Curls";
-            lastImage["Bicep Barbell Curls"] = 7;
-            lastVideo["Bicep Barbell Curls"] = 9;
+            lastImage["Bicep Barbell Curls"] = 3;
+            lastVideo["Bicep Barbell Curls"] = 5;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Reverse EZ Barbell Curls";
@@ -843,20 +847,20 @@ function setArmsTable() {
           }
           if (i === 4 && j === 0) {
             button.textContent = "Skullcrushers, Tricep Kickbacks and Overhead Extensions";
-            lastImage["Skullcrushers, Tricep Kickbacks and Overhead Extensions"] = 9;
-            lastVideo["Skullcrushers, Tricep Kickbacks and Overhead Extensions"] = 13;
+            lastImage["Skullcrushers, Tricep Kickbacks and Overhead Extensions"] = 3;
+            lastVideo["Skullcrushers, Tricep Kickbacks and Overhead Extensions"] = 8;
           }
           
           if (i === 4 && j === 2) {
             button.textContent = "Machine Tricep Dips";
-            lastImage["Machine Tricep Dips"] = 5;
-            lastVideo["Machine Tricep Dips"] = 7;
+            lastImage["Machine Tricep Dips"] = 3;
+            lastVideo["Machine Tricep Dips"] = 5;
           }
 
           if (i === 4 && j === 4) {
             button.textContent = "Triceps Pushdowns";
-            lastImage["Triceps Pushdowns"] = 7;
-            lastVideo["Triceps Pushdowns"] = 9;
+            lastImage["Triceps Pushdowns"] = 3;
+            lastVideo["Triceps Pushdowns"] = 5;
           }
 
           // Image configuration
@@ -932,27 +936,33 @@ function setStomachTable() {
           // Set button title
           if (i === 0 && j === 2) {
             button.textContent = "Upper Abs";
-            lastImage["Upper Abs"] = 17;
+            lastImage["Upper Abs"] = 4;
+            lastVideo["Upper Abs"] = 5;
           }
           if (i === 0 && j === 0) {
             button.textContent = "Lower Abs";
-            lastImage["Lower Abs"] = 28;
+            lastImage["Lower Abs"] = 4;
+            lastVideo["Lower Abs"] = 5;
           }
           if (i === 0 && j === 4) {
             button.textContent = "Six Pack";
-            lastImage["Six Pack"] = 23;
+            lastImage["Six Pack"] = 4;
+            lastVideo["Six Pack"] = 5;
           }
           if (i === 2 && j === 0) {
             button.textContent = "Obliques";
-            lastImage["Obliques"] = 12;
+            lastImage["Obliques"] = 5;
+            lastVideo["Obliques"] = 6;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Complete";
-            lastImage["Complete"] = 8;
+            lastImage["Complete"] = 4;
+            lastVideo["Complete"] = 6;
           }
           if (i === 2 && j === 4) {
             button.textContent = "Core";
-            lastImage["Core"] = 11;
+            lastImage["Core"] = 5;
+            lastVideo["Core"] = 6;
           }
 
           // Image configuration
@@ -1044,11 +1054,11 @@ function setCardioTable() {
           }
           if (i === 4 && j === 0) {
             button.textContent = "Rowing";
-            lastImage["Rowing"] = 4;
+            lastImage["Rowing"] = 5;
           }
           if (i === 4 && j === 4) {
             button.textContent = "Boxing";
-            lastImage["Boxing"] = 27;
+            lastImage["Boxing"] = 28;
           }
 
           // Image configuration
@@ -1236,16 +1246,31 @@ function showVideo(row, col, imgNumber, buttonElement) {
 
     //alert("folderPath: " + folderPath + " videoName: " + videoName + " - videoUrl: " + videoUrl)
 
-    imageFrame.innerHTML = `
-            <video id="videoPlayer" autoplay muted controls style="width: 100%; height: 100%; object-fit: contain;">
-                <source src="${videoUrl}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        `;
+    imageFrame.innerHTML = "";
 
-    const videoPlayer = document.getElementById("videoPlayer");
+    const videoPlayer = document.createElement("video");
+    videoPlayer.id = "videoPlayer";
+    videoPlayer.autoplay = true;
+    videoPlayer.muted = true;
+    videoPlayer.controls = true;
+    videoPlayer.playsInline = true;
+    videoPlayer.preload = "auto";
+    videoPlayer.style.width = "100%";
+    videoPlayer.style.height = "100%";
+    videoPlayer.style.objectFit = "contain";
+    videoPlayer.src = videoUrl;
+
+    videoPlayer.addEventListener("error", () => {
+      imageFrame.innerHTML = `<div class="error">Error loading video: ${videoName}</div>`;
+    });
     videoPlayer.addEventListener("ended", () => {
       //alert('Video playback finished.');
+    });
+
+    imageFrame.appendChild(videoPlayer);
+    videoPlayer.load();
+    videoPlayer.play().catch(() => {
+      // Browser autoplay policies may require the user to press Play.
     });
   } catch (error) {
     alert("Error occurred while displaying the video: " + error.message);
