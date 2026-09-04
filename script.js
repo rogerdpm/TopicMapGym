@@ -9,7 +9,7 @@ let imgstylewidth = "94px";
 let imgstyleheight = "85px";
 let buttonstylefontSize = "10px";
 let currentTab_ = null;
-const mediaVersion = "20260904-1";
+const mediaVersion = "20260904-2";
 
 const lastImage = {};
 const lastVideo = {};
