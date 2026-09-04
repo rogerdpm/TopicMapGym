@@ -61,7 +61,7 @@ function handleTab(currentTab) {
 function drawDefaultImage(currentTab) {
   const imageFrame = document.getElementById("imageFrame");
   imageFrame.innerHTML = "";
-  const imageVersion = "v13";
+  const imageVersion = "v17";
   let imagename = "";
   currentTab_ = currentTab;
   if (currentTab == 1) {
@@ -1039,26 +1039,32 @@ function setCardioTable() {
           if (i === 0 && j === 0) {
             button.textContent = "Steps";
             lastImage["Steps"] = 4;
+            lastVideo["Steps"] = 5;
           }
           if (i === 0 && j === 2) {
             button.textContent = "Treadmill";
-            lastImage["Treadmill"] = 7;
+            lastImage["Treadmill"] = 3;
+            lastVideo["Treadmill"] = 4;
           }
           if (i === 0 && j === 4) {
             button.textContent = "Spinning";
-            lastImage["Spinning"] = 2;
+            lastImage["Spinning"] = 3;
+            lastVideo["Spinning"] = 4;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Yoga";
-            lastImage["Yoga"] = 161;
+            lastImage["Yoga"] = 3;
+            lastVideo["Yoga"] = 5;
           }
           if (i === 4 && j === 0) {
             button.textContent = "Rowing";
-            lastImage["Rowing"] = 5;
+            lastImage["Rowing"] = 4;
+            lastVideo["Rowing"] = 5;
           }
           if (i === 4 && j === 4) {
             button.textContent = "Boxing";
-            lastImage["Boxing"] = 28;
+            lastImage["Boxing"] = 3;
+            lastVideo["Boxing"] = 5;
           }
 
           // Image configuration
