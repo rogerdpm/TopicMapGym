@@ -9,6 +9,7 @@ let imgstylewidth = "94px";
 let imgstyleheight = "85px";
 let buttonstylefontSize = "10px";
 let currentTab_ = null;
+const mediaVersion = "20260904-1";
 
 const lastImage = {};
 const lastVideo = {};
@@ -61,7 +62,6 @@ function handleTab(currentTab) {
 function drawDefaultImage(currentTab) {
   const imageFrame = document.getElementById("imageFrame");
   imageFrame.innerHTML = "";
-  const imageVersion = "v17";
   let imagename = "";
   currentTab_ = currentTab;
   if (currentTab == 1) {
@@ -84,7 +84,7 @@ function drawDefaultImage(currentTab) {
 
   // Create new img element
   const img = new Image();
-  img.src = `${imagename}?${imageVersion}`;
+  img.src = `${imagename}?v=${mediaVersion}`;
   img.style.width = "100%";
   img.style.height = "100%";
   img.style.objectFit = "contain";
@@ -281,7 +281,7 @@ function setGlutesTable() {
           img.style.width = imgstylewidth; // Adjust as needed
           img.style.height = imgstyleheight; // Adjust as needed
           img.alt = button.textContent;
-          img.src = `${folderPath}${imageName}`;
+          img.src = `${folderPath}${imageName}?v=${mediaVersion}`;
           img.style.position = "absolute";
           img.style.top = "0"; // Align with button
           img.style.left = "0"; // Align with button
@@ -391,7 +391,7 @@ function setLegs() {
           img.style.width = imgstylewidth; // Adjust as needed
           img.style.height = imgstyleheight; // Adjust as needed
           img.alt = button.textContent;
-          img.src = `${folderPath}${imageName}`;
+          img.src = `${folderPath}${imageName}?v=${mediaVersion}`;
           img.style.position = "absolute";
           img.style.top = "0"; // Align with button
           img.style.left = "0"; // Align with button
@@ -506,7 +506,7 @@ function setChestTable() {
           img.style.width = imgstylewidth; // Adjust as needed
           img.style.height = imgstyleheight; // Adjust as needed
           img.alt = button.textContent;
-          img.src = `${folderPath}${imageName}`;
+          img.src = `${folderPath}${imageName}?v=${mediaVersion}`;
           img.style.position = "absolute";
           img.style.top = "0"; // Align with button
           img.style.left = "0"; // Align with button
@@ -638,7 +638,7 @@ function setBackTable() {
           img.style.width = imgstylewidth; // Adjust as needed
           img.style.height = imgstyleheight; // Adjust as needed
           img.alt = button.textContent;
-          img.src = `${folderPath}${imageName}`;
+          img.src = `${folderPath}${imageName}?v=${mediaVersion}`;
           img.style.position = "absolute";
           img.style.top = "0"; // Align with button
           img.style.left = "0"; // Align with button
@@ -760,7 +760,7 @@ function setShouldersTable() {
           img.style.width = imgstylewidth; // Adjust as needed
           img.style.height = imgstyleheight; // Adjust as needed
           img.alt = button.textContent;
-          img.src = `${folderPath}${imageName}`;
+          img.src = `${folderPath}${imageName}?v=${mediaVersion}`;
           img.style.position = "absolute";
           img.style.top = "0"; // Align with button
           img.style.left = "0"; // Align with button
@@ -870,7 +870,7 @@ function setArmsTable() {
           img.style.width = imgstylewidth; // Adjust as needed
           img.style.height = imgstyleheight; // Adjust as needed
           img.alt = button.textContent;
-          img.src = `${folderPath}${imageName}`;
+          img.src = `${folderPath}${imageName}?v=${mediaVersion}`;
           img.style.position = "absolute";
           img.style.top = "0"; // Align with button
           img.style.left = "0"; // Align with button
@@ -972,7 +972,7 @@ function setStomachTable() {
           img.style.width = imgstylewidth; // Adjust as needed
           img.style.height = imgstyleheight; // Adjust as needed
           img.alt = button.textContent;
-          img.src = `${folderPath}${imageName}`;
+          img.src = `${folderPath}${imageName}?v=${mediaVersion}`;
           img.style.position = "absolute";
           img.style.top = "0"; // Align with button
           img.style.left = "0"; // Align with button
@@ -1074,7 +1074,7 @@ function setCardioTable() {
           img.style.width = imgstylewidth; // Adjust as needed
           img.style.height = imgstyleheight; // Adjust as needed
           img.alt = button.textContent;
-          img.src = `${folderPath}${imageName}`;
+          img.src = `${folderPath}${imageName}?v=${mediaVersion}`;
           img.style.position = "absolute";
           img.style.top = "0"; // Align with button
           img.style.left = "0"; // Align with button
@@ -1189,7 +1189,7 @@ function showImage(row, col, imgNumber, buttonElement) {
     img.style.objectFit = "contain";
 
     const loadImage = () => {
-      const imageUrl = `${folderPath}${imageName}`;
+      const imageUrl = `${folderPath}${imageName}?v=${mediaVersion}`;
       img.src = imageUrl;
       img.onload = () => {
         imageFrame.innerHTML = ""; // Clear loading indicator once the image has loaded
@@ -1247,7 +1247,7 @@ function showVideo(row, col, imgNumber, buttonElement) {
   try {
     const folderPath = `images_${currentTab_}/folder_${row}_${col}/`;
     const videoName = `${imgNumber}.mp4`;
-    const videoUrl = `${folderPath}${videoName}`;
+    const videoUrl = `${folderPath}${videoName}?v=${mediaVersion}`;
     const imageFrame = document.getElementById("imageFrame");
 
     //alert("folderPath: " + folderPath + " videoName: " + videoName + " - videoUrl: " + videoUrl)
