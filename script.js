@@ -9,7 +9,7 @@ let imgstylewidth = "94px";
 let imgstyleheight = "85px";
 let buttonstylefontSize = "10px";
 let currentTab_ = null;
-const mediaVersion = "20260904-2";
+const mediaVersion = "20260906-1";
 
 const lastImage = {};
 const lastVideo = {};
@@ -480,7 +480,7 @@ function setChestTable() {
           if (i === 2 && j === 2) {
             button.textContent = "Front Raises";
             lastImage["Front Raises"] = 4;
-            lastVideo["Front Raises"] = 7;
+            lastVideo["Front Raises"] = 8;
           }
           if (i === 4 && j === 4) {
             button.textContent = "Cross Over Chest Cables";
@@ -583,7 +583,7 @@ function setBackTable() {
           if (i === 0 && j === 2) {
             button.textContent = "One Arm Dumbbell Rows";
             lastImage["One Arm Dumbbell Rows"] = 3;
-            lastVideo["One Arm Dumbbell Rows"] = 6;
+            lastVideo["One Arm Dumbbell Rows"] = 8;
           }
           if (i === 0 && j === 4) {
             button.textContent = "Reverse Fly";
@@ -598,7 +598,7 @@ function setBackTable() {
           if (i === 2 && j === 0) {
             button.textContent = "Lat Pulldowns";
             lastImage["Lat Pulldowns"] = 3;
-            lastVideo["Lat Pulldowns"] = 7;
+            lastVideo["Lat Pulldowns"] = 8;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Rear Lat Pulldowns";
@@ -608,7 +608,7 @@ function setBackTable() {
           if (i === 2 && j === 4) {
             button.textContent = "Seated Row";
             lastImage["Seated Row"] = 3;
-            lastVideo["Seated Row"] = 6;
+            lastVideo["Seated Row"] = 7;
           }
           if (i === 3 && j === 0) {
             button.textContent = "Lat Pullup";
@@ -838,7 +838,7 @@ function setArmsTable() {
           if (i === 0 && j === 4) {
             button.textContent = "Bicep Barbell Curls";
             lastImage["Bicep Barbell Curls"] = 3;
-            lastVideo["Bicep Barbell Curls"] = 5;
+            lastVideo["Bicep Barbell Curls"] = 6;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Reverse EZ Barbell Curls";
@@ -860,7 +860,7 @@ function setArmsTable() {
           if (i === 4 && j === 4) {
             button.textContent = "Triceps Pushdowns";
             lastImage["Triceps Pushdowns"] = 3;
-            lastVideo["Triceps Pushdowns"] = 5;
+            lastVideo["Triceps Pushdowns"] = 7;
           }
 
           // Image configuration
