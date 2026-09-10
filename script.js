@@ -11,6 +11,35 @@ let buttonstylefontSize = "10px";
 let currentTab_ = null;
 const mediaVersion = "20260906-1";
 
+// Add future backgrounds here; missing images are skipped until they exist.
+const backgroundFiles = ["1.png", "2.png", "3.png", "4.png"];
+const backgroundVersion = "20260911-1";
+
+function startBackgroundLoop() {
+  const backgrounds = backgroundFiles.map((file) => {
+    const image = new Image();
+    image.src = `${file}?v=${backgroundVersion}`;
+    return image;
+  });
+  let currentIndex = 0;
+
+  document.documentElement.style.backgroundImage = `url("${backgrounds[0].src}")`;
+
+  window.setInterval(() => {
+    for (let offset = 1; offset < backgrounds.length; offset++) {
+      const nextIndex = (currentIndex + offset) % backgrounds.length;
+      const nextImage = backgrounds[nextIndex];
+      if (nextImage.complete && nextImage.naturalWidth > 0) {
+        document.documentElement.style.backgroundImage = `url("${nextImage.src}")`;
+        currentIndex = nextIndex;
+        break;
+      }
+    }
+  }, 10000);
+}
+
+startBackgroundLoop();
+
 const lastImage = {};
 const lastVideo = {};
 let imageMode = true;
