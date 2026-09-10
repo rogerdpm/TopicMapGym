@@ -36,6 +36,28 @@ If updates don't show right away: wait for Pages to finish, then hard refresh wi
 
 ## Adding or Updating Exercises
 
+### Background images
+
+The four root files `1.png` through `4.png` are the background originals.
+The site serves smaller WebP copies from `assets/backgrounds/` and rotates them
+every 10 seconds. It preloads the first background and downloads later backgrounds
+one at a time, skipping images that have not loaded successfully.
+
+After replacing a background, regenerate the web copies:
+
+```sh
+python -m pip install Pillow
+python tools/optimize_backgrounds.py
+node --test tests/background-loop.test.cjs
+```
+
+Update `backgroundVersion` in `script.js` and the matching image version in
+`index.html`, `styles_phone.css`, and `styles_laptop.css`. Also bump the script
+and stylesheet URL versions in `index.html` so returning visitors get the update.
+Commit the generated WebP files with the site changes; deployment does not need Python.
+
+### Exercise media
+
 Media lives in numbered folders by muscle group and grid position:
 
 ```

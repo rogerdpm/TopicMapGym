@@ -11,18 +11,28 @@ let buttonstylefontSize = "10px";
 let currentTab_ = null;
 const mediaVersion = "20260906-1";
 
-// Add future backgrounds here; missing images are skipped until they exist.
-const backgroundFiles = ["1.png", "2.png", "3.png", "4.png"];
-const backgroundVersion = "20260911-1";
+// Generate these from the original PNGs with tools/optimize_backgrounds.py.
+const backgroundFiles = [1, 2, 3, 4].map((number) => `assets/backgrounds/${number}.webp`);
+const backgroundVersion = "20260911-2";
 
 function startBackgroundLoop() {
-  const backgrounds = backgroundFiles.map((file) => {
+  const backgrounds = backgroundFiles.map((file, index) => {
     const image = new Image();
-    image.src = `${file}?v=${backgroundVersion}`;
+    image.fetchPriority = index === 0 ? "high" : "low";
+    image.decoding = "async";
     return image;
   });
   let currentIndex = 0;
 
+  // Fetch one background at a time so later slides cannot delay the first.
+  function loadBackground(index) {
+    if (index >= backgrounds.length) return;
+    const image = backgrounds[index];
+    image.onload = image.onerror = () => loadBackground(index + 1);
+    image.src = `${backgroundFiles[index]}?v=${backgroundVersion}`;
+  }
+
+  loadBackground(0);
   document.documentElement.style.backgroundImage = `url("${backgrounds[0].src}")`;
 
   window.setInterval(() => {
