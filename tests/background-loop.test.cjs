@@ -44,39 +44,29 @@ test('loads the first image before requesting later backgrounds', () => {
   assert.equal(loop.requests.length, 2);
   assert.equal(loop.images[1].fetchPriority, 'low');
   loop.images[1].finish();
-  assert.equal(loop.requests.length, 3);
-  loop.images[2].finish();
-  assert.equal(loop.requests.length, 4);
-  loop.images[3].finish();
-  assert.equal(loop.requests.length, 4);
+  assert.equal(loop.requests.length, 2);
 });
 
-test('rotates all four loaded backgrounds every 10 seconds and wraps around', () => {
+test('rotates the two loaded backgrounds every 20 seconds and wraps around', () => {
   const loop = start();
   loop.images.forEach(image => image.finish());
-  assert.equal(loop.interval, 10000);
-  for (const number of [2, 3, 4, 1, 2]) {
+  assert.equal(loop.interval, 20000);
+  for (const number of [2, 1, 2, 1, 2]) {
     loop.tick();
     assert.ok(loop.style.backgroundImage.includes(`/${number}.webp?`));
   }
 });
 
-test('keeps the current background while the next downloads, skips failures, and continues loading', () => {
+test('keeps the current background while the next downloads or fails', () => {
   const loop = start();
   const first = loop.style.backgroundImage;
   loop.tick();
   assert.equal(loop.style.backgroundImage, first);
   loop.images[0].finish();
   loop.images[1].finish(false);
-  assert.equal(loop.requests.length, 3);
+  assert.equal(loop.requests.length, 2);
   loop.tick();
   assert.equal(loop.style.backgroundImage, first);
-  loop.images[2].finish();
-  loop.tick();
-  assert.ok(loop.style.backgroundImage.includes('/3.webp?'));
-  loop.images[3].finish();
-  loop.tick();
-  assert.ok(loop.style.backgroundImage.includes('/4.webp?'));
 });
 
 test('recovers when the first background fails', () => {

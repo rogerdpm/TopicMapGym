@@ -13,7 +13,7 @@ def main():
     OUTPUT.mkdir(parents=True, exist_ok=True)
     original_bytes = 0
     web_bytes = 0
-    for number in range(1, 5):
+    for number in (1, 2):
         source = ROOT / f"{number}.png"
         destination = OUTPUT / f"{number}.webp"
         with Image.open(source) as image:

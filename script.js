@@ -9,11 +9,11 @@ let imgstylewidth = "94px";
 let imgstyleheight = "85px";
 let buttonstylefontSize = "10px";
 let currentTab_ = null;
-const mediaVersion = "20260906-1";
+const mediaVersion = "20260925-1";
 
 // Generate these from the original PNGs with tools/optimize_backgrounds.py.
-const backgroundFiles = [1, 2, 3, 4].map((number) => `assets/backgrounds/${number}.webp`);
-const backgroundVersion = "20260911-2";
+const backgroundFiles = [1, 2].map((number) => `assets/backgrounds/${number}.webp`);
+const backgroundVersion = "20260925-1";
 
 function startBackgroundLoop() {
   const backgrounds = backgroundFiles.map((file, index) => {
@@ -45,7 +45,7 @@ function startBackgroundLoop() {
         break;
       }
     }
-  }, 10000);
+  }, 20000);
 }
 
 startBackgroundLoop();
@@ -1077,22 +1077,22 @@ function setCardioTable() {
           // Set button title
           if (i === 0 && j === 0) {
             button.textContent = "Steps";
-            lastImage["Steps"] = 4;
-            lastVideo["Steps"] = 5;
+            lastImage["Steps"] = 2;
+            lastVideo["Steps"] = 3;
           }
           if (i === 0 && j === 2) {
             button.textContent = "Treadmill";
-            lastImage["Treadmill"] = 3;
-            lastVideo["Treadmill"] = 4;
+            lastImage["Treadmill"] = 2;
+            lastVideo["Treadmill"] = 3;
           }
           if (i === 0 && j === 4) {
             button.textContent = "Spinning";
-            lastImage["Spinning"] = 3;
-            lastVideo["Spinning"] = 4;
+            lastImage["Spinning"] = 2;
+            lastVideo["Spinning"] = 3;
           }
           if (i === 2 && j === 2) {
             button.textContent = "Yoga";
-            lastImage["Yoga"] = 3;
+            lastImage["Yoga"] = 2;
             lastVideo["Yoga"] = 5;
           }
           if (i === 4 && j === 0) {

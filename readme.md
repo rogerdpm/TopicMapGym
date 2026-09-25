@@ -38,9 +38,9 @@ If updates don't show right away: wait for Pages to finish, then hard refresh wi
 
 ### Background images
 
-The four root files `1.png` through `4.png` are the background originals.
+The two root files `1.png` and `2.png` are the background originals.
 The site serves smaller WebP copies from `assets/backgrounds/` and rotates them
-every 10 seconds. It preloads the first background and downloads later backgrounds
+every 20 seconds. It preloads the first background and downloads later backgrounds
 one at a time, skipping images that have not loaded successfully.
 
 After replacing a background, regenerate the web copies:
