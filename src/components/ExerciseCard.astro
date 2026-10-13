@@ -15,13 +15,13 @@ const slug = getExerciseSlug(exercise);
 
 <a
   href={`/${data.category}/${slug}`}
-  class="card card-hover block border-t-4 overflow-hidden group"
+  class="card card-hover block border-t-4 overflow-hidden group touch-manipulation"
   style={`border-top-color: ${categoryColor};`}
   data-difficulty={data.difficulty}
   data-equipment={data.equipment.join(',')}
 >
   <!-- Thumbnail -->
-  <div class="aspect-video bg-surface-light rounded mb-4 overflow-hidden">
+  <div class="aspect-video bg-surface-light rounded-lg mb-4 overflow-hidden">
     <img
       src={data.media.thumbnail}
       alt={data.name}
@@ -31,8 +31,8 @@ const slug = getExerciseSlug(exercise);
   </div>
 
   <!-- Content -->
-  <div class="space-y-2">
-    <h3 class="text-lg font-semibold group-hover:text-primary transition-colors">
+  <div class="space-y-3">
+    <h3 class="text-lg font-semibold group-hover:text-primary transition-colors line-clamp-2">
       {data.name}
     </h3>
 

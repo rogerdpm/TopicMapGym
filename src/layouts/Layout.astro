@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import MobileNav from '../components/MobileNav';
 
 interface Props {
   title: string;
@@ -77,6 +78,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
   </head>
   <body class="bg-background text-text-primary min-h-screen flex flex-col">
     <slot />
+    <MobileNav client:load />
   </body>
 </html>
 

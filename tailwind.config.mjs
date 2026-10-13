@@ -2,6 +2,14 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
+    screens: {
+      'xs': '320px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         primary: {
@@ -57,6 +65,7 @@ export default {
         'shimmer': 'shimmer 1.5s infinite',
         'fade-in': 'fadeIn 200ms ease-in-out',
         'slide-up': 'slideUp 200ms ease-in-out',
+        'slide-down': 'slideDown 200ms ease-in-out',
       },
       keyframes: {
         shimmer: {
@@ -69,6 +78,10 @@ export default {
         },
         slideUp: {
           '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideDown: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
