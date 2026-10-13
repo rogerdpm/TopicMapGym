@@ -25,6 +25,7 @@ const loadingMessages = [
 export default function MediaViewer({ media, exerciseName }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [mediaKey, setMediaKey] = useState(0);
   const [message] = useState(() =>
     loadingMessages[Math.floor(Math.random() * loadingMessages.length)]
   );
@@ -32,9 +33,23 @@ export default function MediaViewer({ media, exerciseName }: Props) {
   const currentMedia = media[currentIndex];
   const isVideo = currentMedia?.type === 'video';
 
+  // Reset loading state when media changes
   useEffect(() => {
     setIsLoading(true);
-  }, [currentIndex]);
+  }, [currentMedia?.src]);
+
+  // Force re-render when media changes to reset component state
+  useEffect(() => {
+    setMediaKey(k => k + 1);
+  }, [currentMedia?.src]);
+
+  const handleMediaLoad = () => {
+    setIsLoading(false);
+  };
+
+  const handleMediaError = () => {
+    setIsLoading(false);
+  };
 
   const handleNext = () => {
     if (currentIndex < media.length - 1) {
@@ -83,24 +98,27 @@ export default function MediaViewer({ media, exerciseName }: Props) {
 
         {isVideo ? (
           <video
-            key={currentMedia.src}
+            key={`video-${mediaKey}`}
             src={currentMedia.src}
             controls
-            preload="metadata"
+            preload="auto"
             class="w-full h-full object-contain"
-            onLoadedData={() => setIsLoading(false)}
-            onError={() => setIsLoading(false)}
+            onCanPlay={handleMediaLoad}
+            onLoadedData={handleMediaLoad}
+            onError={handleMediaError}
           >
             <track kind="captions" />
           </video>
         ) : (
           <img
-            key={currentMedia.src}
+            key={`img-${mediaKey}`}
             src={currentMedia.src}
             alt={`${exerciseName} - ${currentMedia.type} ${currentMedia.index}`}
             class="w-full h-full object-contain"
-            onLoad={() => setIsLoading(false)}
-            onError={() => setIsLoading(false)}
+            loading="eager"
+            fetchPriority="high"
+            onLoad={handleMediaLoad}
+            onError={handleMediaError}
           />
         )}
 
