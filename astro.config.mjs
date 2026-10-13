@@ -12,6 +12,7 @@ export default defineConfig({
   build: {
     assets: '_assets',
     inlineStylesheets: 'auto',
+    format: 'directory',
   },
   image: {
     remotePatterns: [{ protocol: 'https' }],
@@ -29,9 +30,14 @@ export default defineConfig({
         },
       },
     },
+    optimizeDeps: {
+      include: ['fuse.js', 'preact', 'preact/hooks'],
+    },
   },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
+  compressHTML: true,
+  scopedStyleStrategy: 'class',
 });
