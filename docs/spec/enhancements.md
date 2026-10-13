@@ -2,136 +2,161 @@
 
 ## Overview
 
-Proposed enhancements for the TopicMapGym exercise visualization app, categorized by priority and complexity.
+Proposed enhancements for the TopicMapGym Astro static site, focused on framework improvements, build optimization, and static site best practices.
 
 ---
 
-## High Priority
+## Build & Performance
 
-### 1. PWA / Offline Support
-- Add service worker for offline exercise browsing
-- Cache exercise data and media for offline access
-- Enable "download for offline" per category
+### 1. Image Optimization
+- Integrate `@astrojs/image` for automatic image optimization
+- Generate multiple sizes (srcset) for responsive images
+- WebP/AVIF conversion with fallback
+- Blur-up placeholder images for loading states
 
-### 2. Enhanced Search
-- **Full-text search** across exercise names, descriptions, and equipment
-- Search highlighting in results
-- Keyboard navigation in dropdown (arrow keys + Enter)
-- Search history / recent searches
+### 2. Asset Optimization
+- Enable gzip/brotli compression in Astro config
+- Bundle and minify CSS/JS assets
+- Inline critical CSS for above-the-fold content
+- Preload key fonts and assets
 
-### 3. Video Playback Improvements
-- Autoplay next video in sequence
-- Playback speed controls (0.5x, 1x, 1.5x, 2x)
-- Loop toggle for exercise demonstration
-- Picture-in-picture mode support
-
-### 4. User Progress Tracking
-- Track viewed exercises (localStorage)
-- Mark exercises as "completed" or "want to try"
-- Progress dashboard per category
+### 3. Build Profiling
+- Add `astro build --verbose` to identify slow transforms
+- Profile content collection generation
+- Monitor build time as content grows
 
 ---
 
-## Medium Priority
+## SEO & Metadata
 
-### 5. Favorites System
-- Persist favorites to localStorage
-- Add/remove from exercise detail page
-- Dedicated favorites page/filter
-- Share favorites list
+### 4. SEO Enhancements
+- Add `@astrojs/sitemap` integration
+- Generate Open Graph images for each exercise
+- Add canonical URLs to all pages
+- Schema.org structured data for exercises (JSON-LD)
 
-### 6. Exercise Details
-- Add exercise description/instructions text
-- Muscle group diagram highlighting
-- Related exercises suggestions
-- Difficulty progression recommendations
-
-### 7. Social Sharing
-- Share exercise/category to social media
-- Generate OG image previews
-- Share workout routines (selected exercises)
-
-### 8. Filter Improvements
-- Multi-select equipment filters
-- Search within filters
-- Filter by muscle group secondary target
-- Save filter preferences
+### 5. Meta Tags
+- Per-page meta descriptions
+- Dynamic OG images using Astro's image API
+- Twitter card meta tags
+- robots.txt and humans.txt
 
 ---
 
-## Low Priority / Nice-to-Have
+## Content Management
 
-### 9. Animations & Transitions
-- Page transition animations
-- Card hover effects with video preview
-- Loading skeleton animations
-- Scroll-triggered animations
+### 6. Content Collections Improvements
+- Add Zod validation for exercise schema with refined rules
+- Generate exercise slugs automatically
+- Add computed fields (e.g., total media count)
+- Content versioning/archival for old exercises
 
-### 10. Dark Mode
-- System preference detection
-- Manual toggle
-- Persist preference
+### 7. MDX Support
+- Migrate exercise descriptions to MDX for rich content
+- Embed videos directly in MDX
+- Reusable content components across exercises
 
-### 11. Internationalization (i18n)
-- Support for multiple languages
-- Exercise names localized
-- RTL layout support
-
-### 12. Accessibility
-- ARIA labels on interactive elements
-- Focus management for modals/dropdowns
-- Screen reader announcements for filters
-- Keyboard shortcuts
-
-### 13. Performance
-- Lazy load images below fold
-- Video poster frames
-- Virtual scrolling for large grids
-- Image optimization (WebP with fallbacks)
-
-### 14. Analytics
-- Track popular exercises/categories
-- Search query analytics
-- User behavior insights
-- A/B testing framework
+### 8. Content API Layer
+- Generate static JSON endpoints for exercise data
+- RSS feed for new exercises
+- Sitemap.xml with all exercise pages
 
 ---
 
-## Technical Debt
+## Site Structure
 
-### 15. Testing
-- Unit tests for utility functions
-- Component tests with Playwright
-- Visual regression tests
-- Lighthouse CI
+### 9. Navigation Improvements
+- Add breadcrumb navigation on exercise pages
+- Previous/Next exercise navigation
+- Related exercises at bottom of detail pages
+- Table of contents for exercise details
 
-### 16. Documentation
-- API documentation for content schema
-- Component library docs
-- Deployment guide
-- Contribution guidelines
-
-### 17. CI/CD Improvements
-- Branch protection rules
-- Required reviewers for main
-- Automatic changelog generation
-- Scheduled security audits
+### 10. Category Pages
+- Add category description/introduction
+- Featured exercise highlighting
+- Category-level statistics (exercise count, difficulty breakdown)
+- Sort options (alphabetical, difficulty, equipment)
 
 ---
 
-## Future Considerations
+## UI/UX (Static)
 
-### 18. User Accounts (Long-term)
-- Cloud sync for favorites/progress
-- User profiles
-- Community features (comments, ratings)
+### 11. Loading States
+- Skeleton screens while images load
+- Progressive image loading (blur-up technique)
+- Skeleton for exercise grids on category pages
 
-### 19. Workout Builder
-- Drag-and-drop routine builder
-- Rest timer between exercises
-- Export workout as PDF/image
+### 12. Animations (Static)
+- View transitions API for page navigation
+- CSS-only animations for card hovers
+- Intersection Observer for scroll-triggered effects
+- Reduced motion support
 
-### 20. AR/3D Models
-- 3D exercise demonstrations
-- AR view for form checking
-- Interactive anatomy explorer
+### 13. 404 Page
+- Custom 404 with search functionality
+- Suggest similar exercises
+- Link back to homepage and categories
+
+---
+
+## Internationalization
+
+### 14. i18n Setup
+- Configure Astro's i18n routing
+- Content collections for multiple languages
+- RTL layout support structure
+- Language switcher component
+
+---
+
+## Integrations
+
+### 15. Astro Integrations
+- `@astrojs/mdx` - MDX content support
+- `@astrojs/sitemap` - SEO sitemap
+- `@astrojs/partytown` - Analytics without performance impact
+- `@astrojs/starlight` - Documentation theme for project docs
+
+### 16. Analytics (Privacy-First)
+- Cloudflare Analytics or Plausible Analytics
+- No cookies / GDPR compliant
+- Static + minimal JS footprint
+- Vercel/Netlify analytics integration
+
+---
+
+## Developer Experience
+
+### 17. TypeScript Improvements
+- Strict mode enabled
+- Typed content collection schemas
+- Component prop types
+- Utility function return types
+
+### 18. Code Quality
+- ESLint + Prettier configuration
+- Commitlint for conventional commits
+- Pre-commit hooks (lint-staged)
+- EditorConfig for consistent formatting
+
+### 19. Testing
+- Playwright for e2e tests
+- Static build validation tests
+- Link checker for all pages
+- Lighthouse CI in GitHub Actions
+
+---
+
+## Deployment
+
+### 20. Deployment Optimizations
+- Edge caching configuration
+- Cache invalidation strategy for media
+- Preview deployments for PRs
+- Branch-based preview environments
+
+### 21. CI/CD Improvements
+- Lighthouse performance budgets
+- Build time monitoring
+- Automated accessibility checks
+- Bundle size limits in CI
