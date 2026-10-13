@@ -8,6 +8,16 @@ interface Props {
 const difficulties = ['beginner', 'intermediate', 'advanced'] as const;
 
 export default function FilterBar({ exercises }: Props) {
+  // Initialize from URL params on mount
+  const getInitialValues = () => {
+    if (typeof window === 'undefined') return { difficulty: null, equipment: null };
+    const params = new URLSearchParams(window.location.search);
+    return {
+      difficulty: params.get('difficulty') || null,
+      equipment: params.get('equipment') || null,
+    };
+  };
+
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
   const [selectedEquipment, setSelectedEquipment] = useState<string | null>(null);
 
@@ -16,7 +26,13 @@ export default function FilterBar({ exercises }: Props) {
     return [...new Set(all)].sort();
   }, [exercises]);
 
-  // Apply filters whenever selections change
+  // Apply filters on mount (read URL params) and whenever selections change
+  useEffect(() => {
+    const initial = getInitialValues();
+    if (initial.difficulty) setSelectedDifficulty(initial.difficulty);
+    if (initial.equipment) setSelectedEquipment(initial.equipment);
+  }, []);
+
   useEffect(() => {
     const grid = document.getElementById('exercise-grid');
     if (!grid) return;
@@ -33,6 +49,20 @@ export default function FilterBar({ exercises }: Props) {
       (card as HTMLElement).style.display =
         matchesDifficulty && matchesEquipment ? '' : 'none';
     });
+
+    // Update URL with current filters (without page reload)
+    const url = new URL(window.location.href);
+    if (selectedDifficulty) {
+      url.searchParams.set('difficulty', selectedDifficulty);
+    } else {
+      url.searchParams.delete('difficulty');
+    }
+    if (selectedEquipment) {
+      url.searchParams.set('equipment', selectedEquipment);
+    } else {
+      url.searchParams.delete('equipment');
+    }
+    window.history.replaceState({}, '', url.toString());
   }, [selectedDifficulty, selectedEquipment]);
 
   const handleDifficultyChange = (difficulty: string) => {
