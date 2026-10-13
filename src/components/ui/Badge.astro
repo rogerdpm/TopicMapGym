@@ -1,0 +1,39 @@
+---
+interface Props {
+  variant?: 'default' | 'success' | 'warning' | 'danger' | 'glutes' | 'legs' | 'chest' | 'back' | 'shoulders' | 'arms' | 'core' | 'cardio';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const {
+  variant = 'default',
+  size = 'md',
+  class: className = '',
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center font-medium rounded';
+
+const variants = {
+  default: 'bg-surface-light text-text-secondary',
+  success: 'bg-accent/20 text-accent',
+  warning: 'bg-category-arms/20 text-category-arms',
+  danger: 'bg-danger/20 text-danger',
+  glutes: 'bg-category-glutes/20 text-category-glutes',
+  legs: 'bg-category-legs/20 text-category-legs',
+  chest: 'bg-category-chest/20 text-category-chest',
+  back: 'bg-category-back/20 text-category-back',
+  shoulders: 'bg-category-shoulders/20 text-category-shoulders',
+  arms: 'bg-category-arms/20 text-category-arms',
+  core: 'bg-category-core/20 text-category-core',
+  cardio: 'bg-category-cardio/20 text-category-cardio',
+};
+
+const sizes = {
+  sm: 'px-2 py-0.5 text-xs',
+  md: 'px-2.5 py-1 text-sm',
+};
+---
+
+<span class={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}>
+  <slot />
+</span>

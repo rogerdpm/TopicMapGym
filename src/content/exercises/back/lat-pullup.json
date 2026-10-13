@@ -1,0 +1,52 @@
+{
+  "name": "Lat Pullup",
+  "category": "back",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Pullup Bar"
+  ],
+  "muscles": {
+    "primary": [
+      "Latissimus Dorsi"
+    ],
+    "secondary": [
+      "Biceps",
+      "Rear Deltoids"
+    ]
+  },
+  "instructions": [
+    "Hang from bar with overhand grip, slightly wider than shoulders.",
+    "Start from dead hang with arms fully extended.",
+    "Pull body up until chin clears the bar.",
+    "Lower with control to dead hang.",
+    "Avoid swinging or using momentum."
+  ],
+  "tips": [
+    "Think about pulling elbows down and back",
+    "Keep core engaged throughout"
+  ],
+  "safety": [
+    "Don't drop from the top position",
+    "Use assistance bands if needed"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/back/lat-pullup/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/back/lat-pullup/diagram-1.webp",
+      "/assets/exercises/back/lat-pullup/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/back/lat-pullup/video-1.mp4",
+      "/assets/exercises/back/lat-pullup/video-2.mp4",
+      "/assets/exercises/back/lat-pullup/video-3.mp4",
+      "/assets/exercises/back/lat-pullup/video-4.mp4",
+      "/assets/exercises/back/lat-pullup/video-5.mp4",
+      "/assets/exercises/back/lat-pullup/video-6.mp4",
+      "/assets/exercises/back/lat-pullup/video-7.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 3,
+    "col": 0
+  }
+}

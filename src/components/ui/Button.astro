@@ -1,0 +1,39 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  type = 'button',
+  disabled = false,
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary disabled:opacity-50 disabled:pointer-events-none';
+
+const variants = {
+  primary: 'bg-primary text-white hover:bg-primary-700 active:scale-[0.98]',
+  secondary: 'bg-surface-light text-text-primary hover:bg-surface active:scale-[0.98]',
+  ghost: 'bg-transparent text-text-secondary hover:text-text-primary hover:bg-surface/50',
+};
+
+const sizes = {
+  sm: 'px-3 py-1.5 text-sm rounded',
+  md: 'px-4 py-2 text-base rounded',
+  lg: 'px-6 py-3 text-lg rounded-lg',
+};
+---
+
+<button
+  type={type}
+  disabled={disabled}
+  class={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+>
+  <slot />
+</button>

@@ -1,0 +1,51 @@
+{
+  "id": "good-mornings",
+  "name": "Good Mornings",
+  "category": "glutes",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Barbell"
+  ],
+  "muscles": {
+    "primary": [
+      "Gluteus Maximus",
+      "Hamstrings"
+    ],
+    "secondary": [
+      "Lower Back",
+      "Core"
+    ]
+  },
+  "instructions": [
+    "Position barbell on upper back, feet shoulder-width apart.",
+    "Keep slight bend in knees and back straight.",
+    "Hinge at hips and lean forward until torso is parallel to floor.",
+    "Return to standing by driving hips forward."
+  ],
+  "tips": [
+    "Start with light weight to master the movement",
+    "Keep gaze forward to maintain neutral spine"
+  ],
+  "safety": [
+    "Don't round your back",
+    "Start with安全管理 weight"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/glutes/good-mornings/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/glutes/good-mornings/diagram-1.webp",
+      "/assets/exercises/glutes/good-mornings/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/glutes/good-mornings/video-1.mp4",
+      "/assets/exercises/glutes/good-mornings/video-2.mp4",
+      "/assets/exercises/glutes/good-mornings/video-3.mp4",
+      "/assets/exercises/glutes/good-mornings/video-4.mp4",
+      "/assets/exercises/glutes/good-mornings/video-5.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 2
+  }
+}

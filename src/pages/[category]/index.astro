@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { categories, getCategoryById } from '../../lib/categories';
+import { getExercisesByCategory } from '../../lib/exercises';
+import ExerciseCard from '../../components/ExerciseCard.astro';
+import SearchBar from '../../components/SearchBar';
+import FilterBar from '../../components/FilterBar';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return categories.map((category) => ({
+    params: { category: category.id },
+  }));
+};
+
+const { category: categoryId } = Astro.params;
+const category = getCategoryById(categoryId!);
+
+if (!category) {
+  return Astro.redirect('/404');
+}
+
+const exercises = await getExercisesByCategory(categoryId!);
+const exerciseCount = exercises.length;
+---
+
+<Layout title={category.name}>
+  <!-- Header -->
+  <header class="relative z-10 px-4 py-8 border-b border-surface-light">
+    <div class="max-w-6xl mx-auto">
+      <a href="/" class="inline-flex items-center gap-2 text-text-secondary hover:text-primary mb-4 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Home
+      </a>
+
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="text-4xl font-bold mb-2" style={`color: ${category.color};`}>
+            {category.name}
+          </h1>
+          <p class="text-text-secondary">{category.description}</p>
+        </div>
+        <div class="text-6xl" aria-hidden="true">{category.icon}</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search and Filter -->
+  <section class="relative z-10 px-4 py-6 border-b border-surface-light bg-surface/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row gap-4">
+        <SearchBar exercises={exercises} client:load />
+        <FilterBar exercises={exercises} client:load />
+      </div>
+    </div>
+  </section>
+
+  <!-- Exercise Grid -->
+  <section class="relative z-10 px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-text-secondary mb-6" id="exercise-count">{exerciseCount} exercise{exerciseCount !== 1 ? 's' : ''}</p>
+
+      <div id="exercise-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {exercises.map((exercise) => (
+          <ExerciseCard
+            exercise={exercise}
+            categoryColor={category.color}
+          />
+        ))}
+      </div>
+
+      {exerciseCount === 0 && (
+        <div class="text-center py-16">
+          <p class="text-text-secondary mb-4">No exercises in this category yet.</p>
+          <a href="/" class="btn btn-secondary">
+            Back to Home
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

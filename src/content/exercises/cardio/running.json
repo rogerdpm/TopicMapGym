@@ -1,0 +1,48 @@
+{
+  "name": "Running",
+  "category": "cardio",
+  "difficulty": "beginner",
+  "equipment": [
+    "Treadmill",
+    "Running Shoes"
+  ],
+  "muscles": {
+    "primary": [
+      "Quadriceps",
+      "Hamstrings",
+      "Calves"
+    ],
+    "secondary": [
+      "Core",
+      "Glutes"
+    ]
+  },
+  "instructions": [
+    "Set treadmill to desired speed and incline.",
+    "Maintain upright posture with shoulders relaxed.",
+    "Land midfoot under hips, not on heels.",
+    "Swing arms naturally at sides.",
+    "Keep workout duration and intensity appropriate to fitness level."
+  ],
+  "tips": [
+    "Start with walk-to-run intervals if beginner",
+    "Increase intensity gradually"
+  ],
+  "safety": [
+    "Always use safety clip on treadmill",
+    "Don't hold onto rails while running"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/cardio/running/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/cardio/running/diagram-1.webp"
+    ],
+    "videos": [
+      "/assets/exercises/cardio/running/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "High Knees",
+  "category": "cardio",
+  "difficulty": "beginner",
+  "equipment": [
+    "Bodyweight"
+  ],
+  "muscles": {
+    "primary": [
+      "Hip Flexors",
+      "Quadriceps"
+    ],
+    "secondary": [
+      "Core",
+      "Calves"
+    ]
+  },
+  "instructions": [
+    "Stand tall with feet hip-width apart.",
+    "Drive one knee up towards chest.",
+    "Quickly switch to the other knee.",
+    "Continue alternating at a running pace.",
+    "Pump arms in sync with legs."
+  ],
+  "tips": [
+    "Land on the balls of your feet",
+    "Keep core engaged"
+  ],
+  "safety": [
+    "Maintain upright posture",
+    "Start slowly and increase speed"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/cardio/high-knees/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/cardio/high-knees/diagram-1.webp"
+    ],
+    "videos": [
+      "/assets/exercises/cardio/high-knees/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 4
+  }
+}

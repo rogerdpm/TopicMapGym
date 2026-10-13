@@ -1,0 +1,43 @@
+{
+  "name": "Lateral Raises",
+  "category": "shoulders",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbells"
+  ],
+  "muscles": {
+    "primary": [
+      "Lateral Deltoids"
+    ],
+    "secondary": [
+      "Anterior Deltoids",
+      "Trapezius"
+    ]
+  },
+  "instructions": [
+    "Stand with dumbbells at sides, palms facing in.",
+    "Keep slight bend in elbows.",
+    "Raise arms out to sides until parallel to floor.",
+    "Pause briefly at the top.",
+    "Lower with control to starting position."
+  ],
+  "tips": [
+    "Lead with elbows, not hands",
+    "Don't use momentum to swing weights"
+  ],
+  "safety": [
+    "Don't raise arms above shoulder height",
+    "Use light weight to learn the movement"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/shoulders/lateral-raises/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/shoulders/lateral-raises/diagram-1.webp"
+    ],
+    "videos": []
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

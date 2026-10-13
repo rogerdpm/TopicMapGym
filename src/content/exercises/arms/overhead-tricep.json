@@ -1,0 +1,44 @@
+{
+  "name": "Overhead Tricep Extension",
+  "category": "arms",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbell",
+    "Cable Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Triceps"
+    ]
+  },
+  "instructions": [
+    "Stand or sit holding dumbbell overhead.",
+    "Lower weight behind head by bending elbows.",
+    "Keep upper arms stationary.",
+    "Extend arms back to starting position.",
+    "Squeeze triceps at top."
+  ],
+  "tips": [
+    "Keep core engaged for stability",
+    "Don't flare elbows out"
+  ],
+  "safety": [
+    "Don't use too much weight",
+    "Warm up triceps first"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/arms/overhead-tricep/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/arms/overhead-tricep/diagram-1.webp",
+      "/assets/exercises/arms/overhead-tricep/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/arms/overhead-tricep/video-1.mp4",
+      "/assets/exercises/arms/overhead-tricep/video-2.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 4,
+    "col": 2
+  }
+}

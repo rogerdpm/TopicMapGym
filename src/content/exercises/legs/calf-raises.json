@@ -1,0 +1,44 @@
+{
+  "name": "Calf Raises",
+  "category": "legs",
+  "difficulty": "beginner",
+  "equipment": [
+    "Machine",
+    "Bodyweight"
+  ],
+  "muscles": {
+    "primary": [
+      "Gastrocnemius",
+      "Soleus"
+    ]
+  },
+  "instructions": [
+    "Stand on raised platform with heels hanging off.",
+    "Position shoulders under pads if using machine.",
+    "Lower heels below platform level for full stretch.",
+    "Rise up on toes as high as possible.",
+    "Lower with control and repeat."
+  ],
+  "tips": [
+    "Pause briefly at the top contraction",
+    "Control the descent for best results"
+  ],
+  "safety": [
+    "Don't bounce at the bottom",
+    "Hold onto support for balance"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/legs/calf-raises/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/legs/calf-raises/diagram-1.webp",
+      "/assets/exercises/legs/calf-raises/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/legs/calf-raises/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 0
+  }
+}

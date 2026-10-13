@@ -1,0 +1,28 @@
+{
+  "name": "topicmapgym",
+  "type": "module",
+  "version": "2.0.0",
+  "description": "Interactive exercise guide — browse gym movements by muscle group",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "migrate:media": "tsx tools/migrate-media.ts"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/preact": "^3.5.4",
+    "@astrojs/tailwind": "^5.1.4",
+    "astro": "^4.16.18",
+    "fuse.js": "^7.0.0",
+    "preact": "^10.24.3",
+    "tailwindcss": "^3.4.15"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

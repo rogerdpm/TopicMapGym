@@ -1,0 +1,44 @@
+{
+  "name": "Jumping Jacks",
+  "category": "cardio",
+  "difficulty": "beginner",
+  "equipment": [
+    "Bodyweight"
+  ],
+  "muscles": {
+    "primary": [
+      "Calves",
+      "Shoulders"
+    ],
+    "secondary": [
+      "Core",
+      "Quadriceps"
+    ]
+  },
+  "instructions": [
+    "Stand with feet together, arms at sides.",
+    "Jump feet out while raising arms overhead.",
+    "Jump back to starting position.",
+    "Continue at a steady, controlled pace.",
+    "Land softly on the balls of feet."
+  ],
+  "tips": [
+    "Maintain upright posture",
+    "Land softly to protect joints"
+  ],
+  "safety": [
+    "Check environment for clearance",
+    "Wear supportive footwear"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/cardio/jumping-jacks/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/cardio/jumping-jacks/diagram-1.webp"
+    ],
+    "videos": []
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "Crunches",
+  "category": "core",
+  "difficulty": "beginner",
+  "equipment": [
+    "Bodyweight",
+    "Mat"
+  ],
+  "muscles": {
+    "primary": [
+      "Rectus Abdominis"
+    ],
+    "secondary": [
+      "Obliques"
+    ]
+  },
+  "instructions": [
+    "Lie on back with knees bent, feet flat.",
+    "Place hands behind head or crossed on chest.",
+    "Curl shoulders off floor, engaging abs.",
+    "Lower with control to starting position.",
+    "Don't pull on neck - use abs to lift."
+  ],
+  "tips": [
+    "Focus on the contraction",
+    "Exhale as you curl up"
+  ],
+  "safety": [
+    "Don't pull on neck",
+    "Keep lower back pressed to floor"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/core/crunches/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/core/crunches/diagram-1.webp",
+      "/assets/exercises/core/crunches/diagram-2.webp",
+      "/assets/exercises/core/crunches/diagram-3.webp"
+    ],
+    "videos": [
+      "/assets/exercises/core/crunches/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 2
+  }
+}

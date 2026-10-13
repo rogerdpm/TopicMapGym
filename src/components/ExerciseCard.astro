@@ -1,0 +1,48 @@
+---
+import type { Exercise } from '../lib/exercises';
+import { getExerciseSlug } from '../lib/exercises';
+import Badge from './ui/Badge.astro';
+
+interface Props {
+  exercise: Exercise;
+  categoryColor: string;
+}
+
+const { exercise, categoryColor } = Astro.props;
+const { data } = exercise;
+const slug = getExerciseSlug(exercise);
+---
+
+<a
+  href={`/${data.category}/${slug}`}
+  class="card card-hover block border-t-4 overflow-hidden group"
+  style={`border-top-color: ${categoryColor};`}
+  data-difficulty={data.difficulty}
+  data-equipment={data.equipment.join(',')}
+>
+  <!-- Thumbnail -->
+  <div class="aspect-video bg-surface-light rounded mb-4 overflow-hidden">
+    <img
+      src={data.media.thumbnail}
+      alt={data.name}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="space-y-2">
+    <h3 class="text-lg font-semibold group-hover:text-primary transition-colors">
+      {data.name}
+    </h3>
+
+    <div class="flex items-center gap-2 flex-wrap">
+      <Badge variant={data.difficulty}>
+        {data.difficulty}
+      </Badge>
+      {data.equipment.slice(0, 2).map((eq) => (
+        <Badge variant="default">{eq}</Badge>
+      ))}
+    </div>
+  </div>
+</a>

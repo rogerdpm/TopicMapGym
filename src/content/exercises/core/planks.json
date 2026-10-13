@@ -1,0 +1,48 @@
+{
+  "name": "Planks",
+  "category": "core",
+  "difficulty": "beginner",
+  "equipment": [
+    "Bodyweight"
+  ],
+  "muscles": {
+    "primary": [
+      "Rectus Abdominis",
+      "Transverse Abdominis"
+    ],
+    "secondary": [
+      "Obliques",
+      "Shoulders"
+    ]
+  },
+  "instructions": [
+    "Start in pushup position on forearms.",
+    "Keep body in straight line from head to heels.",
+    "Engage core and squeeze glutes.",
+    "Hold position for prescribed time.",
+    "Don't let hips sag or pike up."
+  ],
+  "tips": [
+    "Think about pushing floor away",
+    "Breathe steadily throughout"
+  ],
+  "safety": [
+    "Stop if you feel lower back pain",
+    "Maintain neutral spine position"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/core/planks/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/core/planks/diagram-1.webp",
+      "/assets/exercises/core/planks/diagram-2.webp",
+      "/assets/exercises/core/planks/diagram-3.webp"
+    ],
+    "videos": [
+      "/assets/exercises/core/planks/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

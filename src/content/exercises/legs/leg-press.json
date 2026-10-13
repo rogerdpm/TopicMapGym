@@ -1,0 +1,47 @@
+{
+  "id": "leg-press",
+  "name": "Leg Press",
+  "category": "legs",
+  "difficulty": "beginner",
+  "equipment": [
+    "Leg Press Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Quadriceps"
+    ],
+    "secondary": [
+      "Gluteus Maximus",
+      "Hamstrings"
+    ]
+  },
+  "instructions": [
+    "Sit in the leg press machine with back against the pad.",
+    "Place feet shoulder-width apart on the platform.",
+    "Release the safety and lower the weight.",
+    "Bend knees to 90 degrees or below.",
+    "Push through heels to extend legs."
+  ],
+  "tips": [
+    "Don't lock knees at the top",
+    "Keep lower back pressed against the pad"
+  ],
+  "safety": [
+    "Ensure safety pins are in correct position",
+    "Don't bounce at the bottom"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/legs/leg-press/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/legs/leg-press/diagram-1.webp",
+      "/assets/exercises/legs/leg-press/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/legs/leg-press/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 2
+  }
+}

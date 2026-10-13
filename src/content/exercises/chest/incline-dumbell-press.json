@@ -1,0 +1,48 @@
+{
+  "name": "Incline Dumbell Press",
+  "category": "chest",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbells",
+    "Incline Bench"
+  ],
+  "muscles": {
+    "primary": [
+      "Upper Pectoralis Major",
+      "Anterior Deltoids"
+    ],
+    "secondary": [
+      "Triceps"
+    ]
+  },
+  "instructions": [
+    "Set bench to 30-45 degree incline.",
+    "Lie back holding dumbbells at chest level.",
+    "Press dumbbells up until arms are extended.",
+    "Lower with control to chest level.",
+    "Maintain slight elbow bend at bottom."
+  ],
+  "tips": [
+    "Keep back flat against the bench",
+    "Don't let dumbbells drift too far apart at top"
+  ],
+  "safety": [
+    "Don't bounce the weights off chest",
+    "Use a spotter for heavy dumbbells"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/chest/incline-dumbell-press/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/chest/incline-dumbell-press/diagram-1.webp",
+      "/assets/exercises/chest/incline-dumbell-press/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/chest/incline-dumbell-press/video-1.mp4",
+      "/assets/exercises/chest/incline-dumbell-press/video-2.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 2
+  }
+}

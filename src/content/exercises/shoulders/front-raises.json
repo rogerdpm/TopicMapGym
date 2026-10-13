@@ -1,0 +1,48 @@
+{
+  "name": "Front Raises",
+  "category": "shoulders",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbells",
+    "Barbell"
+  ],
+  "muscles": {
+    "primary": [
+      "Anterior Deltoids"
+    ],
+    "secondary": [
+      "Upper Chest"
+    ]
+  },
+  "instructions": [
+    "Stand with arms extended down, holding weights.",
+    "Keep palms facing down.",
+    "Raise one or both arms in front until parallel to floor.",
+    "Lower with control.",
+    "Alternate arms if doing single-arm raises."
+  ],
+  "tips": [
+    "Keep core engaged to prevent back arch",
+    "Don't use momentum"
+  ],
+  "safety": [
+    "Don't raise above shoulder height",
+    "Start with light weight"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/shoulders/front-raises/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/shoulders/front-raises/diagram-1.webp",
+      "/assets/exercises/shoulders/front-raises/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/shoulders/front-raises/video-1.mp4",
+      "/assets/exercises/shoulders/front-raises/video-2.mp4",
+      "/assets/exercises/shoulders/front-raises/video-3.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 2
+  }
+}

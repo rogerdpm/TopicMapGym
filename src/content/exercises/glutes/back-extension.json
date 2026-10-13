@@ -1,0 +1,49 @@
+{
+  "name": "Back Extension",
+  "category": "glutes",
+  "difficulty": "beginner",
+  "equipment": [
+    "Roman Chair",
+    "Bodyweight"
+  ],
+  "muscles": {
+    "primary": [
+      "Erector Spinae",
+      "Gluteus Maximus"
+    ],
+    "secondary": [
+      "Hamstrings"
+    ]
+  },
+  "instructions": [
+    "Position thighs on pad, ankles under rollers.",
+    "Start with body hanging straight down.",
+    "Raise torso until body forms a straight line.",
+    "Squeeze glutes and back at the top.",
+    "Lower with control back to start."
+  ],
+  "tips": [
+    "Don't hyperextend at the top",
+    "Keep core engaged throughout"
+  ],
+  "safety": [
+    "Start with no added weight",
+    "Don't swing or use momentum"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/glutes/back-extension/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/glutes/back-extension/diagram-1.webp",
+      "/assets/exercises/glutes/back-extension/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/glutes/back-extension/video-1.mp4",
+      "/assets/exercises/glutes/back-extension/video-2.mp4",
+      "/assets/exercises/glutes/back-extension/video-3.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 4,
+    "col": 4
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Concentration Curls",
+  "category": "arms",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbell"
+  ],
+  "muscles": {
+    "primary": [
+      "Biceps"
+    ],
+    "secondary": [
+      "Forearms"
+    ]
+  },
+  "instructions": [
+    "Sit on bench with one leg extended.",
+    "Rest elbow against inner thigh.",
+    "Curl dumbbell up, squeezing biceps.",
+    "Lower with control to full extension.",
+    "Complete reps then switch arms."
+  ],
+  "tips": [
+    "Focus on the contraction",
+    "Keep movement slow and controlled"
+  ],
+  "safety": [
+    "Don't rock or use momentum",
+    "Maintain balance"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/arms/concentration-curls/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/arms/concentration-curls/diagram-1.webp",
+      "/assets/exercises/arms/concentration-curls/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/arms/concentration-curls/video-1.mp4",
+      "/assets/exercises/arms/concentration-curls/video-2.mp4",
+      "/assets/exercises/arms/concentration-curls/video-3.mp4",
+      "/assets/exercises/arms/concentration-curls/video-4.mp4",
+      "/assets/exercises/arms/concentration-curls/video-5.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 4,
+    "col": 0
+  }
+}

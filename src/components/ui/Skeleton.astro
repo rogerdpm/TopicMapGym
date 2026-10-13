@@ -1,0 +1,33 @@
+---
+interface Props {
+  class?: string;
+  width?: string;
+  height?: string;
+}
+
+const { class: className = '', width, height } = Astro.props;
+---
+
+<div
+  class={`shimmer rounded ${className}`}
+  style={`width: ${width || '100%'}; height: ${height || '1rem'};`}
+  aria-hidden="true"
+/>
+
+<style>
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--color-surface) 0%,
+      var(--color-surface-light) 50%,
+      var(--color-surface) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+</style>

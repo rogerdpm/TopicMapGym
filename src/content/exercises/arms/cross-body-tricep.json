@@ -1,0 +1,42 @@
+{
+  "name": "Cross Body Tricep Extension",
+  "category": "arms",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbell"
+  ],
+  "muscles": {
+    "primary": [
+      "Triceps"
+    ]
+  },
+  "instructions": [
+    "Stand or sit with one dumbbell held overhead.",
+    "Lower the dumbbell behind your head.",
+    "Keep elbows pointed forward.",
+    "Extend arms back to starting position.",
+    "Complete reps then switch arms."
+  ],
+  "tips": [
+    "Keep upper arms still",
+    "Feel the stretch in triceps"
+  ],
+  "safety": [
+    "Don't use too much weight",
+    "Control the movement throughout"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/arms/cross-body-tricep/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/arms/cross-body-tricep/diagram-1.webp",
+      "/assets/exercises/arms/cross-body-tricep/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/arms/cross-body-tricep/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 2
+  }
+}
