@@ -1,0 +1,21 @@
+# humanstxt.org
+
+/* TEAM */
+Original Author: TopicMapGym Contributors
+Fork Maintainer: rogerdpm
+
+/* SITE */
+Last built: 2024-10-13
+Language: English
+Doctype: HTML5
+
+/* TECHNOLOGIES */
+Framework: Astro 4.x
+UI: Preact, Tailwind CSS
+Search: Fuse.js
+Deployment: GitHub Pages
+
+/* CONTENT */
+Exercise Categories: Arms, Back, Cardio, Chest, Core, Glutes, Legs, Shoulders
+Total Exercises: 43+
+Media Files: 200+

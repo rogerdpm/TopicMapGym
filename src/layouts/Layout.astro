@@ -2,9 +2,21 @@
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  type?: 'website' | 'article';
 }
 
-const { title, description = 'Interactive exercise guide — browse gym movements by muscle group' } = Astro.props;
+const {
+  title,
+  description = 'Interactive exercise guide — browse gym movements by muscle group',
+  ogImage = '/og-image.png',
+  canonicalURL = Astro.url.href,
+  type = 'website',
+} = Astro.props;
+
+const siteTitle = 'TopicMapGym';
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 ---
 
 <!doctype html>
@@ -14,7 +26,10 @@ const { title, description = 'Interactive exercise guide — browse gym movement
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | TopicMapGym</title>
+    <title>{fullTitle}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Preload critical assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,14 +38,27 @@ const { title, description = 'Interactive exercise guide — browse gym movement
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content={`${title} | TopicMapGym`} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:site_name" content={siteTitle} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
 
     <slot name="head" />
+    <slot name="schema" />
   </head>
   <body class="bg-background text-text-primary min-h-screen flex flex-col">
     <slot />

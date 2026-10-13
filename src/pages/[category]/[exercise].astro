@@ -4,6 +4,7 @@ import { categories, getCategoryById } from '../../lib/categories';
 import { getExercisesByCategory, buildMediaUrl } from '../../lib/exercises';
 import Badge from '../../components/ui/Badge.astro';
 import MediaViewer from '../../components/MediaViewer';
+import SchemaOrg from '../../components/SchemaOrg.astro';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -11,7 +12,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   for (const category of categories) {
     const exercises = await getExercisesByCategory(category.id);
     for (const exercise of exercises) {
-      // Astro content collection id includes folder path, extract just the slug
       const exerciseSlug = exercise.id.split('/').pop();
       paths.push({
         params: { category: category.id, exercise: exerciseSlug },
@@ -32,18 +32,55 @@ if (!exercise) {
 const category = getCategoryById(categoryId!);
 const { data } = exercise;
 
+// Get all exercises in category for prev/next navigation
+const categoryExercises = await getExercisesByCategory(categoryId!);
+const exerciseSlugs = categoryExercises.map(e => e.id.split('/').pop());
+const currentIndex = exerciseSlugs.indexOf(exerciseId);
+const prevExercise = currentIndex > 0 ? categoryExercises[currentIndex - 1] : null;
+const nextExercise = currentIndex < categoryExercises.length - 1 ? categoryExercises[currentIndex + 1] : null;
+
 const allMedia = [
   ...data.media.diagrams.map((d, i) => ({ type: 'diagram', src: d, index: i + 1 })),
   ...(data.media.videos || []).map((v, i) => ({ type: 'video', src: v, index: i + 1 })),
 ];
 ---
 
-<Layout title={data.name}>
+<Layout title={data.name} description={`${data.name} exercise - ${data.muscles.primary.join(', ')}`}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Exercise',
+    name: data.name,
+    description: `${data.name} exercise demonstration for ${data.muscles.primary.join(', ')}`,
+    category: category?.name,
+    muscle: data.muscles.primary,
+    difficulty: data.difficulty,
+    equipment: data.equipment,
+  })} />
+
   <header class="relative z-10 px-4 py-6 border-b border-surface-light">
     <div class="max-w-6xl mx-auto">
+      <!-- Breadcrumbs -->
+      <nav class="text-sm text-text-secondary mb-4" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2">
+          <li>
+            <a href="/" class="hover:text-primary transition-colors">Home</a>
+          </li>
+          <li>
+            <span class="mx-2">/</span>
+          </li>
+          <li>
+            <a href={`/${category?.id}`} class="hover:text-primary transition-colors">{category?.name}</a>
+          </li>
+          <li>
+            <span class="mx-2">/</span>
+          </li>
+          <li class="text-text-primary" aria-current="page">{data.name}</li>
+        </ol>
+      </nav>
+
       <a
         href={`/${category?.id}`}
-        class="inline-flex items-center gap-2 text-text-secondary hover:text-primary mb-4 transition-colors"
+        class="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -162,6 +199,37 @@ const allMedia = [
           )}
         </div>
       </div>
+
+      <!-- Prev/Next Navigation -->
+      <nav class="flex justify-between items-center gap-4 pt-8 border-t border-surface-light" aria-label="Exercise navigation">
+        {prevExercise ? (
+          <a
+            href={`/${categoryId}/${prevExercise.id.split('/').pop()}`}
+            class="flex-1 group"
+          >
+            <span class="text-sm text-text-secondary block mb-1">← Previous</span>
+            <span class="font-medium group-hover:text-primary transition-colors">
+              {prevExercise.data.name}
+            </span>
+          </a>
+        ) : (
+          <div class="flex-1" />
+        )}
+
+        {nextExercise ? (
+          <a
+            href={`/${categoryId}/${nextExercise.id.split('/').pop()}`}
+            class="flex-1 text-right group"
+          >
+            <span class="text-sm text-text-secondary block mb-1">Next →</span>
+            <span class="font-medium group-hover:text-primary transition-colors">
+              {nextExercise.data.name}
+            </span>
+          </a>
+        ) : (
+          <div class="flex-1" />
+        )}
+      </nav>
     </div>
   </main>
 </Layout>
