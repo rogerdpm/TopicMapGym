@@ -6,11 +6,12 @@ interface NavItem {
   icon: 'home' | 'search' | 'categories' | 'favorites';
 }
 
+const base = '/TopicMapGym';
 const navItems: NavItem[] = [
-  { label: 'Home', href: '/', icon: 'home' },
+  { label: 'Home', href: `${base}/`, icon: 'home' },
   { label: 'Search', href: '#search', icon: 'search' },
-  { label: 'Categories', href: '/#categories', icon: 'categories' },
-  { label: 'Favorites', href: '/favorites', icon: 'favorites' },
+  { label: 'Categories', href: `${base}/#categories`, icon: 'categories' },
+  { label: 'Favorites', href: `${base}/favorites`, icon: 'favorites' },
 ];
 
 const icons = {
