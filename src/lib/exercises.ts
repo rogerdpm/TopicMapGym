@@ -35,10 +35,18 @@ export async function searchExercises(query: string): Promise<Exercise[]> {
   });
 }
 
+// CDN Base URL from environment (empty string for local development)
+const CDN_BASE_URL = import.meta.env.PUBLIC_MEDIA_CDN_URL || '';
+
 export function buildMediaUrl(
   category: string,
   exerciseId: string,
   filename: string
 ): string {
-  return `/assets/exercises/${category}/${exerciseId}/${filename}`;
+  const localPath = `/assets/exercises/${category}/${exerciseId}/${filename}`;
+  return CDN_BASE_URL ? `${CDN_BASE_URL}${localPath}` : localPath;
+}
+
+export function getMediaBaseUrl(): string {
+  return CDN_BASE_URL || '';
 }

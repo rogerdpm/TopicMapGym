@@ -1,100 +1,88 @@
 # CDN Enhancements - TopicMapGym
 
-## Status: Parked - Pending Dev Alignment
+## Status: In Progress - Cloudflare R2 Setup
 
 ## Goal
-Separate code repository from media files (~2.67 GB) by hosting media on a free CDN.
+Separate code repository from media files (~682 MB) by hosting media on a free CDN.
 
 ---
 
-## Chosen Option: Surge.sh
+## Chosen Option: Cloudflare R2
 
-### Why Surge
-- **Free tier**: Unlimited storage and bandwidth
-- **CLI-based**: Simple deployment workflow
-- **Global CDN**: Fast delivery worldwide
-- **No file size limits**: Works with large video files
+### Why R2
+- **Free tier**: 10 GB storage included
+- **No egress fees**: Unlike AWS S3, Cloudflare doesn't charge for data transfer
+- **S3-compatible**: Works with AWS SDK and existing tools
+- **Global CDN**: Fast delivery via Cloudflare's network
+- **File size**: Up to 5 GB per file
 
-### Why Parked
-- Need to align with other devs on CDN strategy
-- May need custom domain configuration
-- May evaluate Cloudflare R2 as alternative
+### Setup Completed
+- [x] Installed AWS SDK (`@aws-sdk/client-s3`, `@aws-sdk/lib-storage`)
+- [x] Created `.env.example` with R2 configuration template
+- [x] Updated `exercises.ts` to prepend CDN URL from `PUBLIC_MEDIA_CDN_URL`
+- [x] Created upload script at `tools/upload-to-r2.ts`
+- [x] Added `npm run upload:r2` script
 
----
-
-## Implementation Plan (When Ready)
-
-### Phase 1: Media Migration
-
-1. **Upload media to Surge**
-   ```bash
-   # Install surge
-   npm install -g surge
-   
-   # Deploy media assets
-   cd public/assets/exercises
-   surge . exercises-media.surge.sh
-   
-   # Or with custom domain
-   surge . media.topicmapgym.com
-   ```
-
-2. **Update exercise JSON files**
-   - Change `thumbnail` paths from `/assets/exercises/...` to CDN URL
-   - Change `media.images` paths to CDN URLs
-   - Change `media.videos` paths to CDN URLs
-
-   Example JSON transformation:
-   ```json
-   // Before
-   "thumbnail": "/assets/exercises/arms/bicep-curls/thumb.jpg"
-   
-   // After
-   "thumbnail": "https://exercises-media.surge.sh/arms/bicep-curls/thumb.jpg"
-   ```
-
-### Phase 2: Environment-Based URLs
-
-1. **Add environment variable for media base URL**
-   ```bash
-   # .env
-   PUBLIC_MEDIA_BASE_URL=https://exercises-media.surge.sh
-   ```
-
-2. **Update content loading to use environment variable**
-   - Modify exercise loading logic to prepend CDN URL
-
-### Phase 3: Development Workflow
-
-1. **Local development**: Use local media files
-2. **Production build**: Use CDN URLs
-3. **Optional**: Add build script to validate CDN URLs
+### Pending: R2 Bucket Creation
+User needs to:
+1. Create R2 bucket at dash.cloudflare.com
+2. Get API credentials
+3. Add credentials to `.env`
+4. Run `npm run upload:r2`
 
 ---
 
-## Alternative Considered
+## Implementation Details
 
-### Cloudflare R2
-- **Pros**: S3-compatible, no egress fees, 10GB free tier
-- **Cons**: Requires R2 setup, Cloudflare account, more complex
-- **When to use**: If Surge proves unreliable or needs better SLA
+### Environment Variables
 
----
+Create `.env` from `.env.example`:
+```bash
+R2_BUCKET_URL=https://your-account.r2.dev
+R2_ACCESS_KEY_ID=your_access_key_id
+R2_SECRET_ACCESS_KEY=your_secret_access_key
+PUBLIC_MEDIA_CDN_URL=https://your-account.r2.dev
+```
 
-## Files to Modify
+### Upload Command
+
+```bash
+npm run upload:r2
+```
+
+This will:
+1. Scan `public/assets/exercises/` for all media files
+2. Upload each file to R2 with path `assets/exercises/{category}/{file}`
+3. Print the CDN URL to use
+
+### Development vs Production
+
+- **Local dev**: `PUBLIC_MEDIA_CDN_URL` is empty, uses local `/assets/exercises/`
+- **Production**: Set `PUBLIC_MEDIA_CDN_URL` to your R2 bucket URL
+
+### Code Changes
 
 | File | Change |
 |------|--------|
-| `src/content/exercises/*/` | Update media paths to CDN URLs |
-| `src/lib/exercises.ts` | Add CDN URL prepending logic |
-| `.env` | Add `PUBLIC_MEDIA_BASE_URL` |
-| Build scripts | Optional CDN validation |
+| `src/lib/exercises.ts` | `buildMediaUrl()` prepends CDN URL when `PUBLIC_MEDIA_CDN_URL` is set |
+| `tools/upload-to-r2.ts` | New script to upload media to R2 |
+
+---
+
+## Files Created/Modified
+
+| File | Status |
+|------|--------|
+| `.env.example` | ✅ Created |
+| `src/lib/exercises.ts` | ✅ Modified |
+| `tools/upload-to-r2.ts` | ✅ Created |
+| `package.json` | ✅ Added `upload:r2` script |
 
 ---
 
 ## Notes
 
-- Surge.sh does not provide SLA guarantees (community project)
-- For production with high traffic, consider upgrading to paid tier or R2
-- Surge supports custom domains with SSL
-- Keep local media for development/testing
+- R2 free tier: 10 GB storage, no egress charges
+- Upload script uses AWS S3 SDK (R2 is S3-compatible)
+- Local media files are kept for development without CDN
+- After upload, update `.env` with actual `PUBLIC_MEDIA_CDN_URL`
