@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://rogerdpm.github.io/TopicMapGym/',
+  base: '/TopicMapGym',
   integrations: [
     preact({ compat: true }),
     tailwind(),
