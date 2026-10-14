@@ -45,3 +45,5 @@ src/assets/exercises/
 # Testing
 coverage/
 .wrangler/
+.wrangler/
+art/
