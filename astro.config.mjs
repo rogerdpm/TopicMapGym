@@ -3,7 +3,7 @@ import preact from '@astrojs/preact';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://jjloubser.github.io/topicmapgym/',
+  site: 'https://rogerdpm.github.io/TopicMapGym/',
   integrations: [
     preact({ compat: true }),
     tailwind(),

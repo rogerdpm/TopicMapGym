@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { categories } from '../lib/categories';
 import { getExercisesByCategory } from '../lib/exercises';
 
-const siteUrl = 'https://jjloubser.github.io/topicmapgym/';
+const siteUrl = 'https://rogerdpm.github.io/TopicMapGym/';
 const today = new Date().toISOString().split('T')[0];
 
 export const GET: APIRoute = async () => {
