@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { categories, getCategoryById } from '../../lib/categories';
-import { getExercisesByCategory, buildMediaUrl } from '../../lib/exercises';
+import { getExercisesByCategory, getMediaBaseUrl } from '../../lib/exercises';
 import Badge from '../../components/ui/Badge.astro';
 import MediaViewer from '../../components/MediaViewer';
 import SchemaOrg from '../../components/SchemaOrg.astro';
@@ -39,9 +39,22 @@ const currentIndex = exerciseSlugs.indexOf(exerciseId);
 const prevExercise = currentIndex > 0 ? categoryExercises[currentIndex - 1] : null;
 const nextExercise = currentIndex < categoryExercises.length - 1 ? categoryExercises[currentIndex + 1] : null;
 
+// Get CDN base URL for media
+const cdnUrl = getMediaBaseUrl();
+
+// Transform media paths to use CDN URL in production
+const exerciseSlug = exercise.id.split('/').pop() || '';
 const allMedia = [
-  ...data.media.diagrams.map((d, i) => ({ type: 'diagram', src: d, index: i + 1 })),
-  ...(data.media.videos || []).map((v, i) => ({ type: 'video', src: v, index: i + 1 })),
+  ...data.media.diagrams.map((d, i) => ({ 
+    type: 'diagram', 
+    src: cdnUrl ? `${cdnUrl}${d}` : d, 
+    index: i + 1 
+  })),
+  ...(data.media.videos || []).map((v, i) => ({ 
+    type: 'video', 
+    src: cdnUrl ? `${cdnUrl}${v}` : v, 
+    index: i + 1 
+  })),
 ];
 ---
 

@@ -1,6 +1,6 @@
 ---
 import type { Exercise } from '../lib/exercises';
-import { getExerciseSlug } from '../lib/exercises';
+import { getExerciseSlug, getMediaBaseUrl } from '../lib/exercises';
 import Badge from './ui/Badge.astro';
 
 interface Props {
@@ -11,6 +11,8 @@ interface Props {
 const { exercise, categoryColor } = Astro.props;
 const { data } = exercise;
 const slug = getExerciseSlug(exercise);
+const cdnUrl = getMediaBaseUrl();
+const thumbnailSrc = cdnUrl ? `${cdnUrl}${data.media.thumbnail}` : data.media.thumbnail;
 ---
 
 <a
@@ -23,7 +25,7 @@ const slug = getExerciseSlug(exercise);
   <!-- Thumbnail -->
   <div class="aspect-video bg-surface-light rounded-lg mb-4 overflow-hidden">
     <img
-      src={data.media.thumbnail}
+      src={thumbnailSrc}
       alt={data.name}
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
       loading="lazy"
