@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'preact/hooks';
 
+const base = '/TopicMapGym';
 const backgrounds = [
-  '/assets/backgrounds/1.webp',
-  '/assets/backgrounds/2.webp',
+  `${base}/assets/backgrounds/1.webp`,
+  `${base}/assets/backgrounds/2.webp`,
 ];
 
 const ROTATION_INTERVAL = 20000; // 20 seconds

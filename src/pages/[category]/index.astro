@@ -7,6 +7,8 @@ import SearchBar from '../../components/SearchBar';
 import FilterBar from '../../components/FilterBar';
 import type { GetStaticPaths } from 'astro';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 export const getStaticPaths: GetStaticPaths = async () => {
   return categories.map((category) => ({
     params: { category: category.id },
@@ -17,7 +19,7 @@ const { category: categoryId } = Astro.params;
 const category = getCategoryById(categoryId!);
 
 if (!category) {
-  return Astro.redirect('/404');
+  return Astro.redirect(`${base}/404`);
 }
 
 const exercises = await getExercisesByCategory(categoryId!);
@@ -28,7 +30,7 @@ const exerciseCount = exercises.length;
   <!-- Header -->
   <header class="relative z-10 px-4 py-8 border-b border-surface-light">
     <div class="max-w-6xl mx-auto">
-      <a href="/" class="inline-flex items-center gap-2 text-text-secondary hover:text-primary mb-4 transition-colors">
+      <a href={`${base}/`} class="inline-flex items-center gap-2 text-text-secondary hover:text-primary mb-4 transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
@@ -74,7 +76,7 @@ const exerciseCount = exercises.length;
       {exerciseCount === 0 && (
         <div class="text-center py-16">
           <p class="text-text-secondary mb-4">No exercises in this category yet.</p>
-          <a href="/" class="btn btn-secondary">
+          <a href={`${base}/`} class="btn btn-secondary">
             Back to Home
           </a>
         </div>

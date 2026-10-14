@@ -24,9 +24,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const { category: categoryId, exercise: exerciseId } = Astro.params;
 const { exercise } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 if (!exercise) {
-  return Astro.redirect('/404');
+  return Astro.redirect(`${base}/404`);
 }
 
 const category = getCategoryById(categoryId!);
@@ -76,7 +77,7 @@ const allMedia = [
       <nav class="text-sm text-text-secondary mb-4" aria-label="Breadcrumb">
         <ol class="flex items-center gap-2">
           <li>
-            <a href="/" class="hover:text-primary transition-colors">Home</a>
+            <a href={`${base}/`} class="hover:text-primary transition-colors">Home</a>
           </li>
           <li>
             <span class="mx-2">/</span>

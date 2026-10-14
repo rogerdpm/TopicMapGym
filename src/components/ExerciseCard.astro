@@ -13,10 +13,11 @@ const { data } = exercise;
 const slug = getExerciseSlug(exercise);
 const cdnUrl = getMediaBaseUrl();
 const thumbnailSrc = cdnUrl ? `${cdnUrl}${data.media.thumbnail}` : data.media.thumbnail;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <a
-  href={`/${data.category}/${slug}`}
+  href={`${base}/${data.category}/${slug}`}
   class="card card-hover block border-t-4 overflow-hidden group touch-manipulation"
   style={`border-top-color: ${categoryColor};`}
   data-difficulty={data.difficulty}
