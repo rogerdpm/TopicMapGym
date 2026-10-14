@@ -1,6 +1,6 @@
 # CDN Enhancements - TopicMapGym
 
-## Status: In Progress - Cloudflare R2 Setup
+## Status: ✅ Complete - Cloudflare R2 Configured
 
 ## Goal
 Separate code repository from media files (~682 MB) by hosting media on a free CDN.
@@ -12,23 +12,32 @@ Separate code repository from media files (~682 MB) by hosting media on a free C
 ### Why R2
 - **Free tier**: 10 GB storage included
 - **No egress fees**: Unlike AWS S3, Cloudflare doesn't charge for data transfer
-- **S3-compatible**: Works with AWS SDK and existing tools
 - **Global CDN**: Fast delivery via Cloudflare's network
 - **File size**: Up to 5 GB per file
 
 ### Setup Completed
-- [x] Installed AWS SDK (`@aws-sdk/client-s3`, `@aws-sdk/lib-storage`)
-- [x] Created `.env.example` with R2 configuration template
+- [x] R2 bucket created: `topicmapgym-media`
+- [x] Public dev URL enabled: `https://pub-c9ec96bb08a540d08b55038a85a5795a.r2.dev`
+- [x] Installed wrangler CLI
+- [x] Created `.env` with CDN URL
 - [x] Updated `exercises.ts` to prepend CDN URL from `PUBLIC_MEDIA_CDN_URL`
 - [x] Created upload script at `tools/upload-to-r2.ts`
-- [x] Added `npm run upload:r2` script
+- [x] Uploaded 244 media files to R2
 
-### Pending: R2 Bucket Creation
-User needs to:
-1. Create R2 bucket at dash.cloudflare.com
-2. Get API credentials
-3. Add credentials to `.env`
-4. Run `npm run upload:r2`
+### CDN URL
+```
+https://pub-c9ec96bb08a540d08b55038a85a5795a.r2.dev
+```
+
+### Commands
+
+```bash
+# Upload media to R2
+npm run upload:r2
+
+# Build with CDN
+npm run build
+```
 
 ---
 
