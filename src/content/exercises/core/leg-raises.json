@@ -1,0 +1,44 @@
+{
+  "name": "Leg Raises",
+  "category": "core",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Bodyweight",
+    "Pull-up Bar"
+  ],
+  "muscles": {
+    "primary": [
+      "Lower Rectus Abdominis",
+      "Hip Flexors"
+    ],
+    "secondary": [
+      "Obliques"
+    ]
+  },
+  "instructions": [
+    "Hang from pull-up bar or lie on flat surface.",
+    "Keep legs straight and together.",
+    "Raise legs until parallel to floor (or higher).",
+    "Lower with control, no swinging.",
+    "Keep lower back pressed to floor if lying."
+  ],
+  "tips": [
+    "Don't swing or use momentum",
+    "Focus on lower abs lifting legs"
+  ],
+  "safety": [
+    "Don't hyperextend lower back",
+    "Start with bent knees if needed"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/core/leg-raises/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/core/leg-raises/diagram-1.webp"
+    ],
+    "videos": []
+  },
+  "gridPosition": {
+    "row": 1,
+    "col": 0
+  }
+}

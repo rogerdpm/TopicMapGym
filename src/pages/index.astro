@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { categories } from '../lib/categories';
+import { getAllExercises } from '../lib/exercises';
+import CategoryCard from '../components/CategoryCard.astro';
+import SearchBar from '../components/SearchBar';
+import BackgroundRotator from '../components/BackgroundRotator';
+
+const allExercises = await getAllExercises();
+---
+
+<Layout title="Home">
+  <BackgroundRotator client:load />
+
+  <!-- Hero Section -->
+  <header class="relative z-10 flex flex-col items-center justify-center min-h-[60vh] px-4 py-16 text-center">
+    <h1 class="text-5xl md:text-7xl font-bold mb-4 text-balance">
+      <span class="text-text-primary">Topic</span><span class="text-primary">Map</span><span class="text-accent">Gym</span>
+    </h1>
+    <p class="text-xl md:text-2xl text-text-secondary max-w-2xl mb-8">
+      Interactive exercise guide — browse gym movements by muscle group with clear visual demonstrations
+    </p>
+    
+    <!-- Search Bar - searches across all exercises -->
+    <div class="w-full max-w-xl mb-8">
+      <SearchBar exercises={allExercises} client:load />
+    </div>
+    
+    <div class="flex justify-center">
+      <a href="#categories" class="btn btn-primary text-lg">
+        Browse by Category
+      </a>
+    </div>
+  </header>
+
+  <!-- Category Grid -->
+  <section id="categories" class="relative z-10 max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-semibold mb-8 text-center">Choose Your Focus</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {categories.map((category) => (
+        <CategoryCard category={category} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="relative z-10 max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-semibold mb-8 text-center">How It Works</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card text-center">
+        <div class="text-4xl mb-4">🎯</div>
+        <h3 class="text-xl font-semibold mb-2">Pick a Muscle Group</h3>
+        <p class="text-text-secondary">Browse exercises by category — glutes, legs, chest, back, and more</p>
+      </div>
+
+      <div class="card text-center">
+        <div class="text-4xl mb-4">📊</div>
+        <h3 class="text-xl font-semibold mb-2">See the Diagram First</h3>
+        <p class="text-text-secondary">Understand the movement with clear visual diagrams before watching videos</p>
+      </div>
+
+      <div class="card text-center">
+        <div class="text-4xl mb-4">🎥</div>
+        <h3 class="text-xl font-semibold mb-2">Watch the Demo</h3>
+        <p class="text-text-secondary">Cycle through video demonstrations to see proper form in action</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative z-10 py-8 text-center text-text-secondary border-t border-surface-light">
+    <p>@TopicMapGym — contact: jjloubser@symbioses.co.za</p>
+  </footer>
+</Layout>

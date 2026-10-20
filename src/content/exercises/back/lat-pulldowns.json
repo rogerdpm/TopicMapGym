@@ -1,0 +1,51 @@
+{
+  "id": "lat-pulldowns",
+  "name": "Lat Pulldowns",
+  "category": "back",
+  "difficulty": "beginner",
+  "equipment": [
+    "Lat Pulldown Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Latissimus Dorsi"
+    ],
+    "secondary": [
+      "Biceps",
+      "Rear Deltoids"
+    ]
+  },
+  "instructions": [
+    "Sit at the lat pulldown machine and secure thighs under pad.",
+    "Grip bar slightly wider than shoulder-width.",
+    "Lean back slightly and pull bar down to upper chest.",
+    "Squeeze shoulder blades together at the bottom.",
+    "Control the weight back up with slight pause."
+  ],
+  "tips": [
+    "Focus on pulling with back muscles, not arms",
+    "Keep torso stable throughout"
+  ],
+  "safety": [
+    "Don't lean back excessively",
+    "Control the weight on the way up"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/back/lat-pulldowns/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/back/lat-pulldowns/diagram-1.webp",
+      "/assets/exercises/back/lat-pulldowns/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/back/lat-pulldowns/video-1.mp4",
+      "/assets/exercises/back/lat-pulldowns/video-2.mp4",
+      "/assets/exercises/back/lat-pulldowns/video-3.mp4",
+      "/assets/exercises/back/lat-pulldowns/video-4.mp4",
+      "/assets/exercises/back/lat-pulldowns/video-5.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 0
+  }
+}

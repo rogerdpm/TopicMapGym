@@ -1,0 +1,51 @@
+{
+  "name": "Seated Row",
+  "category": "back",
+  "difficulty": "beginner",
+  "equipment": [
+    "Cable Machine",
+    "Dumbbells"
+  ],
+  "muscles": {
+    "primary": [
+      "Latissimus Dorsi",
+      "Rhomboids"
+    ],
+    "secondary": [
+      "Biceps",
+      "Rear Deltoids"
+    ]
+  },
+  "instructions": [
+    "Sit at cable row machine, feet on platform.",
+    "Grip handle with arms extended.",
+    "Pull handle to lower chest, squeezing shoulder blades.",
+    "Keep torso upright throughout.",
+    "Extend arms with control to start."
+  ],
+  "tips": [
+    "Don't lean back excessively when pulling",
+    "Focus on squeezing shoulder blades together"
+  ],
+  "safety": [
+    "Don't let weight jerk you forward",
+    "Maintain neutral spine position"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/back/seated-row/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/back/seated-row/diagram-1.webp",
+      "/assets/exercises/back/seated-row/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/back/seated-row/video-1.mp4",
+      "/assets/exercises/back/seated-row/video-2.mp4",
+      "/assets/exercises/back/seated-row/video-3.mp4",
+      "/assets/exercises/back/seated-row/video-4.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 4
+  }
+}

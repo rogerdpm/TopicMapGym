@@ -1,0 +1,43 @@
+{
+  "name": "Leg Extensions",
+  "category": "legs",
+  "difficulty": "beginner",
+  "equipment": [
+    "Leg Extension Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Quadriceps"
+    ]
+  },
+  "instructions": [
+    "Sit in machine with back against pad.",
+    "Position ankles under roller.",
+    "Extend legs until straight but not locked.",
+    "Squeeze quads at the top.",
+    "Lower with control back to start."
+  ],
+  "tips": [
+    "Don't use momentum to lift the weight",
+    "Keep core engaged for stability"
+  ],
+  "safety": [
+    "Don't hyperextend the knees",
+    "Adjust pad if it presses on ankles"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/legs/leg-extensions/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/legs/leg-extensions/diagram-1.webp",
+      "/assets/exercises/legs/leg-extensions/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/legs/leg-extensions/video-1.mp4",
+      "/assets/exercises/legs/leg-extensions/video-2.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 4,
+    "col": 2
+  }
+}

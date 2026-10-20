@@ -1,0 +1,48 @@
+{
+  "name": "Hammer Curls",
+  "category": "arms",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbells"
+  ],
+  "muscles": {
+    "primary": [
+      "Brachialis",
+      "Biceps"
+    ],
+    "secondary": [
+      "Forearms"
+    ]
+  },
+  "instructions": [
+    "Stand with dumbbells at sides, palms facing in.",
+    "Keep elbows close to torso.",
+    "Curl weights up maintaining neutral grip.",
+    "Squeeze at the top.",
+    "Lower with control."
+  ],
+  "tips": [
+    "Keep wrists straight throughout",
+    "Control the negative"
+  ],
+  "safety": [
+    "Don't swing the weights",
+    "Use appropriate weight"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/arms/hammer-curls/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/arms/hammer-curls/diagram-1.webp",
+      "/assets/exercises/arms/hammer-curls/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/arms/hammer-curls/video-1.mp4",
+      "/assets/exercises/arms/hammer-curls/video-2.mp4",
+      "/assets/exercises/arms/hammer-curls/video-3.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 4
+  }
+}

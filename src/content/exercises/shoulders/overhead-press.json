@@ -1,0 +1,51 @@
+{
+  "name": "Overhead Press",
+  "category": "shoulders",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Barbell",
+    "Dumbbells"
+  ],
+  "muscles": {
+    "primary": [
+      "Deltoids"
+    ],
+    "secondary": [
+      "Triceps",
+      "Upper Chest"
+    ]
+  },
+  "instructions": [
+    "Stand with feet shoulder-width apart.",
+    "Hold bar at shoulder level, palms forward.",
+    "Press bar overhead until arms are fully extended.",
+    "Lower bar back to shoulder level with control.",
+    "Keep core engaged throughout."
+  ],
+  "tips": [
+    "Don't arch back excessively",
+    "Keep bar path close to face"
+  ],
+  "safety": [
+    "Use a squat rack for heavy weights",
+    "Don't lock elbows at the top"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/shoulders/overhead-press/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/shoulders/overhead-press/diagram-1.webp",
+      "/assets/exercises/shoulders/overhead-press/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/shoulders/overhead-press/video-1.mp4",
+      "/assets/exercises/shoulders/overhead-press/video-2.mp4",
+      "/assets/exercises/shoulders/overhead-press/video-3.mp4",
+      "/assets/exercises/shoulders/overhead-press/video-4.mp4",
+      "/assets/exercises/shoulders/overhead-press/video-5.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

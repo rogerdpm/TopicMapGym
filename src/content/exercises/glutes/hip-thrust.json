@@ -1,0 +1,49 @@
+{
+  "name": "Hip Thrust",
+  "category": "glutes",
+  "difficulty": "beginner",
+  "equipment": [
+    "Barbell",
+    "Bench"
+  ],
+  "muscles": {
+    "primary": [
+      "Gluteus Maximus"
+    ],
+    "secondary": [
+      "Hamstrings"
+    ]
+  },
+  "instructions": [
+    "Sit on ground with upper back against bench.",
+    "Roll barbell over hips, pad with a towel if needed.",
+    "Feet flat, shoulder-width apart.",
+    "Drive through heels to lift hips until body forms a line.",
+    "Squeeze glutes at top, lower with control."
+  ],
+  "tips": [
+    "Keep chin tucked throughout movement",
+    "Don't hyperextend lower back at the top"
+  ],
+  "safety": [
+    "Use a towel or pad on barbell for comfort",
+    "Don't let knees cave inward"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/glutes/hip-thrust/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/glutes/hip-thrust/diagram-1.webp",
+      "/assets/exercises/glutes/hip-thrust/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/glutes/hip-thrust/video-1.mp4",
+      "/assets/exercises/glutes/hip-thrust/video-2.mp4",
+      "/assets/exercises/glutes/hip-thrust/video-3.mp4",
+      "/assets/exercises/glutes/hip-thrust/video-4.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 1,
+    "col": 2
+  }
+}

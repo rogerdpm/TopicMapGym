@@ -1,0 +1,68 @@
+---
+interface Props {
+  type: 'Exercise' | 'ExerciseCategory' | 'WebSite';
+  data: {
+    name: string;
+    description?: string;
+    category?: string;
+    muscles?: string[];
+    difficulty?: string;
+    equipment?: string[];
+    url?: string;
+  };
+}
+
+const { type, data } = Astro.props;
+
+const baseUrl = 'https://rogerdpm.github.io/TopicMapGym';
+
+const schemas = {
+  Exercise: {
+    '@context': 'https://schema.org',
+    '@type': 'Exercise',
+    name: data.name,
+    description: data.description || `${data.name} exercise demonstration`,
+    url: data.url || `${baseUrl}/exercises/${data.name.toLowerCase().replace(/\s+/g, '-')}`,
+    ...(data.category && { category: data.category }),
+    ...(data.muscles && { 
+      exerciseType: {
+        '@type': 'PhysicalActivity',
+        name: data.muscles.join(', '),
+      }
+    }),
+    ...(data.difficulty && { 
+      additionalProperty: {
+        '@type': 'PropertyValue',
+        name: 'difficulty',
+        value: data.difficulty,
+      }
+    }),
+  },
+  ExerciseCategory: {
+    '@context': 'https://schema.org',
+    '@type': 'ExerciseCategory',
+    name: data.name,
+    description: data.description || `Browse ${data.name} exercises`,
+    url: data.url || `${baseUrl}/${data.name.toLowerCase()}`,
+  },
+  WebSite: {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'TopicMapGym',
+    description: 'Interactive exercise guide — browse gym movements by muscle group',
+    url: baseUrl,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${baseUrl}/?search={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  },
+};
+
+const schema = schemas[type];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

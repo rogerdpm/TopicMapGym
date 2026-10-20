@@ -1,0 +1,45 @@
+{
+  "name": "Bicep Curls",
+  "category": "arms",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbells",
+    "Barbell"
+  ],
+  "muscles": {
+    "primary": [
+      "Biceps"
+    ],
+    "secondary": [
+      "Forearms"
+    ]
+  },
+  "instructions": [
+    "Stand with dumbbells at sides, palms facing forward.",
+    "Keep elbows close to torso.",
+    "Curl weights up, squeezing biceps at top.",
+    "Lower with control to full extension.",
+    "Avoid swinging or using momentum."
+  ],
+  "tips": [
+    "Keep upper arms stationary",
+    "Control the negative portion"
+  ],
+  "safety": [
+    "Don't hyperextend elbows at bottom",
+    "Use appropriate weight"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/arms/bicep-curls/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/arms/bicep-curls/diagram-1.webp"
+    ],
+    "videos": [
+      "/assets/exercises/arms/bicep-curls/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

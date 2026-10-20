@@ -1,0 +1,44 @@
+{
+  "name": "Face Pulls",
+  "category": "shoulders",
+  "difficulty": "beginner",
+  "equipment": [
+    "Cable Machine",
+    "Rope Attachment"
+  ],
+  "muscles": {
+    "primary": [
+      "Rear Deltoids"
+    ],
+    "secondary": [
+      "Rhomboids",
+      "Trapezius"
+    ]
+  },
+  "instructions": [
+    "Set cable at face height with rope.",
+    "Pull rope towards face, separating hands as you pull.",
+    "Keep elbows high and squeeze shoulder blades.",
+    "Return to start with control.",
+    "Focus on the rear deltoids and upper back."
+  ],
+  "tips": [
+    "Keep elbows above shoulder height",
+    "Pull to ears, not chest"
+  ],
+  "safety": [
+    "Don't use too much weight",
+    "Maintain neutral spine"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/shoulders/face-pulls/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/shoulders/face-pulls/diagram-1.webp"
+    ],
+    "videos": []
+  },
+  "gridPosition": {
+    "row": 1,
+    "col": 2
+  }
+}

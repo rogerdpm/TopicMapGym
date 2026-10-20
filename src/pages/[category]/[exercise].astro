@@ -1,0 +1,249 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { categories, getCategoryById } from '../../lib/categories';
+import { getExercisesByCategory, getMediaBaseUrl } from '../../lib/exercises';
+import Badge from '../../components/ui/Badge.astro';
+import MediaViewer from '../../components/MediaViewer';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = [];
+  for (const category of categories) {
+    const exercises = await getExercisesByCategory(category.id);
+    for (const exercise of exercises) {
+      const exerciseSlug = exercise.id.split('/').pop();
+      paths.push({
+        params: { category: category.id, exercise: exerciseSlug },
+        props: { exercise },
+      });
+    }
+  }
+  return paths;
+};
+
+const { category: categoryId, exercise: exerciseId } = Astro.params;
+const { exercise } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+if (!exercise) {
+  return Astro.redirect(`${base}/404`);
+}
+
+const category = getCategoryById(categoryId!);
+const { data } = exercise;
+
+// Get all exercises in category for prev/next navigation
+const categoryExercises = await getExercisesByCategory(categoryId!);
+const exerciseSlugs = categoryExercises.map(e => e.id.split('/').pop());
+const currentIndex = exerciseSlugs.indexOf(exerciseId);
+const prevExercise = currentIndex > 0 ? categoryExercises[currentIndex - 1] : null;
+const nextExercise = currentIndex < categoryExercises.length - 1 ? categoryExercises[currentIndex + 1] : null;
+
+// Get CDN base URL for media
+const cdnUrl = getMediaBaseUrl();
+
+// Transform media paths to use CDN URL in production
+const exerciseSlug = exercise.id.split('/').pop() || '';
+const allMedia = [
+  ...data.media.diagrams.map((d, i) => ({ 
+    type: 'diagram', 
+    src: cdnUrl ? `${cdnUrl}${d}` : d, 
+    index: i + 1 
+  })),
+  ...(data.media.videos || []).map((v, i) => ({ 
+    type: 'video', 
+    src: cdnUrl ? `${cdnUrl}${v}` : v, 
+    index: i + 1 
+  })),
+];
+---
+
+<Layout title={data.name} description={`${data.name} exercise - ${data.muscles.primary.join(', ')}`}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Exercise',
+    name: data.name,
+    description: `${data.name} exercise demonstration for ${data.muscles.primary.join(', ')}`,
+    category: category?.name,
+    muscle: data.muscles.primary,
+    difficulty: data.difficulty,
+    equipment: data.equipment,
+  })} />
+
+  <header class="relative z-10 px-4 py-6 border-b border-surface-light">
+    <div class="max-w-6xl mx-auto">
+      <!-- Breadcrumbs -->
+      <nav class="text-sm text-text-secondary mb-4" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2">
+          <li>
+            <a href={`${base}/`} class="hover:text-primary transition-colors">Home</a>
+          </li>
+          <li>
+            <span class="mx-2">/</span>
+          </li>
+          <li>
+            <a href={`${base}/${category?.id}`} class="hover:text-primary transition-colors">{category?.name}</a>
+          </li>
+          <li>
+            <span class="mx-2">/</span>
+          </li>
+          <li class="text-text-primary" aria-current="page">{data.name}</li>
+        </ol>
+      </nav>
+
+      <a
+        href={`${base}/${category?.id}`}
+        class="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to {category?.name}
+      </a>
+    </div>
+  </header>
+
+  <main class="relative z-10 px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+      <!-- Two Column Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <!-- Media Panel -->
+        <div class="lg:sticky lg:top-4 lg:self-start">
+          <MediaViewer
+            media={allMedia}
+            exerciseName={data.name}
+            client:visible
+          />
+        </div>
+
+        <!-- Details Panel -->
+        <div class="space-y-8">
+          <!-- Header -->
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">{data.name}</h1>
+            <div class="flex items-center gap-3 flex-wrap">
+              <Badge variant={data.category as any} size="md">{category?.name}</Badge>
+              <Badge variant={data.difficulty === 'beginner' ? 'success' : data.difficulty === 'intermediate' ? 'warning' : 'danger'}>
+                {data.difficulty}
+              </Badge>
+            </div>
+          </div>
+
+          <!-- Equipment -->
+          <div>
+            <h2 class="text-lg font-semibold mb-3">Equipment</h2>
+            <div class="flex flex-wrap gap-2">
+              {data.equipment.map((eq) => (
+                <Badge variant="default">{eq}</Badge>
+              ))}
+            </div>
+          </div>
+
+          <!-- Muscles -->
+          <div>
+            <h2 class="text-lg font-semibold mb-3">Target Muscles</h2>
+            <div class="space-y-2">
+              <div>
+                <span class="text-text-secondary text-sm">Primary:</span>
+                <div class="flex flex-wrap gap-2 mt-1">
+                  {data.muscles.primary.map((m) => (
+                    <Badge variant="success">{m}</Badge>
+                  ))}
+                </div>
+              </div>
+              {data.muscles.secondary && data.muscles.secondary.length > 0 && (
+                <div>
+                  <span class="text-text-secondary text-sm">Secondary:</span>
+                  <div class="flex flex-wrap gap-2 mt-1">
+                    {data.muscles.secondary.map((m) => (
+                      <Badge variant="default">{m}</Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <!-- Instructions -->
+          <div>
+            <h2 class="text-lg font-semibold mb-3">Instructions</h2>
+            <ol class="space-y-3">
+              {data.instructions.map((step, i) => (
+                <li class="flex gap-3">
+                  <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-sm flex items-center justify-center font-medium">
+                    {i + 1}
+                  </span>
+                  <span class="text-text-secondary pt-0.5">{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <!-- Tips -->
+          {data.tips && data.tips.length > 0 && (
+            <div>
+              <h2 class="text-lg font-semibold mb-3">Tips</h2>
+              <ul class="space-y-2">
+                {data.tips.map((tip) => (
+                  <li class="flex gap-3 text-text-secondary">
+                    <span class="text-accent">•</span>
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Safety -->
+          {data.safety && data.safety.length > 0 && (
+            <div>
+              <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span class="text-danger">⚠</span> Safety
+              </h2>
+              <ul class="space-y-2">
+                {data.safety.map((note) => (
+                  <li class="flex gap-3 text-text-secondary">
+                    <span class="text-danger">•</span>
+                    {note}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Prev/Next Navigation -->
+      <nav class="flex justify-between items-center gap-4 pt-8 border-t border-surface-light" aria-label="Exercise navigation">
+        {prevExercise ? (
+          <a
+            href={`${base}/${categoryId}/${prevExercise.id.split('/').pop()}`}
+            class="flex-1 group"
+          >
+            <span class="text-sm text-text-secondary block mb-1">← Previous</span>
+            <span class="font-medium group-hover:text-primary transition-colors">
+              {prevExercise.data.name}
+            </span>
+          </a>
+        ) : (
+          <div class="flex-1" />
+        )}
+
+        {nextExercise ? (
+          <a
+            href={`${base}/${categoryId}/${nextExercise.id.split('/').pop()}`}
+            class="flex-1 text-right group"
+          >
+            <span class="text-sm text-text-secondary block mb-1">Next →</span>
+            <span class="font-medium group-hover:text-primary transition-colors">
+              {nextExercise.data.name}
+            </span>
+          </a>
+        ) : (
+          <div class="flex-1" />
+        )}
+      </nav>
+    </div>
+  </main>
+</Layout>

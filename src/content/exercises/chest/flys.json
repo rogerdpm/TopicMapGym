@@ -1,0 +1,48 @@
+{
+  "name": "Flys",
+  "category": "chest",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Dumbbells",
+    "Flat Bench"
+  ],
+  "muscles": {
+    "primary": [
+      "Pectoralis Major"
+    ],
+    "secondary": [
+      "Anterior Deltoids"
+    ]
+  },
+  "instructions": [
+    "Lie flat on bench holding dumbbells above chest.",
+    "With slight elbow bend, lower arms out to sides.",
+    "Lower until chest stretch is felt.",
+    "Reverse the motion, bringing dumbbells together above chest.",
+    "Squeeze chest at the top."
+  ],
+  "tips": [
+    "Keep slight bend in elbows throughout",
+    "Feel the stretch at the bottom, squeeze at the top"
+  ],
+  "safety": [
+    "Don't overextend the shoulder joint",
+    "Use controlled movements"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/chest/flys/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/chest/flys/diagram-1.webp",
+      "/assets/exercises/chest/flys/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/chest/flys/video-1.mp4",
+      "/assets/exercises/chest/flys/video-2.mp4",
+      "/assets/exercises/chest/flys/video-3.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 4
+  }
+}

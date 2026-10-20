@@ -1,0 +1,52 @@
+{
+  "name": "Lunges",
+  "category": "legs",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbells (optional)"
+  ],
+  "muscles": {
+    "primary": [
+      "Quadriceps",
+      "Gluteus Maximus"
+    ],
+    "secondary": [
+      "Hamstrings",
+      "Core"
+    ]
+  },
+  "instructions": [
+    "Stand with feet shoulder-width apart.",
+    "Step forward with one leg, lowering until both knees are 90 degrees.",
+    "Keep front knee over ankle, don't let it cave.",
+    "Push through front heel to return to start.",
+    "Alternate legs or complete one side then the other."
+  ],
+  "tips": [
+    "Keep torso upright throughout",
+    "Take a big enough step to create 90-degree angles"
+  ],
+  "safety": [
+    "Don't let front knee extend past toes",
+    "Maintain balance throughout"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/legs/lunges/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/legs/lunges/diagram-1.webp",
+      "/assets/exercises/legs/lunges/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/legs/lunges/video-1.mp4",
+      "/assets/exercises/legs/lunges/video-2.mp4",
+      "/assets/exercises/legs/lunges/video-3.mp4",
+      "/assets/exercises/legs/lunges/video-4.mp4",
+      "/assets/exercises/legs/lunges/video-5.mp4",
+      "/assets/exercises/legs/lunges/video-6.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 4
+  }
+}

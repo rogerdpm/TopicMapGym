@@ -1,0 +1,40 @@
+{
+  "name": "topicmapgym",
+  "type": "module",
+  "version": "2.0.0",
+  "description": "Interactive exercise guide — browse gym movements by muscle group",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint src --ext .ts,.tsx,.astro",
+    "format": "prettier --write \"src/**/*.{ts,tsx,astro,css}\"",
+    "migrate:media": "tsx tools/migrate-media.ts",
+    "upload:r2": "tsx tools/upload-to-r2.ts"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/preact": "^3.5.4",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/tailwind": "^5.1.4",
+    "astro": "^4.16.18",
+    "fuse.js": "^7.0.0",
+    "preact": "^10.24.3",
+    "tailwindcss": "^3.4.15"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1151.0",
+    "@aws-sdk/lib-storage": "^3.1151.0",
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/parser": "^8.71.2",
+    "dotenv": "^18.0.8",
+    "eslint": "^9.39.5",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

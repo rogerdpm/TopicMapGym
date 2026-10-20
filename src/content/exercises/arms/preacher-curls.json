@@ -1,0 +1,43 @@
+{
+  "name": "Preacher Curls",
+  "category": "arms",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Preacher Bench",
+    "Dumbbells"
+  ],
+  "muscles": {
+    "primary": [
+      "Biceps"
+    ],
+    "secondary": [
+      "Forearms"
+    ]
+  },
+  "instructions": [
+    "Sit at preacher bench with arms resting on pad.",
+    "Grip dumbbells with palms up.",
+    "Curl weights up, squeezing biceps.",
+    "Lower with control to full extension.",
+    "Don't let elbows leave the pad."
+  ],
+  "tips": [
+    "Keep back pressed against bench",
+    "Full range of motion is key"
+  ],
+  "safety": [
+    "Don't use momentum to lift",
+    "Don't hyperextend at bottom"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/arms/preacher-curls/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/arms/preacher-curls/diagram-1.webp"
+    ],
+    "videos": []
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 0
+  }
+}

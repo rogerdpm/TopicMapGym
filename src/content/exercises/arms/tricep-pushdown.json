@@ -1,0 +1,45 @@
+{
+  "name": "Tricep Pushdown",
+  "category": "arms",
+  "difficulty": "beginner",
+  "equipment": [
+    "Cable Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Triceps"
+    ],
+    "secondary": [
+      "Forearms"
+    ]
+  },
+  "instructions": [
+    "Stand facing cable machine with rope or bar attachment.",
+    "Grip attachment with elbows bent at sides.",
+    "Push down until arms are fully extended.",
+    "Squeeze triceps at the bottom.",
+    "Return to start with control."
+  ],
+  "tips": [
+    "Keep elbows stationary at sides",
+    "Don't lean forward or use momentum"
+  ],
+  "safety": [
+    "Use appropriate weight",
+    "Control the negative portion"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/arms/tricep-pushdown/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/arms/tricep-pushdown/diagram-1.webp",
+      "/assets/exercises/arms/tricep-pushdown/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/arms/tricep-pushdown/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

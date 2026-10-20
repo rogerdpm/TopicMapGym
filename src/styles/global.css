@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #1E40AF;
+    --color-secondary: #3B82F6;
+    --color-accent: #10B981;
+    --color-background: #0F172A;
+    --color-surface: #1E293B;
+    --color-surface-light: #334155;
+    --color-text-primary: #F8FAFC;
+    --color-text-secondary: #94A3B8;
+    --color-danger: #EF4444;
+
+    --color-category-glutes: #F472B6;
+    --color-category-legs: #A78BFA;
+    --color-category-chest: #F87171;
+    --color-category-back: #60A5FA;
+    --color-category-shoulders: #34D399;
+    --color-category-arms: #FBBF24;
+    --color-category-core: #FB923C;
+    --color-category-cardio: #2DD4BF;
+
+    --spacing-base: 4px;
+    --radius-sm: 4px;
+    --radius-default: 8px;
+    --radius-lg: 12px;
+  }
+
+  html {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--color-background);
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+
+  /* Prevent overscroll on iOS */
+  @supports (overflow: clip) {
+    body {
+      overscroll-behavior: none;
+    }
+  }
+
+  /* Safe area for mobile devices with notches */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  /* Better touch handling */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+@layer components {
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--color-surface) 0%,
+      var(--color-surface-light) 50%,
+      var(--color-surface) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded font-medium transition-all duration-150 ease-out;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-700 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply bg-surface-light text-text-primary hover:bg-surface active:scale-[0.98];
+  }
+
+  .card {
+    @apply bg-surface rounded-lg p-4 shadow-lg;
+  }
+
+  .card-hover {
+    @apply transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

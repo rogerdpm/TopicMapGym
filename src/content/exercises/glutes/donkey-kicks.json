@@ -1,0 +1,47 @@
+{
+  "id": "donkey-kicks",
+  "name": "Donkey Kicks",
+  "category": "glutes",
+  "difficulty": "beginner",
+  "equipment": [
+    "Bodyweight",
+    "Ankle Weights (optional)"
+  ],
+  "muscles": {
+    "primary": [
+      "Gluteus Maximus"
+    ],
+    "secondary": [
+      "Hamstrings",
+      "Core"
+    ]
+  },
+  "instructions": [
+    "Start on hands and knees with hands under shoulders.",
+    "Keep back neutral and core engaged.",
+    "Lift one leg behind you, keeping knee bent at 90 degrees.",
+    "Squeeze glute at the top of the movement.",
+    "Lower with control and repeat."
+  ],
+  "tips": [
+    "Keep hips square to the ground",
+    "Focus on the squeeze at the top"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/glutes/donkey-kicks/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/glutes/donkey-kicks/diagram-1.webp",
+      "/assets/exercises/glutes/donkey-kicks/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/glutes/donkey-kicks/video-1.mp4",
+      "/assets/exercises/glutes/donkey-kicks/video-2.mp4",
+      "/assets/exercises/glutes/donkey-kicks/video-3.mp4",
+      "/assets/exercises/glutes/donkey-kicks/video-4.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 4
+  }
+}

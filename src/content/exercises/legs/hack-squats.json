@@ -1,0 +1,48 @@
+{
+  "name": "Hack Squats",
+  "category": "legs",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Hack Squat Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Quadriceps"
+    ],
+    "secondary": [
+      "Gluteus Maximus",
+      "Hamstrings"
+    ]
+  },
+  "instructions": [
+    "Position shoulders under pads, back against the pad.",
+    "Place feet shoulder-width on platform.",
+    "Release safety and lower by bending knees.",
+    "Keep back flat against pad throughout.",
+    "Push through heels to return to start."
+  ],
+  "tips": [
+    "Keep knees tracking over toes",
+    "Don't let knees cave inward"
+  ],
+  "safety": [
+    "Set safety pins appropriately",
+    "Don't lock knees at the top"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/legs/hack-squats/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/legs/hack-squats/diagram-1.webp",
+      "/assets/exercises/legs/hack-squats/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/legs/hack-squats/video-1.mp4",
+      "/assets/exercises/legs/hack-squats/video-2.mp4",
+      "/assets/exercises/legs/hack-squats/video-3.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 4
+  }
+}

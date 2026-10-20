@@ -1,0 +1,47 @@
+{
+  "name": "Lying Leg Curls",
+  "category": "legs",
+  "difficulty": "beginner",
+  "equipment": [
+    "Leg Curl Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Hamstrings"
+    ],
+    "secondary": [
+      "Calves"
+    ]
+  },
+  "instructions": [
+    "Lie face down on leg curl machine.",
+    "Position pad just above heels.",
+    "Curl legs up as far as possible.",
+    "Squeeze hamstrings at the top.",
+    "Lower with control back to start."
+  ],
+  "tips": [
+    "Keep hips pressed to the bench",
+    "Don't lift thighs off the pad"
+  ],
+  "safety": [
+    "Don't arch lower back",
+    "Use controlled movement, no jerking"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/legs/lying-leg-curls/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/legs/lying-leg-curls/diagram-1.webp",
+      "/assets/exercises/legs/lying-leg-curls/diagram-2.webp",
+      "/assets/exercises/legs/lying-leg-curls/diagram-3.webp"
+    ],
+    "videos": [
+      "/assets/exercises/legs/lying-leg-curls/video-1.mp4",
+      "/assets/exercises/legs/lying-leg-curls/video-2.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 2
+  }
+}

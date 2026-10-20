@@ -1,0 +1,51 @@
+{
+  "name": "Dead Lifts",
+  "category": "back",
+  "difficulty": "advanced",
+  "equipment": [
+    "Barbell"
+  ],
+  "muscles": {
+    "primary": [
+      "Erector Spinae",
+      "Gluteus Maximus",
+      "Hamstrings"
+    ],
+    "secondary": [
+      "Trapezius",
+      "Forearms",
+      "Core"
+    ]
+  },
+  "instructions": [
+    "Stand with feet hip-width apart, bar over mid-foot.",
+    "Bend down and grip bar just outside legs.",
+    "Keep chest up, back straight, and core engaged.",
+    "Drive through heels, extending hips and knees.",
+    "Stand tall with shoulders back, then reverse to lower."
+  ],
+  "tips": [
+    "Initiate by pushing the floor away",
+    "Keep bar close to your body throughout"
+  ],
+  "safety": [
+    "Don't round your back under load",
+    "Start with light weight to master form"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/back/dead-lifts/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/back/dead-lifts/diagram-1.webp",
+      "/assets/exercises/back/dead-lifts/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/back/dead-lifts/video-1.mp4",
+      "/assets/exercises/back/dead-lifts/video-2.mp4",
+      "/assets/exercises/back/dead-lifts/video-3.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 1,
+    "col": 2
+  }
+}

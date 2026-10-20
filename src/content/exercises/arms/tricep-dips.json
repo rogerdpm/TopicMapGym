@@ -1,0 +1,46 @@
+{
+  "name": "Tricep Dips",
+  "category": "arms",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Parallel Bars"
+  ],
+  "muscles": {
+    "primary": [
+      "Triceps"
+    ],
+    "secondary": [
+      "Chest",
+      "Shoulders"
+    ]
+  },
+  "instructions": [
+    "Support yourself on parallel bars with arms straight.",
+    "Lower body by bending elbows to 90 degrees.",
+    "Keep body upright for tricep focus.",
+    "Push back up to starting position.",
+    "Don't go too deep to protect shoulders."
+  ],
+  "tips": [
+    "Keep elbows tucked in",
+    "Focus on squeezing triceps at top"
+  ],
+  "safety": [
+    "Don't descend too deep",
+    "Use assistance if needed"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/arms/tricep-dips/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/arms/tricep-dips/diagram-1.webp",
+      "/assets/exercises/arms/tricep-dips/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/arms/tricep-dips/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 2
+  }
+}

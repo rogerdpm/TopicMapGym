@@ -1,0 +1,52 @@
+{
+  "id": "squats",
+  "name": "Squats",
+  "category": "legs",
+  "difficulty": "beginner",
+  "equipment": [
+    "Barbell",
+    "Squat Rack"
+  ],
+  "muscles": {
+    "primary": [
+      "Quadriceps",
+      "Gluteus Maximus"
+    ],
+    "secondary": [
+      "Hamstrings",
+      "Core"
+    ]
+  },
+  "instructions": [
+    "Position barbell on upper back, feet shoulder-width apart.",
+    "Unrack the bar and step back, maintaining balance.",
+    "Initiate movement by pushing hips back and bending knees.",
+    "Descend until thighs are parallel to floor.",
+    "Drive through heels to return to standing."
+  ],
+  "tips": [
+    "Keep chest up throughout the movement",
+    "Push knees out in line with toes"
+  ],
+  "safety": [
+    "Don't let knees cave inward",
+    "Maintain neutral spine"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/legs/squats/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/legs/squats/diagram-1.webp",
+      "/assets/exercises/legs/squats/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/legs/squats/video-1.mp4",
+      "/assets/exercises/legs/squats/video-2.mp4",
+      "/assets/exercises/legs/squats/video-3.mp4",
+      "/assets/exercises/legs/squats/video-4.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

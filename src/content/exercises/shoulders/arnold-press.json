@@ -1,0 +1,43 @@
+{
+  "name": "Arnold Press",
+  "category": "shoulders",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Dumbbells"
+  ],
+  "muscles": {
+    "primary": [
+      "Deltoids"
+    ],
+    "secondary": [
+      "Triceps",
+      "Upper Chest"
+    ]
+  },
+  "instructions": [
+    "Sit with dumbbells at chest, palms facing you.",
+    "Press up while rotating palms to face forward.",
+    "Finish with arms extended overhead with palms out.",
+    "Reverse the motion to return to start.",
+    "Keep core engaged throughout."
+  ],
+  "tips": [
+    "The rotation should be smooth",
+    "Use a controlled tempo"
+  ],
+  "safety": [
+    "Don't lock elbows at top",
+    "Start with lighter weight to learn rotation"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/shoulders/arnold-press/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/shoulders/arnold-press/diagram-1.webp"
+    ],
+    "videos": []
+  },
+  "gridPosition": {
+    "row": 1,
+    "col": 0
+  }
+}

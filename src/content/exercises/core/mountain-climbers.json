@@ -1,0 +1,44 @@
+{
+  "name": "Mountain Climbers",
+  "category": "core",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Bodyweight"
+  ],
+  "muscles": {
+    "primary": [
+      "Core",
+      "Hip Flexors"
+    ],
+    "secondary": [
+      "Shoulders",
+      "Quadriceps"
+    ]
+  },
+  "instructions": [
+    "Start in pushup position.",
+    "Drive one knee towards chest.",
+    "Quickly switch legs, extending first leg back.",
+    "Continue alternating at a rapid pace.",
+    "Keep hips level, don't let them pike up."
+  ],
+  "tips": [
+    "Keep core tight throughout",
+    "Land softly on the balls of feet"
+  ],
+  "safety": [
+    "Don't let hips rise too high",
+    "Maintain steady breathing"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/core/mountain-climbers/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/core/mountain-climbers/diagram-1.webp"
+    ],
+    "videos": []
+  },
+  "gridPosition": {
+    "row": 1,
+    "col": 2
+  }
+}

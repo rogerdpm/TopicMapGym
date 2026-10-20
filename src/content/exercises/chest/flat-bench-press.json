@@ -1,0 +1,51 @@
+{
+  "id": "flat-bench-press",
+  "name": "Flat Bench Press",
+  "category": "chest",
+  "difficulty": "beginner",
+  "equipment": [
+    "Barbell",
+    "Bench"
+  ],
+  "muscles": {
+    "primary": [
+      "Pectoralis Major"
+    ],
+    "secondary": [
+      "Triceps",
+      "Anterior Deltoids"
+    ]
+  },
+  "instructions": [
+    "Lie flat on bench with eyes under the bar.",
+    "Grip barbell slightly wider than shoulder-width.",
+    "Unrack and lower bar to mid-chest.",
+    "Keep elbows at 45-degree angle to body.",
+    "Press bar back up to starting position."
+  ],
+  "tips": [
+    "Maintain arch in lower back",
+    "Keep shoulder blades retracted"
+  ],
+  "safety": [
+    "Use a spotter for heavy weights",
+    "Don't bounce bar off chest"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/chest/flat-bench-press/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/chest/flat-bench-press/diagram-1.webp",
+      "/assets/exercises/chest/flat-bench-press/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/chest/flat-bench-press/video-1.mp4",
+      "/assets/exercises/chest/flat-bench-press/video-2.mp4",
+      "/assets/exercises/chest/flat-bench-press/video-3.mp4",
+      "/assets/exercises/chest/flat-bench-press/video-4.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

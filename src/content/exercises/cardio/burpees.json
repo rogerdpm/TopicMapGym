@@ -1,0 +1,46 @@
+{
+  "name": "Burpees",
+  "category": "cardio",
+  "difficulty": "advanced",
+  "equipment": [
+    "Bodyweight"
+  ],
+  "muscles": {
+    "primary": [
+      "Full Body"
+    ],
+    "secondary": [
+      "Core",
+      "Quadriceps",
+      "Chest"
+    ]
+  },
+  "instructions": [
+    "Start standing, drop into a squat.",
+    "Place hands on floor and jump feet back to plank.",
+    "Perform a pushup (optional).",
+    "Jump feet forward to squat position.",
+    "Explosively jump up with arms overhead."
+  ],
+  "tips": [
+    "Modify by stepping instead of jumping",
+    "Keep core tight throughout"
+  ],
+  "safety": [
+    "Land softly on feet",
+    "Don't let knees cave inward"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/cardio/burpees/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/cardio/burpees/diagram-1.webp"
+    ],
+    "videos": [
+      "/assets/exercises/cardio/burpees/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 2
+  }
+}

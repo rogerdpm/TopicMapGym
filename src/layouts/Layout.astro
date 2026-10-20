@@ -1,0 +1,124 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import MobileNav from '../components/MobileNav';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description = 'Interactive exercise guide — browse gym movements by muscle group',
+  ogImage = '/og-image.png',
+  canonicalURL = Astro.url.href,
+  type = 'website',
+} = Astro.props;
+
+const siteTitle = 'TopicMapGym';
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#10b981" />
+    <title>{fullTitle}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Font loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- View Transitions for smooth page navigation -->
+    <ViewTransitions />
+
+    <slot name="head" />
+    <slot name="schema" />
+  </head>
+  <body class="bg-background text-text-primary min-h-screen flex flex-col">
+    <slot />
+    <MobileNav client:load />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+
+  /* View transition animations */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes slide-in-from-right {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slide-out-to-left {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(-20px); opacity: 0; }
+  }
+
+  ::view-transition-old(root) {
+    animation: 150ms ease-out fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: 150ms ease-out fade-in;
+  }
+
+  ::view-transition-old(exercise-media) {
+    animation: 150ms ease-out fade-out;
+  }
+
+  ::view-transition-new(exercise-media) {
+    animation: 150ms ease-out fade-in;
+  }
+</style>

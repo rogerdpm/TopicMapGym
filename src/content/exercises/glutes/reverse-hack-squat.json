@@ -1,0 +1,50 @@
+{
+  "id": "reverse-hack-squat",
+  "name": "Reverse Hack Squats",
+  "category": "glutes",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Hack Squat Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Gluteus Maximus",
+      "Quadriceps"
+    ],
+    "secondary": [
+      "Hamstrings",
+      "Calves"
+    ]
+  },
+  "instructions": [
+    "Position yourself on the hack squat machine facing the pad.",
+    "Place shoulders under the pads and grip the handles.",
+    "Release the safety and lower your body by bending knees.",
+    "Keep chest up and back straight throughout the movement.",
+    "Push through heels to return to starting position."
+  ],
+  "tips": [
+    "Keep knees tracking over toes",
+    "Maintain neutral spine position"
+  ],
+  "safety": [
+    "Don't lock knees at the top",
+    "Ensure safety pins are set correctly"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/glutes/reverse-hack-squat/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/glutes/reverse-hack-squat/diagram-1.webp",
+      "/assets/exercises/glutes/reverse-hack-squat/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/glutes/reverse-hack-squat/video-1.mp4",
+      "/assets/exercises/glutes/reverse-hack-squat/video-2.mp4",
+      "/assets/exercises/glutes/reverse-hack-squat/video-3.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 0
+  }
+}

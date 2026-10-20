@@ -1,0 +1,47 @@
+{
+  "name": "Rear Delt Fly",
+  "category": "shoulders",
+  "difficulty": "beginner",
+  "equipment": [
+    "Dumbbells",
+    "Cable Machine"
+  ],
+  "muscles": {
+    "primary": [
+      "Rear Deltoids"
+    ],
+    "secondary": [
+      "Rhomboids",
+      "Trapezius"
+    ]
+  },
+  "instructions": [
+    "Bend forward at hips with dumbbells hanging below chest.",
+    "Keep slight bend in elbows.",
+    "Raise arms out to sides, squeezing shoulder blades.",
+    "Lower with control.",
+    "Think about squeezing shoulder blades together."
+  ],
+  "tips": [
+    "Lead with elbows, not hands",
+    "Keep back flat throughout"
+  ],
+  "safety": [
+    "Don't round your back",
+    "Use appropriate weight"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/shoulders/rear-delt-fly/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/shoulders/rear-delt-fly/diagram-1.webp",
+      "/assets/exercises/shoulders/rear-delt-fly/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/shoulders/rear-delt-fly/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 4
+  }
+}

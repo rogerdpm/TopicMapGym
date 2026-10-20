@@ -1,0 +1,50 @@
+{
+  "name": "Decline Bench Press",
+  "category": "chest",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Barbell",
+    "Decline Bench"
+  ],
+  "muscles": {
+    "primary": [
+      "Lower Pectoralis Major"
+    ],
+    "secondary": [
+      "Triceps",
+      "Anterior Deltoids"
+    ]
+  },
+  "instructions": [
+    "Secure feet at top of decline bench.",
+    "Grip bar slightly wider than shoulders.",
+    "Lower bar to lower chest with control.",
+    "Press back up to starting position.",
+    "Keep wrists straight throughout."
+  ],
+  "tips": [
+    "Use a spotter for safety",
+    "Control the descent, don't bounce"
+  ],
+  "safety": [
+    "Ensure feet are securely fastened",
+    "Don't unrack the bar without checking grip"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/chest/decline-bench-press/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/chest/decline-bench-press/diagram-1.webp",
+      "/assets/exercises/chest/decline-bench-press/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/chest/decline-bench-press/video-1.mp4",
+      "/assets/exercises/chest/decline-bench-press/video-2.mp4",
+      "/assets/exercises/chest/decline-bench-press/video-3.mp4",
+      "/assets/exercises/chest/decline-bench-press/video-4.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 2,
+    "col": 0
+  }
+}

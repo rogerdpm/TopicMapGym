@@ -1,0 +1,50 @@
+{
+  "name": "Bulgarian Split Squats",
+  "category": "glutes",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Dumbbells",
+    "Bench"
+  ],
+  "muscles": {
+    "primary": [
+      "Gluteus Maximus",
+      "Quadriceps"
+    ],
+    "secondary": [
+      "Hamstrings",
+      "Core"
+    ]
+  },
+  "instructions": [
+    "Stand facing away from bench, place one foot on it behind you.",
+    "Hold dumbbells at sides, keep torso upright.",
+    "Lower until front thigh is parallel to floor.",
+    "Push through front heel to return to start.",
+    "Complete reps then switch legs."
+  ],
+  "tips": [
+    "Keep front knee tracking over toes",
+    "Maintain balance by looking at a fixed point"
+  ],
+  "safety": [
+    "Start without weight to master balance",
+    "Ensure bench is stable"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/glutes/bulgarian-split-squats/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/glutes/bulgarian-split-squats/diagram-1.webp",
+      "/assets/exercises/glutes/bulgarian-split-squats/diagram-2.webp"
+    ],
+    "videos": [
+      "/assets/exercises/glutes/bulgarian-split-squats/video-1.mp4",
+      "/assets/exercises/glutes/bulgarian-split-squats/video-2.mp4",
+      "/assets/exercises/glutes/bulgarian-split-squats/video-3.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 1,
+    "col": 0
+  }
+}

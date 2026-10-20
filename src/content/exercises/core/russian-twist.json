@@ -1,0 +1,47 @@
+{
+  "name": "Russian Twist",
+  "category": "core",
+  "difficulty": "intermediate",
+  "equipment": [
+    "Dumbbell",
+    "Bodyweight"
+  ],
+  "muscles": {
+    "primary": [
+      "Obliques"
+    ],
+    "secondary": [
+      "Rectus Abdominis"
+    ]
+  },
+  "instructions": [
+    "Sit with knees bent, feet off floor.",
+    "Lean back slightly, keeping back straight.",
+    "Hold weight at chest or clasped hands.",
+    "Rotate torso to one side, then the other.",
+    "Keep core engaged throughout."
+  ],
+  "tips": [
+    "Move with control, don't swing",
+    "Exhale as you twist"
+  ],
+  "safety": [
+    "Don't round your back",
+    "Start without weight"
+  ],
+  "media": {
+    "thumbnail": "/assets/exercises/core/russian-twist/thumbnail.webp",
+    "diagrams": [
+      "/assets/exercises/core/russian-twist/diagram-1.webp",
+      "/assets/exercises/core/russian-twist/diagram-2.webp",
+      "/assets/exercises/core/russian-twist/diagram-3.webp"
+    ],
+    "videos": [
+      "/assets/exercises/core/russian-twist/video-1.mp4"
+    ]
+  },
+  "gridPosition": {
+    "row": 0,
+    "col": 4
+  }
+}
